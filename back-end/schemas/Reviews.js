@@ -1,6 +1,6 @@
-import {Schema, SchemaTypes, model} from "mongoose";
+const mongoose = require("mongoose");
 
-const ReviewSchema = new Schema({
+const ReviewSchema = new mongoose.Schema({
 
     created_at: {
         type: Date,
@@ -12,17 +12,17 @@ const ReviewSchema = new Schema({
         required: true
     },
     customer: {
-        type: SchemaTypes.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: "Customer",
         required: true,
     },
     business: {
-        type: SchemaTypes.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: "Business",
         required: true,
     },
 
 })
 
-const Review = model("Review", ReviewSchema )
+const Review = mongoose.model("Review", ReviewSchema )
 module.exports = Review
