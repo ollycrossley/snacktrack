@@ -54,8 +54,8 @@ const BusinessSchema = new mongoose.Schema({
         default: 0
     },
     location: {
-        latitude: String,
-        longitude: String
+        latitude: Number,
+        longitude: Number
     }
 })
 
