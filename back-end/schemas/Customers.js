@@ -16,7 +16,7 @@ const CustomerSchema = new mongoose.Schema({
         required: true,
         // validate: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?\/~_+-=|\]).{8,32}$/
     },
-    avatar: {
+    avatar_url: {
         type: String,
         required: false
     },
