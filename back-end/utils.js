@@ -9,7 +9,7 @@ exports.createRefSet = (arr, globalKey) => {
 
 exports.findIdByRef = (customerObj, businessObj, reviewItems) => {
     const newReviewItems = reviewItems.map(item => ({...item}))
-    if (reviewItems.length === 0) return [];
+    if (reviewItems.length === 0 || !reviewItems) return [];
     newReviewItems.forEach(review => {
         review.customer = customerObj[review.customer]
         review.business = businessObj[review.business]
