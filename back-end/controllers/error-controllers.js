@@ -3,3 +3,8 @@ exports.handle404s = (error, request, response, next) => {
     response.status(error.status).send({ msg: error.msg });
   }
 };
+
+exports.handleServerError = (err, req, res, next) => {
+  console.log(err);
+  res.status(500).send({ msg: "Internal server error" });
+}
