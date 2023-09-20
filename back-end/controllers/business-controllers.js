@@ -1,6 +1,6 @@
 const {
   selectBusinesses,
-  selectBusinessesByName,
+  selectBusinessesById,
 } = require("../models/business-models");
 
 exports.getBusinesses = (request, response, next) => {
@@ -9,9 +9,9 @@ exports.getBusinesses = (request, response, next) => {
   });
 };
 
-exports.getBusinessByName = (request, response, next) => {
-  const { business_name } = request.params;
-  selectBusinessesByName(business_name)
+exports.getBusinessById = (request, response, next) => {
+  const { _id } = request.params;
+  selectBusinessesById(_id)
     .then((business) => {
       response.status(200).send({ business });
     })
