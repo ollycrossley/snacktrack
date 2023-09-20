@@ -11,7 +11,11 @@ exports.getBusinesses = (request, response, next) => {
 
 exports.getBusinessByName = (request, response, next) => {
   const { business_name } = request.params;
-  selectBusinessesByName(business_name).then((business) => {
-    response.status(200).send({business});
-  });
+  selectBusinessesByName(business_name)
+    .then((business) => {
+      response.status(200).send({ business });
+    })
+    .catch((error) => {
+      next(error);
+    });
 };

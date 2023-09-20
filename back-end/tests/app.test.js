@@ -17,13 +17,13 @@ beforeAll(async () => {
   await seed(customerData, businessData, reviewData);
 });
 
-afterAll(async () => {
-  await mongoose.connection.close();
+afterAll(() => {
+  mongoose.connection.close();
 });
 
 describe("/api/businesses", () => {
   describe("GET", () => {
-    it("returns an array of businesses all with the correct properties", () => {
+    it("200: returns an array of businesses all with the correct properties", () => {
       return request(app)
         .get("/api/businesses")
         .expect(200)
@@ -44,10 +44,10 @@ describe("/api/businesses", () => {
   });
 });
 
-describe.only("/api/businesses/:business_name", () => {
+describe("/api/businesses/:business_name", () => {
   describe("GET", () => {
-    it("returns an object with a business's relevant information", () => {
-      request(app)
+    it("200: returns an object with a business's relevant information", () => {
+      return request(app)
         .get("/api/businesses/Wikivu")
         .expect(200)
         .then((response) => {
@@ -66,9 +66,14 @@ describe.only("/api/businesses/:business_name", () => {
           expect(business).toHaveProperty("is_active");
         });
     });
+    it("404: returns the appropriate error when name does not match one in database", () => {
+      return request(app)
+        .get("/api/businesses/Wagyu")
+        .expect(404)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Username not found");
+        });
+    });
   });
 });
-
-// afterAll(async () => {
-//   await mongoose.connection.close();
-// });

@@ -19,9 +19,13 @@ exports.selectBusinesses = () => {
 
 exports.selectBusinessesByName = (business_name) => {
   return Business.findOne(
-    { business_name: business_name },
+    { business_name },
     { password: 0, username: 0, email: 0, avatar_url: 0 }
   ).then((response) => {
-    return response
+    if (response) {
+      return response;
+    } else {
+      return Promise.reject({ status: 404, msg: "Username not found" });
+    }
   });
 };
