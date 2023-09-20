@@ -1,1 +1,5 @@
 GET http://localhost:3000/api/businesses/Wikivu
+
+### GET customers
+
+GET http://localhost:3000/api/customers
