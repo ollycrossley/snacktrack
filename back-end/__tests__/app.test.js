@@ -128,7 +128,7 @@ describe("/api/businesses/:_id", () => {
         .expect(404)
         .then((response) => {
           const { msg } = response.body;
-          expect(msg).toBe("Username not found");
+          expect(msg).toBe("Business not found");
         });
     });
   });
@@ -149,6 +149,48 @@ describe("/api/customers", () => {
                         expect(customer).toHaveProperty("email");
                         expect(customer).toHaveProperty("avatar_url");
                     });
+                });
+        });
+    });
+});
+
+describe("/api/customers/:_id", () => {
+    describe("GET", () => {
+        it("200: returns an object with a customer's relevant information", () => {
+            return request(app)
+                .get("/api/customers")
+                .then((response) => {
+                    const { customers } = response.body;
+                    const customerIdToTest = customers[8]._id;
+                    return customerIdToTest;
+                })
+                .then((customerIdToTest) => {
+                    return request(app).get(`/api/customers/${customerIdToTest}`).expect(200);
+                })
+                .then((response) => {
+                    const { customer } = response.body;
+                    expect(customer).toHaveProperty("username", "talfonsini8");
+                    expect(customer).toHaveProperty("_id");
+                    expect(customer).toHaveProperty("email");
+                    expect(customer).toHaveProperty("avatar_url");
+                });
+        });
+        it("400: returns appropriate error when invalid id is used", () => {
+            return request(app)
+                .get("/api/customers/talfonsini8")
+                .expect(400)
+                .then((response) => {
+                    const { msg } = response.body;
+                    expect(msg).toBe("Invalid Id");
+                });
+        });
+        it("404: returns the appropriate error when name does not match one in database", () => {
+            return request(app)
+                .get("/api/customers/650ae8a22dbbf4cd5f9eeabe")
+                .expect(404)
+                .then((response) => {
+                    const { msg } = response.body;
+                    expect(msg).toBe("Customer not found");
                 });
         });
     });

@@ -24,7 +24,7 @@ exports.selectBusinessesById = (_id) => {
     if (response) {
       return response;
     } else {
-      return Promise.reject({ status: 404, msg: "Username not found" });
+      return Promise.reject({ status: 404, msg: "Business not found" });
     }
   });
 };

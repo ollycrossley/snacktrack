@@ -41,11 +41,21 @@
     "queries": [],
     "bodyFormat": {},
     "exampleResponse": {
-      "businesses": [
+      "customers": [
         {
           "_id": 18374639
         }
       ]
+    }
+  },
+  "GET /api/customers/:_id": {
+    "description": "serves up a business's details by their name",
+    "queries": [],
+    "bodyFormat": {},
+    "exampleResponse": {
+      "customer": {
+        "_id": 18374639
+      }
     }
   }
 }
