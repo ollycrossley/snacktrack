@@ -16,6 +16,12 @@ exports.selectBusinesses = () => {
   });
 };
 
+exports.insertBusinesses = (body) => {
+  return Business.insertMany(body).then((response) => {
+    return response[0];
+  });
+};
+
 exports.selectBusinessesById = (_id) => {
   return Business.findOne(
     { _id },
