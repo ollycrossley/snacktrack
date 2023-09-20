@@ -10,12 +10,15 @@ const {
   handleServerError,
 } = require("./controllers/error-controllers");
 const { getEndpoints } = require("./controllers/api-controllers");
+const {getCustomers} = require("./controllers/customers-controllers");
 
 app.use(express.json());
 
 app.get("/api", getEndpoints);
 app.get("/api/businesses", getBusinesses);
 app.get("/api/businesses/:_id", getBusinessById);
+
+app.get("/api/customers", getCustomers)
 
 app.use((req, res) => {
   res.status(404).send({ msg: "url not found" });

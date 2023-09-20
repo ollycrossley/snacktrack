@@ -35,5 +35,17 @@
         "_id": 18374639
       }
     }
+  },
+  "GET /api/customers": {
+    "description": "serves up an array of objects of all available customers",
+    "queries": [],
+    "bodyFormat": {},
+    "exampleResponse": {
+      "businesses": [
+        {
+          "_id": 18374639
+        }
+      ]
+    }
   }
 }

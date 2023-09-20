@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const Business = require("../schemas/Businesses");
 
 exports.selectBusinesses = () => {
