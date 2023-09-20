@@ -1,5 +1,7 @@
 import NavBar from "../navbar";
-
+function handleSubmit(e) {
+  e.preventDefault();}
+  
 export default function DriverLogin() {
   return (
     <>
@@ -18,6 +20,9 @@ export default function DriverLogin() {
           Password
           <input type="text" name="password_input" id="password_input"></input>
         </label>
+        <button onClick={handleSubmit}>
+          Submit
+        </button>
       </form>
     </>
   );
