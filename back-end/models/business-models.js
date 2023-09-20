@@ -17,9 +17,9 @@ exports.selectBusinesses = () => {
   });
 };
 
-exports.selectBusinessesByName = (business_name) => {
+exports.selectBusinessesById = (_id) => {
   return Business.findOne(
-    { business_name },
+    { _id },
     { password: 0, username: 0, email: 0, avatar_url: 0 }
   ).then((response) => {
     if (response) {

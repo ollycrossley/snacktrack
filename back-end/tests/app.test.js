@@ -21,33 +21,44 @@ afterAll(() => {
   mongoose.connection.close();
 });
 
-describe('/api', () => {
-    test('GET 200   | Returns 200 and an object with correct endpoint values within', () => {
-        return request(app).get('/api').expect(200).then(({body}) => {
-            expect(Object.keys(body).length > 0).toBe(true)
-            for (const key in body) {
-                expect(body[key]).toHaveProperty("description")
-                expect(body[key]).toHaveProperty("queries")
-                expect(body[key]).toHaveProperty("bodyFormat")
-                expect(body[key]).toHaveProperty("exampleResponse")
-            }
-        })
-    });
-    test('GET 200   | Returns instructions for all available endpoints', () => {
-        return request(app).get('/api').expect(200).then(({body}) => {
-            const endpointsInRes = []
-            const endpointsInApp = app._router.stack.filter(layer => layer.route).map(r => r.route.path)
-            for (const key in body) {
-                endpointsInRes.push(key.substring(key.indexOf("/")))
-            }
-            expect(endpointsInRes).toIncludeSameMembers(endpointsInApp)
-        })
-    });
-    test('GET 404   | Returns an appropriate message when passed an invalid endpoint url', () => {
-        return request(app).get('/api/cute_cats').expect(404).then(({body}) => {
-            expect(body.msg).toBe("url not found")
-        })
-    })
+describe("/api", () => {
+  test("GET 200   | Returns 200 and an object with correct endpoint values within", () => {
+    return request(app)
+      .get("/api")
+      .expect(200)
+      .then(({ body }) => {
+        expect(Object.keys(body).length > 0).toBe(true);
+        for (const key in body) {
+          expect(body[key]).toHaveProperty("description");
+          expect(body[key]).toHaveProperty("queries");
+          expect(body[key]).toHaveProperty("bodyFormat");
+          expect(body[key]).toHaveProperty("exampleResponse");
+        }
+      });
+  });
+  test("GET 200   | Returns instructions for all available endpoints", () => {
+    return request(app)
+      .get("/api")
+      .expect(200)
+      .then(({ body }) => {
+        const endpointsInRes = [];
+        const endpointsInApp = app._router.stack
+          .filter((layer) => layer.route)
+          .map((r) => r.route.path);
+        for (const key in body) {
+          endpointsInRes.push(key.substring(key.indexOf("/")));
+        }
+        expect(endpointsInRes).toIncludeSameMembers(endpointsInApp);
+      });
+  });
+  test("GET 404   | Returns an appropriate message when passed an invalid endpoint url", () => {
+    return request(app)
+      .get("/api/cute_cats")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("url not found");
+      });
+  });
 });
 
 describe("/api/businesses", () => {
@@ -73,14 +84,22 @@ describe("/api/businesses", () => {
   });
 });
 
-describe("/api/businesses/:business_name", () => {
+describe("/api/businesses/:_id", () => {
   describe("GET", () => {
     it("200: returns an object with a business's relevant information", () => {
       return request(app)
-        .get("/api/businesses/Wikivu")
-        .expect(200)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const idToTest = businesses[8]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app).get(`/api/businesses/${idToTest}`).expect(200);
+        })
         .then((response) => {
           const { business } = response.body;
+          console.log(business._id);
           expect(business).toHaveProperty("business_name", "Wikivu");
           expect(business).toHaveProperty("total_rating");
           expect(business).toHaveProperty("no_of_ratings");
@@ -95,9 +114,18 @@ describe("/api/businesses/:business_name", () => {
           expect(business).toHaveProperty("is_active");
         });
     });
-    it("404: returns the appropriate error when name does not match one in database", () => {
+    it.only("400: returns appropriate error when invalid id is used", () => {
       return request(app)
         .get("/api/businesses/Wagyu")
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Invalid Id");
+        });
+    });
+    it("404: returns the appropriate error when name does not match one in database", () => {
+      return request(app)
+        .get("/api/businesses/650ae8a22dbbf4cd5f9eeabe")
         .expect(404)
         .then((response) => {
           const { msg } = response.body;
