@@ -5,17 +5,20 @@ const {
   postBusinesses,
   getBusinessById,
 } = require("./controllers/business-controllers");
-const {
-  handle400s,
-  handle404s,
-  handleServerError,
-} = require("./controllers/error-controllers");
 const { getEndpoints } = require("./controllers/api-controllers");
 const {
   getCustomers,
   postCustomers,
   getCustomerById,
 } = require("./controllers/customers-controllers");
+const {
+  getReviewsByBusinessById,
+} = require("./controllers/reviews-controllers");
+const {
+  handle400s,
+  handle404s,
+  handleServerError,
+} = require("./controllers/error-controllers");
 
 app.use(express.json());
 
@@ -28,6 +31,8 @@ app.get("/api/businesses/:_id", getBusinessById);
 
 app.get("/api/customers", getCustomers);
 app.post("/api/customers", postCustomers);
+
+app.get("/api/businesses/:_id/reviews", getReviewsByBusinessById);
 
 app.get("/api/customers/:_id", getCustomerById);
 

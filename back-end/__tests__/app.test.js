@@ -302,3 +302,34 @@ describe("/api/customers/:_id", () => {
     });
   });
 });
+
+describe("/api/businesses/:_id/reviews", () => {
+  describe("GET", () => {
+    it("200: responds with all the relevant reviews for a relevant id", () => {
+      return request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const idToTest = businesses[6]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app)
+            .get(`/api/businesses/${idToTest}/reviews`)
+            .expect(200)
+            .then((response) => {
+              const { reviews } = response.body;
+              expect(reviews.length).toBe(10);
+              reviews.forEach((review) => {
+                expect(review).toHaveProperty("_id");
+                expect(review).toHaveProperty("created_at");
+                expect(review).toHaveProperty("rating");
+                expect(review).toHaveProperty("business");
+                expect(review).toHaveProperty("customer");
+                expect(review.business.business_name).toBe("Youbridge");
+              });
+            });
+        });
+    });
+  });
+});
