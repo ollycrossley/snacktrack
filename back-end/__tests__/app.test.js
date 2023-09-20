@@ -206,6 +206,57 @@ describe("/api/customers", () => {
         });
     });
   });
+  describe("POST", () => {
+    it("201: adds a customer to database and responds with the customer information", () => {
+      return request(app)
+        .post("/api/customers")
+        .send({
+          username: "Fred",
+          email: "hi@hi.com",
+          avatar_url: "http://dummyimage.com/242x212.png/dddddd/000000",
+          password: "hihihihi",
+        })
+        .expect(201)
+        .then((response) => {
+          const { customer } = response.body;
+          expect(customer).toHaveProperty("_id");
+          expect(customer).toHaveProperty("username", "Fred");
+          expect(customer).toHaveProperty("avatar_url");
+          expect(customer).toHaveProperty("password");
+          expect(customer).toHaveProperty("email");
+        });
+    });
+    it("400: returns appropriate error when required info is not provided", () => {
+      return request(app)
+        .post("/api/customers")
+        .send({
+          email: "hi@hi.com",
+          avatar_url: "http://dummyimage.com/242x212.png/dddddd/000000",
+          password: "hihihihi",
+        })
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Required information missing");
+        });
+    });
+    it("201: creates entry even if additional info is provided on body", () => {
+      return request(app)
+        .post("/api/customers")
+        .send({
+          username: "Fred",
+          email: "hi@hi.com",
+          avatar_url: "http://dummyimage.com/242x212.png/dddddd/000000",
+          password: "hihihihi",
+          birthYear: 1999,
+        })
+        .expect(201)
+        .then((response) => {
+          const { customer } = response.body;
+          expect(customer).not.toHaveProperty("birthYear");
+        });
+    });
+  });
 });
 
 describe("/api/customers/:_id", () => {

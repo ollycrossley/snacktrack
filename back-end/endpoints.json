@@ -85,6 +85,21 @@
       ]
     }
   },
+  "POST /api/customers": {
+    "description": "serves up an array of objects of all available businesses",
+    "queries": [],
+    "bodyFormat": {
+      "username": "Fred",
+      "email": "hi@hi.com",
+      "avatar_url": "http://dummyimage.com/242x212.png/dddddd/000000",
+      "password": "hihihihi"
+    },
+    "exampleResponse": {
+      "customer": {
+        "_id": 18374639
+      }
+    }
+  },
   "GET /api/customers/:_id": {
     "description": "serves up a business's details by their name",
     "queries": [],
