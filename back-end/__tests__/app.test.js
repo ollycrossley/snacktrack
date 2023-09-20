@@ -133,3 +133,23 @@ describe("/api/businesses/:_id", () => {
     });
   });
 });
+
+describe("/api/customers", () => {
+    describe("GET", () => {
+        it("200: returns an array of customers all with the correct properties", () => {
+            return request(app)
+                .get("/api/customers")
+                .expect(200)
+                .then((response) => {
+                    const { customers } = response.body;
+                    expect(customers).toHaveLength(10);
+                    customers.forEach((customer) => {
+                        expect(customer).toHaveProperty("_id");
+                        expect(customer).toHaveProperty("username");
+                        expect(customer).toHaveProperty("email");
+                        expect(customer).toHaveProperty("avatar_url");
+                    });
+                });
+        });
+    });
+});
