@@ -13,6 +13,7 @@ const {
 const { getEndpoints } = require("./controllers/api-controllers");
 const {
   getCustomers,
+  postCustomers,
   getCustomerById,
 } = require("./controllers/customers-controllers");
 
@@ -26,6 +27,8 @@ app.post("/api/businesses", postBusinesses);
 app.get("/api/businesses/:_id", getBusinessById);
 
 app.get("/api/customers", getCustomers);
+app.post("/api/customers", postCustomers);
+
 app.get("/api/customers/:_id", getCustomerById);
 
 app.use((req, res) => {

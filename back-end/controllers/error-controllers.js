@@ -1,7 +1,10 @@
 exports.handle400s = (error, request, response, next) => {
   if (error.kind === "ObjectId") {
     response.status(400).send({ msg: "Invalid Id" });
-  } else if (error._message === "Business validation failed") {
+  } else if (
+    error._message === "Business validation failed" ||
+    error._message === "Customer validation failed"
+  ) {
     response.status(400).send({ msg: "Required information missing" });
   } else {
     next(error);

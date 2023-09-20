@@ -12,6 +12,12 @@ exports.selectCustomers = () => {
     });
 };
 
+exports.insertCustomers = (body) => {
+    return Customer.insertMany(body).then((response) => {
+        return response[0];
+      });
+}
+
 exports.selectCustomerById = (_id) => {
     return Customer.findOne(
         { _id },
