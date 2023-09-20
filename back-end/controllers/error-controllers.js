@@ -1,5 +1,4 @@
 exports.handle400s = (error, request, response, next) => {
-  console.log(error);
   if (error.kind === "ObjectId") {
     response.status(400).send({ msg: "Invalid Id" });
   } else {

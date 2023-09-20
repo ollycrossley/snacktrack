@@ -99,7 +99,6 @@ describe("/api/businesses/:_id", () => {
         })
         .then((response) => {
           const { business } = response.body;
-          console.log(business._id);
           expect(business).toHaveProperty("business_name", "Wikivu");
           expect(business).toHaveProperty("total_rating");
           expect(business).toHaveProperty("no_of_ratings");
@@ -114,7 +113,7 @@ describe("/api/businesses/:_id", () => {
           expect(business).toHaveProperty("is_active");
         });
     });
-    it.only("400: returns appropriate error when invalid id is used", () => {
+    it("400: returns appropriate error when invalid id is used", () => {
       return request(app)
         .get("/api/businesses/Wagyu")
         .expect(400)
