@@ -1,0 +1,51 @@
+module.exports = [{
+  "username": "bcolley0",
+  "email": "ewones0@bluehost.com",
+  "password": "tF0,#~*,>o/",
+  "avatar_url": "http://dummyimage.com/158x103.png/5fa2dd/ffffff"
+}, {
+  "username": "jivain1",
+  "email": "cpallister1@cyberchimps.com",
+  "password": "sK5&IyNdwmG{U",
+  "avatar_url": "http://dummyimage.com/242x212.png/dddddd/000000"
+}, {
+  "username": "iseivertsen2",
+  "email": "jcrosfeld2@ocn.ne.jp",
+  "password": "iB4,0/6Bm'O&a",
+  "avatar_url": "http://dummyimage.com/229x157.png/cc0000/ffffff"
+}, {
+  "username": "pcleaveland3",
+  "email": "cgoldson3@t-online.de",
+  "password": "qR4?/v5kr@!MdH",
+  "avatar_url": "http://dummyimage.com/102x155.png/ff4444/ffffff"
+}, {
+  "username": "sranscome4",
+  "email": "dlude4@delicious.com",
+  "password": "lO4~*Ks}=KIjhy",
+  "avatar_url": "http://dummyimage.com/208x220.png/ff4444/ffffff"
+}, {
+  "username": "hsparshett5",
+  "email": "kantliff5@redcross.org",
+  "password": "hP0_oEaK1",
+  "avatar_url": "http://dummyimage.com/108x227.png/ff4444/ffffff"
+}, {
+  "username": "arandall6",
+  "email": "gwilks6@buzzfeed.com",
+  "password": "lO5|DqTM",
+  "avatar_url": "http://dummyimage.com/221x184.png/dddddd/000000"
+}, {
+  "username": "bcalderwood7",
+  "email": "edow7@ustream.tv",
+  "password": "jD0+G_?@L(1W",
+  "avatar_url": "http://dummyimage.com/100x212.png/cc0000/ffffff"
+}, {
+  "username": "talfonsini8",
+  "email": "arevell8@upenn.edu",
+  "password": "bB7_kb|Y4HD8WP.",
+  "avatar_url": "http://dummyimage.com/152x135.png/cc0000/ffffff"
+}, {
+  "username": "cappleton9",
+  "email": "slux9@360.cn",
+  "password": "cS1<!'qQea}U\"o",
+  "avatar_url": "http://dummyimage.com/217x128.png/cc0000/ffffff"
+}]
