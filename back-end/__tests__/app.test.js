@@ -12,6 +12,8 @@ const ENV = process.env.NODE_ENV;
 const pathToCorrectFile = `${__dirname}/../.env.${ENV}`;
 require("dotenv").config({ path: pathToCorrectFile });
 
+const { newBusiness } = require("../data/postData/businesses");
+
 beforeAll(async () => {
   await mongoose.connect(process.env.MONGODB_URI);
   await seed(customerData, businessData, reviewData);
@@ -82,6 +84,58 @@ describe("/api/businesses", () => {
         });
     });
   });
+  describe("POST", () => {
+    it("201: posts a new business and responds with the relevant business info", () => {
+      return request(app)
+        .post("/api/businesses/")
+        .send(newBusiness)
+        .expect(201)
+        .then((response) => {
+          const { business } = response.body;
+          expect(business).toHaveProperty("_id");
+          expect(business).toHaveProperty("location");
+          expect(business).toHaveProperty("business_name");
+          expect(business).toHaveProperty("is_active");
+          expect(business).toHaveProperty("category");
+          expect(business).toHaveProperty("total_rating");
+          expect(business).toHaveProperty("no_of_ratings");
+          expect(business).toHaveProperty("created_at");
+          expect(business).toHaveProperty("opening_hours");
+          expect(business).toHaveProperty("business_bio");
+          expect(business).toHaveProperty("owner_name");
+          expect(business).toHaveProperty("avatar_url");
+          expect(business).toHaveProperty("logo_url");
+          expect(business).toHaveProperty("menu_url");
+          expect(business).toHaveProperty("password");
+          expect(business).toHaveProperty("email");
+          expect(business).toHaveProperty("username", "clisssssssandre5");
+        });
+    });
+    it("400: returns appropriate error when required info is not provided", () => {
+      const copyBusiness = { ...newBusiness };
+      delete copyBusiness.email;
+      return request(app)
+        .post("/api/businesses")
+        .send(copyBusiness)
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Required information missing");
+        });
+    });
+    it("201: creates entry even if additional info is provided on body", () => {
+      const copyBusiness = { ...newBusiness };
+      copyBusiness.yearFound = 1999;
+      return request(app)
+        .post("/api/businesses")
+        .send(copyBusiness)
+        .expect(201)
+        .then((response) => {
+          const { business } = response.body;
+          expect(business).not.toHaveProperty("yearFound");
+        });
+    });
+  });
 });
 
 describe("/api/businesses/:_id", () => {
@@ -135,63 +189,65 @@ describe("/api/businesses/:_id", () => {
 });
 
 describe("/api/customers", () => {
-    describe("GET", () => {
-        it("200: returns an array of customers all with the correct properties", () => {
-            return request(app)
-                .get("/api/customers")
-                .expect(200)
-                .then((response) => {
-                    const { customers } = response.body;
-                    expect(customers).toHaveLength(10);
-                    customers.forEach((customer) => {
-                        expect(customer).toHaveProperty("_id");
-                        expect(customer).toHaveProperty("username");
-                        expect(customer).toHaveProperty("email");
-                        expect(customer).toHaveProperty("avatar_url");
-                    });
-                });
+  describe("GET", () => {
+    it("200: returns an array of customers all with the correct properties", () => {
+      return request(app)
+        .get("/api/customers")
+        .expect(200)
+        .then((response) => {
+          const { customers } = response.body;
+          expect(customers).toHaveLength(10);
+          customers.forEach((customer) => {
+            expect(customer).toHaveProperty("_id");
+            expect(customer).toHaveProperty("username");
+            expect(customer).toHaveProperty("email");
+            expect(customer).toHaveProperty("avatar_url");
+          });
         });
     });
+  });
 });
 
 describe("/api/customers/:_id", () => {
-    describe("GET", () => {
-        it("200: returns an object with a customer's relevant information", () => {
-            return request(app)
-                .get("/api/customers")
-                .then((response) => {
-                    const { customers } = response.body;
-                    const customerIdToTest = customers[8]._id;
-                    return customerIdToTest;
-                })
-                .then((customerIdToTest) => {
-                    return request(app).get(`/api/customers/${customerIdToTest}`).expect(200);
-                })
-                .then((response) => {
-                    const { customer } = response.body;
-                    expect(customer).toHaveProperty("username", "talfonsini8");
-                    expect(customer).toHaveProperty("_id");
-                    expect(customer).toHaveProperty("email");
-                    expect(customer).toHaveProperty("avatar_url");
-                });
-        });
-        it("400: returns appropriate error when invalid id is used", () => {
-            return request(app)
-                .get("/api/customers/talfonsini8")
-                .expect(400)
-                .then((response) => {
-                    const { msg } = response.body;
-                    expect(msg).toBe("Invalid Id");
-                });
-        });
-        it("404: returns the appropriate error when name does not match one in database", () => {
-            return request(app)
-                .get("/api/customers/650ae8a22dbbf4cd5f9eeabe")
-                .expect(404)
-                .then((response) => {
-                    const { msg } = response.body;
-                    expect(msg).toBe("Customer not found");
-                });
+  describe("GET", () => {
+    it("200: returns an object with a customer's relevant information", () => {
+      return request(app)
+        .get("/api/customers")
+        .then((response) => {
+          const { customers } = response.body;
+          const customerIdToTest = customers[8]._id;
+          return customerIdToTest;
+        })
+        .then((customerIdToTest) => {
+          return request(app)
+            .get(`/api/customers/${customerIdToTest}`)
+            .expect(200);
+        })
+        .then((response) => {
+          const { customer } = response.body;
+          expect(customer).toHaveProperty("username", "talfonsini8");
+          expect(customer).toHaveProperty("_id");
+          expect(customer).toHaveProperty("email");
+          expect(customer).toHaveProperty("avatar_url");
         });
     });
+    it("400: returns appropriate error when invalid id is used", () => {
+      return request(app)
+        .get("/api/customers/talfonsini8")
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Invalid Id");
+        });
+    });
+    it("404: returns the appropriate error when name does not match one in database", () => {
+      return request(app)
+        .get("/api/customers/650ae8a22dbbf4cd5f9eeabe")
+        .expect(404)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Customer not found");
+        });
+    });
+  });
 });
