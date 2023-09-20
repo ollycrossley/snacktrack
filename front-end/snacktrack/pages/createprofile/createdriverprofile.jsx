@@ -34,16 +34,14 @@ export default function CreateDriver() {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    const driverProfile = {
-      name,
-      email,
-      userName,
-      businessName,
-      businessType,
-      password,
-    };
-    console.log(driverProfile);
+      driverProfile.owner_name = name
+      driverProfile.email = email
+      driverProfile.username = userName
+      driverProfile.business_name= businessName 
+      driverProfile.category = businessType
+      driverProfile.password = password
   }
+  
   return (
     <>
       <NavBar />
@@ -131,7 +129,7 @@ export default function CreateDriver() {
           <br></br>
           <li>
             <label htmlFor="password_input">
-              Email
+              Password
               <input
                 type="text"
                 name="password_input"
@@ -159,7 +157,15 @@ export default function CreateDriver() {
         </ul>
 
         <button onClick={handleSubmit}>
-          <Link href="/createprofile/createbusiness">Submit</Link>{" "}
+          <Link href={{pathname: "/createprofile/createbusiness",
+          query: { owner_name : name,
+            email : email,
+            username : userName,
+            business_name: businessName,
+            category : businessType,
+            password : password}
+         }}
+  >Submit</Link>
         </button>
       </form>
     </>

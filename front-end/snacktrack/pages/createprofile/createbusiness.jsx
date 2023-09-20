@@ -1,7 +1,4 @@
-/*
-opening hours input unfinished
-submit button unfinished
-*/
+import { useRouter } from 'next/router'
 import NavBar from "../navbar";
 import { useState } from "react";
 
@@ -10,7 +7,7 @@ export default function CreateBusiness() {
   const [image, setImage] = useState(undefined);
   const [businessBio, setBusinessBio] = useState("");
   const [logo, setLogo] = useState(undefined);
-  const [phoneNumber, setPhoneNumber] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
   const [mondayOpenTime, setMondayOpenTime] = useState("");
   const [tuesdayOpenTime, setTuesdayOpenTime] = useState("");
   const [wednesdayOpenTime, setWednesdayOpenTime] = useState("");
@@ -25,6 +22,9 @@ export default function CreateBusiness() {
   const [fridayCloseTime, setFridayCloseTime] = useState("");
   const [saturdayCloseTime, setSaturdayCloseTime] = useState("");
   const [sundayCloseTime, setSundayCloseTime] = useState("");
+  const router = useRouter();
+  const driverProfile = router.query;
+  console.log(driverProfile)
 
   function handleMenuChange(e) {
     setMenu(e.target.value);
@@ -35,9 +35,9 @@ export default function CreateBusiness() {
   function handleLogoChange(e) {
     setLogo(e.target.value);
   }
-  function handlePhoneNumberChange(e) {
-    setPhoneNumber(e.target.value);
-  }
+  // function handlePhoneNumberChange(e) {
+  //   setPhoneNumber(e.target.value);
+  // }
   function handleBusinessBioChange(e) {
     setBusinessBio(e.target.value);
   }
@@ -85,9 +85,24 @@ export default function CreateBusiness() {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    const business = { userName, email, avatarUrl, password };
-    console.log(customerProfile);
+    console.log(driverProfile)
   }
+  const opening_hours = {
+    monday: [mondayOpenTime, mondayCloseTime],
+    tuesday: [tuesdayOpenTime, tuesdayCloseTime],
+    wednesday: [wednesdayOpenTime, wednesdayCloseTime],
+    thursday: [thursdayOpenTime, thursdayCloseTime],
+    friday: [fridayOpenTime, fridayCloseTime],
+    saturday: [saturdayOpenTime, saturdayCloseTime],
+    sunday: [sundayOpenTime, sundayCloseTime]
+  }
+
+  driverProfile.menu_url = menu
+  driverProfile.avatar_url = image
+  driverProfile.buisness_bio = businessBio
+  driverProfile.logo_url = logo
+  driverProfile.opening_hours = opening_hours
+
   return (
     <>
       <NavBar />
@@ -144,7 +159,7 @@ export default function CreateBusiness() {
             </select>
           </li>
           <br></br>
-          <li>
+          {/* <li>
             <label htmlFor="phone_number_input">
               Phone Number
               <input
@@ -156,7 +171,7 @@ export default function CreateBusiness() {
                 onChange={handlePhoneNumberChange}
               ></input>
             </label>
-          </li>
+          </li> */}
           <br></br>
           <div>
             <label htmlFor="busiess_bio">
