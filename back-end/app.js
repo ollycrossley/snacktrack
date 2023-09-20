@@ -4,16 +4,21 @@ const {
   getBusinesses,
   getBusinessByName,
 } = require("./controllers/business-controllers");
-const { handle404s } = require("./controllers/error-controllers");
+const { handle404s, handleServerError} = require("./controllers/error-controllers");
+const {getEndpoints} = require("./controllers/api-controllers");
 
 app.use(express.json());
 
+app.get("/api", getEndpoints);
 app.get("/api/businesses", getBusinesses);
 app.get("/api/businesses/:business_name", getBusinessByName);
 
+app.use((req, res) => {
+  res.status(404).send({msg: "url not found"})
+})
+
 app.use(handle404s);
-app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(500).send({ msg: "Internal server error" });
-});
+
+app.use(handleServerError);
+
 module.exports = app;
