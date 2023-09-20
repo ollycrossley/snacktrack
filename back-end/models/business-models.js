@@ -13,7 +13,15 @@ exports.selectBusinesses = () => {
       no_of_ratings: 1,
     }
   ).then((response) => {
-    console.log(response);
     return response;
+  });
+};
+
+exports.selectBusinessesByName = (business_name) => {
+  return Business.findOne(
+    { business_name: business_name },
+    { password: 0, username: 0, email: 0, avatar_url: 0 }
+  ).then((response) => {
+    return response
   });
 };

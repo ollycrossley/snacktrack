@@ -12,16 +12,16 @@ const ENV = process.env.NODE_ENV;
 const pathToCorrectFile = `${__dirname}/../.env.${ENV}`;
 require("dotenv").config({ path: pathToCorrectFile });
 
-beforeEach(async () => {
+beforeAll(async () => {
   await mongoose.connect(process.env.MONGODB_URI);
   await seed(customerData, businessData, reviewData);
 });
 
-afterEach(async () => {
+afterAll(async () => {
   await mongoose.connection.close();
 });
 
-describe("getBusinesses", () => {
+describe("/api/businesses", () => {
   describe("GET", () => {
     it("returns an array of businesses all with the correct properties", () => {
       return request(app)
@@ -43,3 +43,32 @@ describe("getBusinesses", () => {
     });
   });
 });
+
+describe.only("/api/businesses/:business_name", () => {
+  describe("GET", () => {
+    it("returns an object with a business's relevant information", () => {
+      request(app)
+        .get("/api/businesses/Wikivu")
+        .expect(200)
+        .then((response) => {
+          const { business } = response.body;
+          expect(business).toHaveProperty("business_name", "Wikivu");
+          expect(business).toHaveProperty("total_rating");
+          expect(business).toHaveProperty("no_of_ratings");
+          expect(business).toHaveProperty("menu_url");
+          expect(business).toHaveProperty("logo_url");
+          expect(business).toHaveProperty("location");
+          expect(business).toHaveProperty("created_at");
+          expect(business).toHaveProperty("category");
+          expect(business).toHaveProperty("owner_name");
+          expect(business).toHaveProperty("business_bio");
+          expect(business).toHaveProperty("_id");
+          expect(business).toHaveProperty("is_active");
+        });
+    });
+  });
+});
+
+// afterAll(async () => {
+//   await mongoose.connection.close();
+// });
