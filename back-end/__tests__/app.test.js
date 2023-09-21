@@ -13,6 +13,7 @@ const pathToCorrectFile = `${__dirname}/../.env.${ENV}`;
 require("dotenv").config({ path: pathToCorrectFile });
 
 const { newBusiness } = require("../data/postData/businesses");
+const { patchBusiness } = require("../data/patchData/businesses");
 
 beforeAll(async () => {
   await mongoose.connect(process.env.MONGODB_URI);
@@ -174,6 +175,121 @@ describe("/api/businesses/:_id", () => {
         .then((response) => {
           const { msg } = response.body;
           expect(msg).toBe("Invalid Id");
+        });
+    });
+  });
+  describe("PATCH", () => {
+    it("200: updates a business (based on its id) with the given values", () => {
+      const copyBusiness = { ...patchBusiness };
+      return request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const idToTest = businesses[0]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app)
+            .patch(`/api/businesses/${idToTest}`)
+            .send(copyBusiness)
+            .expect(200)
+            .then((response) => {
+              const { business } = response.body;
+              expect(business.location.longitude).toBe(-50);
+              expect(business.location.latitude).toBe(50);
+              expect(business.is_active).toBe(true);
+              expect(business.opening_hours.monday).toEqual(["6:00", "15:00"]);
+              expect(business.opening_hours.tuesday).toEqual(["6:00", "15:00"]);
+              expect(business.opening_hours.wednesday).toEqual([
+                "6:00",
+                "15:00",
+              ]);
+              expect(business.opening_hours.thursday).toEqual([
+                "6:00",
+                "15:00",
+              ]);
+              expect(business.opening_hours.friday).toEqual(["6:00", "15:00"]);
+              expect(business.opening_hours.saturday).toEqual([
+                "6:00",
+                "15:00",
+              ]);
+              expect(business.opening_hours.sunday).toEqual(["6:00", "15:00"]);
+              expect(business.business_bio).toBe("my shop");
+              expect(business.username).toBe("Billy");
+              expect(business.password).toBe("Billy");
+              expect(business.logo_url).toBe(
+                "http://dummyimage.com/104x238.png/cc0000/ffffff"
+              );
+              expect(business.menu_url).toBe(
+                "https://marketplace.canva.com/EAFKfB87pN0/1/0/1131w/canva-brown-and-black-illustration-fast-food-menu-y8NpubROdFc.jpg"
+              );
+              expect(business.avatar_url).toBe(
+                "http://dummyimage.com/227x103.png/5fa2dd/ffffef"
+              );
+            });
+        });
+    });
+    it("200: update works even if unnecessary extra info is added", () => {
+      return request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const idToTest = businesses[0]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app)
+            .patch(`/api/businesses/${idToTest}`)
+            .send({ is_active: true, fish: "Salmon" })
+            .expect(200)
+            .then((response) => {
+              const { business } = response.body;
+              expect(business.is_active).toBe(true);
+              expect(business).not.toHaveProperty("fish");
+            });
+        });
+    });
+    it("400: responds with appropriate error when invalid input type is used", () => {
+      return request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const idToTest = businesses[3]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app)
+            .patch(`/api/businesses/${idToTest}`)
+            .send({ location: { latitude: "Right here" } })
+            .expect(400)
+            .then((response) => {
+              const { msg } = response.body;
+              expect(msg).toBe("Invalid input");
+            });
+        });
+    });
+    it("400: returns appropriate error when invalid id is used", () => {
+      return request(app)
+        .patch("/api/businesses/Wagyu")
+        .send({
+          username: "Billy",
+        })
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Invalid Id");
+        });
+    });
+    it("404: responds with appropriate error message when id is valid but matches no business", () => {
+      return request(app)
+        .patch("/api/businesses/650ae8a22dbbf4cd5f9eeabe")
+        .send({
+          username: "Billy",
+        })
+        .expect(404)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Business not found");
         });
     });
   });
@@ -398,7 +514,7 @@ describe("/api/customers/:_id", () => {
           expect(msg).toBe("Invalid Id");
         });
     });
-    it("404: responds with appropriate error message when id is valid but matches no review", () => {
+    it("404: responds with appropriate error message when id is valid but matches no customer", () => {
       return request(app)
         .patch("/api/customers/650ae8a22dbbf4cd5f9eeabe")
         .send({
@@ -504,7 +620,7 @@ describe("/api/businesses/:_id/reviews", () => {
         .get("/api/businesses")
         .then((response) => {
           const { businesses } = response.body;
-          const idToTest = businesses[9]._id;
+          const idToTest = businesses[7]._id;
           return idToTest;
         })
         .then((idToTest) => {

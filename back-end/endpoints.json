@@ -73,6 +73,18 @@
       }
     }
   },
+  "PATCH /api/businesses/:_id": {
+    "description": "updates a review's rating and/or comment details",
+    "queries": [],
+    "bodyFormat": {},
+    "exampleResponse": {
+      "review": {
+        "_id": 123336536356456,
+        "rating": 2,
+        "body": "Not my favourite"
+      }
+    }
+  },
   "DELETE /api/businesses/:_id": {
     "description": "deletes a given business",
     "queries": [],

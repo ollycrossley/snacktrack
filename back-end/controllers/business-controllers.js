@@ -2,6 +2,7 @@ const {
   selectBusinesses,
   selectBusinessesById,
   insertBusinesses,
+  updateBusinessById,
   removeBusinessById,
 } = require("../models/business-models");
 
@@ -25,6 +26,18 @@ exports.postBusinesses = (request, response, next) => {
 exports.getBusinessById = (request, response, next) => {
   const { _id } = request.params;
   selectBusinessesById(_id)
+    .then((business) => {
+      response.status(200).send({ business });
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
+
+exports.patchBusinessById = (request, response, next) => {
+  const { body } = request;
+  const { _id } = request.params;
+  updateBusinessById(body, _id)
     .then((business) => {
       response.status(200).send({ business });
     })

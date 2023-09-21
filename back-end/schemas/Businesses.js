@@ -48,7 +48,7 @@ const BusinessSchema = new mongoose.Schema({
     sunday: [String],
   },
   logo_url: String,
-  menu_url: [String],
+  menu_url: String,
   total_rating: {
     type: Number,
     default: 0,

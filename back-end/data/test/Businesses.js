@@ -60,10 +60,8 @@ module.exports = [
     business_bio:
       "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
     logo_url: "http://dummyimage.com/163x104.png/5fa2dd/ffffff",
-    menu_url: [
-      "https://imenupro.com/img/menu-template-steakhouse.png",
-      "https://marketplace.canva.com/EAFKfB87pN0/1/0/1131w/canva-brown-and-black-illustration-fast-food-menu-y8NpubROdFc.jpg",
-    ],
+    menu_url:
+      "https://t3.ftcdn.net/jpg/01/75/06/34/360_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg",
     location: {
       latitude: 34.570012,
       longitude: 38.2921653,
@@ -89,11 +87,8 @@ module.exports = [
     business_bio:
       "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.\n\nSed ante. Vivamus tortor. Duis mattis egestas metus.",
     logo_url: "http://dummyimage.com/175x222.png/5fa2dd/ffffff",
-    menu_url: [
+    menu_url:
       "https://t3.ftcdn.net/jpg/01/75/06/34/360_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg",
-      "https://imenupro.com/img/menu-template-steakhouse.png",
-      "https://marketplace.canva.com/EAFKfB87pN0/1/0/1131w/canva-brown-and-black-illustration-fast-food-menu-y8NpubROdFc.jpg",
-    ],
     location: {
       latitude: 25.5020583,
       longitude: 117.3701447,
@@ -144,10 +139,8 @@ module.exports = [
     business_bio:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
     logo_url: "http://dummyimage.com/109x189.png/cc0000/ffffff",
-    menu_url: [
-      "https://marketplace.canva.com/EAFKfB87pN0/1/0/1131w/canva-brown-and-black-illustration-fast-food-menu-y8NpubROdFc.jpg",
+    menu_url:
       "https://t3.ftcdn.net/jpg/01/75/06/34/360_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg",
-    ],
     location: {
       latitude: 63.9060413,
       longitude: 24.5144506,
@@ -199,10 +192,7 @@ module.exports = [
     business_bio:
       "In congue. Etiam justo. Etiam pretium iaculis justo.\n\nIn hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
     logo_url: "http://dummyimage.com/161x118.png/cc0000/ffffff",
-    menu_url: [
-      "https://t3.ftcdn.net/jpg/01/75/06/34/360_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg",
-      "https://imenupro.com/img/menu-template-steakhouse.png",
-    ],
+    menu_url: "https://imenupro.com/img/menu-template-steakhouse.png",
     location: {
       latitude: -7.1516288,
       longitude: 108.8373244,
@@ -232,6 +222,8 @@ module.exports = [
       latitude: 42.0952531,
       longitude: -8.2507177,
     },
+    menu_url:
+      "https://marketplace.canva.com/EAFKfB87pN0/1/0/1131w/canva-brown-and-black-illustration-fast-food-menu-y8NpubROdFc.jpg",
     opening_hours: {
       monday: ["2:00", "1:00"],
       tuesday: ["2:00", "1:00"],
@@ -253,11 +245,8 @@ module.exports = [
     business_bio:
       "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
     logo_url: "http://dummyimage.com/104x238.png/cc0000/ffffff",
-    menu_url: [
-      "https://imenupro.com/img/menu-template-steakhouse.png",
-      "https://t3.ftcdn.net/jpg/01/75/06/34/360_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg",
+    menu_url:
       "https://marketplace.canva.com/EAFKfB87pN0/1/0/1131w/canva-brown-and-black-illustration-fast-food-menu-y8NpubROdFc.jpg",
-    ],
     location: {
       latitude: 34.052996,
       longitude: -118.2548551,

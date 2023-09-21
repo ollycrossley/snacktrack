@@ -5,6 +5,7 @@ const {
   getBusinesses,
   postBusinesses,
   getBusinessById,
+  patchBusinessById,
   deleteReviewsByBusinessById,
 } = require("./controllers/business-controllers");
 const { getEndpoints } = require("./controllers/api-controllers");
@@ -38,6 +39,7 @@ app.get("/api/businesses", getBusinesses);
 app.post("/api/businesses", postBusinesses);
 
 app.get("/api/businesses/:_id", getBusinessById);
+app.patch("/api/businesses/:_id", patchBusinessById);
 app.delete("/api/businesses/:_id", deleteReviewsByBusinessById);
 
 app.get("/api/customers", getCustomers);
