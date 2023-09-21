@@ -29,8 +29,8 @@ const {
   handleServerError,
 } = require("./controllers/error-controllers");
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 app.get("/api", getEndpoints);
 
