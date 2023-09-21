@@ -1,6 +1,7 @@
 import NavBar from "../navbar";
 import SimpleMap from "./components/simplemap";
 import Head from "next/head";
+import Script from "next/script";
 
 export default function Map() {
   return (
@@ -12,8 +13,8 @@ export default function Map() {
         ></script>
       </Head>
       <NavBar />
-      <h1>MAP</h1>
-      <SimpleMap />
+      <h1 className={"title has-text-centered"}>MAP</h1>
+        <div className={"container"} style={{marginBottom: 25}}><SimpleMap/></div>
     </>
   );
 }
