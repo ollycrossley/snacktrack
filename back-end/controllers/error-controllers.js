@@ -5,7 +5,8 @@ exports.handle400s = (error, request, response, next) => {
     response.status(400).send({ msg: "Invalid input" });
   } else if (
     error._message === "Business validation failed" ||
-    error._message === "Customer validation failed"
+    error._message === "Customer validation failed" ||
+    error._message === "Review validation failed"
   ) {
     response.status(400).send({ msg: "Required information missing" });
   } else {
