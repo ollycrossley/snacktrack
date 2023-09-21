@@ -1,0 +1,51 @@
+{
+  "GET /api": {
+    "description": "serves up a json representation of all the available endpoints of the api",
+    "queries": [],
+    "bodyFormat": {},
+    "exampleResponse": {
+      "GET /api/endpoint": {
+        "description": "an endpoint",
+        "queries": ["some", "queries"],
+        "bodyFormat": {},
+        "exampleResponse": {
+          "some keys": "some values"
+        }
+      }
+    }
+  },
+  "GET /api/businesses": {
+    "description": "serves up an array of objects of all available businesses",
+    "queries": [],
+    "bodyFormat": {},
+    "exampleResponse": {
+      "businesses": [
+        {
+          "_id": 18374639
+        }
+      ]
+    }
+  },
+  "GET /api/businesses/:_id": {
+    "description": "serves up a business's details by their name",
+    "queries": [],
+    "bodyFormat": {},
+    "exampleResponse": {
+      "business": {
+        "_id": 18374639
+      }
+    }
+  },
+  "GET /api/customers": {
+    "description": "serves up an array of objects of all available customers",
+    "queries": [],
+    "bodyFormat": {},
+    "exampleResponse": {
+      "businesses": [
+        {
+          "_id": 18374639
+        }
+      ]
+    }
+  }
+}

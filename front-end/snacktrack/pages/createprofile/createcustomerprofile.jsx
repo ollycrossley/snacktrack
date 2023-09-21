@@ -1,5 +1,6 @@
 import NavBar from "../navbar";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function CreateCustomer() {
   const [userName, setUserName] = useState("");
@@ -7,13 +8,7 @@ export default function CreateCustomer() {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    const customerProfile = { userName, email, avatarUrl, password };
-    console.log(customerProfile);
-  }
-
+  const [passwordErrorMsg, setPasswordErrorMsg] = useState("");
   function handleUserNameChange(e) {
     setUserName(e.target.value);
   }
@@ -28,6 +23,28 @@ export default function CreateCustomer() {
   }
   function handlePasswordConfirmChange(e) {
     setPasswordConfirm(e.target.value);
+  }
+  let path = "";
+  if (password.length !== 0 && password === passwordConfirm) {
+    path = "/map";
+  } else {
+    path = "";
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(path);
+    if (password !== passwordConfirm) {
+      setPasswordErrorMsg(
+        "The passwords you entered do not match, please check and try again."
+      );
+    }
+    const customerProfile = {
+      username: userName,
+      email,
+      avatar_url: avatarUrl,
+      password,
+    };
   }
 
   return (
@@ -104,7 +121,17 @@ export default function CreateCustomer() {
             </label>
           </li>
         </ul>
-        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handleSubmit}>
+          <Link
+            href={{
+              //the variable path below is only correct if the password.length !==0 and the password === passwordConfirm
+              pathname: `${path}`,
+            }}
+          >
+            Submit
+          </Link>
+        </button>
+        <p>{passwordErrorMsg}</p>
       </form>
     </>
   );

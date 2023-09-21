@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
-const {app} = require("./app");
-const {seed} = require("./seed");
+const  app = require("./app");
+const { seed } = require("./seed");
 
-const customerData = require('./data/test/Customers')
-const businessData = require('./data/test/Businesses')
-const reviewData = require('./data/test/Reviews')
+const customerData = require("./data/test/Customers");
+const businessData = require("./data/test/Businesses");
+const reviewData = require("./data/test/Reviews");
 
 const ENV = "development";
 const pathToCorrectFile = `${__dirname}/.env.${ENV}`;
 require("dotenv").config({ path: pathToCorrectFile });
+
 
 const start = async () => {
   try {

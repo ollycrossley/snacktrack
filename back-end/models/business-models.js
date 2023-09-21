@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const Business = require("../schemas/Businesses");
 
 exports.selectBusinesses = () => {
@@ -13,7 +12,19 @@ exports.selectBusinesses = () => {
       no_of_ratings: 1,
     }
   ).then((response) => {
-    console.log(response);
     return response;
+  });
+};
+
+exports.selectBusinessesById = (_id) => {
+  return Business.findOne(
+    { _id },
+    { password: 0, username: 0, email: 0, avatar_url: 0 }
+  ).then((response) => {
+    if (response) {
+      return response;
+    } else {
+      return Promise.reject({ status: 404, msg: "Username not found" });
+    }
   });
 };

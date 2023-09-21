@@ -1,13 +1,33 @@
 const express = require("express");
 const app = express();
-const {getBusinesses} = require("./controllers/business-controllers");
+const {
+  getBusinesses,
+  getBusinessById,
+} = require("./controllers/business-controllers");
+const {
+  handle400s,
+  handle404s,
+  handleServerError,
+} = require("./controllers/error-controllers");
+const { getEndpoints } = require("./controllers/api-controllers");
+const {getCustomers} = require("./controllers/customers-controllers");
 
 app.use(express.json());
 
+app.get("/api", getEndpoints);
 app.get("/api/businesses", getBusinesses);
+app.get("/api/businesses/:_id", getBusinessById);
 
-app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(500).send({ msg: "Internal server error" });
+app.get("/api/customers", getCustomers)
+
+app.use((req, res) => {
+  res.status(404).send({ msg: "url not found" });
 });
-module.exports =  app ;
+
+app.use(handle400s)
+
+app.use(handle404s);
+
+app.use(handleServerError);
+
+module.exports = app;

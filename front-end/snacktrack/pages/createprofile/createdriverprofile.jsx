@@ -3,22 +3,23 @@ import NavBar from "../navbar";
 import { useState } from "react";
 
 export default function CreateDriver() {
-    const [name, setName] = useState("");
+  const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [businessName, setBusinessName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [businessType, setBusinessType] = useState("")
+  const [businessType, setBusinessType] = useState("");
   const [driverProfile, setDriverProile] = useState({});
+  const [passwordErrorMsg, setPasswordErrorMsg] = useState("");
   function handleNameChange(e) {
     setName(e.target.value);
   }
   function handleUserNameChange(e) {
     setUserName(e.target.value);
   }
-  function handleBusiessTypeChange(e){
-    setBusinessType(e.target.value)
+  function handleBusiessTypeChange(e) {
+    setBusinessType(e.target.value);
   }
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -33,15 +34,30 @@ export default function CreateDriver() {
     setPasswordConfirm(e.target.value);
   }
   function handleSubmit(e) {
+    // if (password !== passwordConfirm) {
+    //   alert("the passwords you entered do not match!");
+    // }
+    if (password !== passwordConfirm) {
+      setPasswordErrorMsg(
+        "The passwords you entered do not match, please check and try again."
+      );
+    }
     e.preventDefault();
-      driverProfile.owner_name = name
-      driverProfile.email = email
-      driverProfile.username = userName
-      driverProfile.business_name= businessName 
-      driverProfile.category = businessType
-      driverProfile.password = password
+    driverProfile.owner_name = name;
+    driverProfile.email = email;
+    driverProfile.username = userName;
+    driverProfile.business_name = businessName;
+    driverProfile.category = businessType;
+    driverProfile.password = password;
   }
-  
+
+  let path = "";
+  if (password.length !== 0 && password === passwordConfirm) {
+    path = "/createprofile/createbusiness";
+  } else {
+    path = "";
+  }
+
   return (
     <>
       <NavBar />
@@ -157,16 +173,24 @@ export default function CreateDriver() {
         </ul>
 
         <button onClick={handleSubmit}>
-          <Link href={{pathname: "/createprofile/createbusiness",
-          query: { owner_name : name,
-            email : email,
-            username : userName,
-            business_name: businessName,
-            category : businessType,
-            password : password}
-         }}
-  >Submit</Link>
+          <Link
+            href={{
+              //the variable path below is only correct if the password.length !==0 and the password === passwordConfirm
+              pathname: `${path}`,
+              query: {
+                owner_name: name,
+                email: email,
+                username: userName,
+                business_name: businessName,
+                category: businessType,
+                password: password,
+              },
+            }}
+          >
+            Submit
+          </Link>
         </button>
+        <p>{passwordErrorMsg}</p>
       </form>
     </>
   );
