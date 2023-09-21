@@ -42,3 +42,16 @@ exports.removeBusinessById = (_id) => {
     }
   });
 };
+
+exports.updateBusinessById = (body, _id) => {
+  return Business.findOneAndUpdate(
+    { _id },
+    { $set: body },
+    { returnDocument: "after" }
+  ).then((response) => {
+    if (!response) {
+      return Promise.reject({ status: 404, msg: "Business not found" });
+    }
+    return response;
+  });
+};

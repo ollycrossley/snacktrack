@@ -17,7 +17,6 @@ exports.postReviews = (request, response, next) => {
   const { body } = request;
   insertReview(body)
     .then((review) => {
-      console.log(review);
       response.status(201).send({ review });
     })
     .catch((error) => {
