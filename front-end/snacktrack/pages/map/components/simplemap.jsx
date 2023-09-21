@@ -5,19 +5,7 @@ import {getBusinesses} from "@/api";
 export default function SimpleMap() {
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-  const testData = [
-    {
-      driver_id: 1,
-      name: "Steve's Tacos",
-      location: {
-        latitude: 51.904512,
-        longitude: -2.1037056
-      },
-      is_active: true,
-    }
-  ]
-
-  const [businesses, setBusinesses] = useState(testData);
+  const [businesses, setBusinesses] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
 
   const defaultProps = {
@@ -53,7 +41,6 @@ export default function SimpleMap() {
             defaultZoom={defaultProps.zoom}
         >
           {businesses.map(business => {
-            // console.log(businesses)
             if (business.is_active === true) {
               return (
                   <AnyReactComponent
