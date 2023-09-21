@@ -18,7 +18,6 @@ exports.selectReviewById = (_id) => {
       if (!response) {
         return Promise.reject({ status: 404, msg: "Review not found" });
       } else {
-        console.log(response);
         return response;
       }
     });
