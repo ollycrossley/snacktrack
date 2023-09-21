@@ -3,6 +3,7 @@ import NavBar from "../navbar";
 import { useEffect, useState } from "react";
 import { getBusinesses } from "@/api";
 import React from "react";
+import BusinessListItem from "./components/businessListItem";
 
 export default function allBusinesses() {
   const [businesses, setBusinesses] = useState();
@@ -30,10 +31,7 @@ export default function allBusinesses() {
         </thead>
         <tbody>
           {businesses.map((business) => (
-            <tr key={business._id}>
-              <th>{business.business_name}</th>
-              <th>{business.total_rating}</th>
-            </tr>
+            <BusinessListItem business={business} />
           ))}
         </tbody>
       </table>
