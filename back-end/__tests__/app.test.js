@@ -176,15 +176,6 @@ describe("/api/businesses/:_id", () => {
           expect(msg).toBe("Invalid Id");
         });
     });
-    it("404: returns the appropriate error when name does not match one in database", () => {
-      return request(app)
-        .get("/api/businesses/650ae8a22dbbf4cd5f9eeabe")
-        .expect(404)
-        .then((response) => {
-          const { msg } = response.body;
-          expect(msg).toBe("Business not found");
-        });
-    });
   });
 });
 
@@ -327,7 +318,44 @@ describe("/api/businesses/:_id/reviews", () => {
                 expect(review).toHaveProperty("business");
                 expect(review).toHaveProperty("customer");
                 expect(review.business.business_name).toBe("Youbridge");
+                expect(review.customer).toHaveProperty("username");
               });
+            });
+        });
+    });
+    it("400: returns appropriate error when invalid id is used", () => {
+      return request(app)
+        .get("/api/businesses/Wagyu/reviews")
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Invalid Id");
+        });
+    });
+    it("404: returns the appropriate error when name does not match one in database", () => {
+      return request(app)
+        .get("/api/businesses/650ae8a22dbbf4cd5f9eeabe/reviews")
+        .expect(404)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Business not found");
+        });
+    });
+    it("200: responds with an empty array if _id does exist but there are no reviews for that business", () => {
+      return request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const idToTest = businesses[9]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app)
+            .get(`/api/businesses/${idToTest}/reviews`)
+            .expect(200)
+            .then((response) => {
+              const { reviews } = response.body;
+              expect(reviews).toHaveLength(0);
             });
         });
     });
