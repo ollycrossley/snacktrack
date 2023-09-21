@@ -13,6 +13,7 @@ const {
 } = require("./controllers/customers-controllers");
 const {
   getReviews,
+  getReviewById,
   getReviewsByBusinessById,
   patchReviewById,
 } = require("./controllers/reviews-controllers");
@@ -40,6 +41,7 @@ app.get("/api/customers/:_id", getCustomerById);
 
 app.get("/api/reviews", getReviews);
 
+app.get("/api/reviews/:_id", getReviewById);
 app.patch("/api/reviews/:_id", patchReviewById);
 
 app.use((req, res) => {

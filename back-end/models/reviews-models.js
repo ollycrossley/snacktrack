@@ -10,6 +10,20 @@ exports.selectReviews = () => {
     });
 };
 
+exports.selectReviewById = (_id) => {
+  return Review.findOne({ _id })
+    .populate("business", { business_name: 1 })
+    .populate("customer", { username: 1 })
+    .then((response) => {
+      if (!response) {
+        return Promise.reject({ status: 404, msg: "Review not found" });
+      } else {
+        console.log(response);
+        return response;
+      }
+    });
+};
+
 exports.selectReviewsByBusinessId = (_id) => {
   if (!/[0-9a-f]{24}/i.test(_id)) {
     return Promise.reject({ status: 400, msg: "Invalid id" });
@@ -37,8 +51,8 @@ exports.updateReviewById = (body, _id) => {
     { $set: body },
     { returnDocument: "after" }
   ).then((response) => {
-    if(!response) {
-      return Promise.reject({status:404,msg:'Review not found'})
+    if (!response) {
+      return Promise.reject({ status: 404, msg: "Review not found" });
     }
     return response;
   });
