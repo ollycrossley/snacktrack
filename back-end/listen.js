@@ -14,7 +14,7 @@ const start = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
     await seed(customerData, businessData, reviewData);
-    app.listen(9090, () => console.log("Server started on port 3000"));
+    app.listen(9090, () => console.log("Server started on port 9090"));
   } catch (error) {
     console.error(error);
     process.exit(1);
