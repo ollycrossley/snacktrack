@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors');
 const app = express();
 const {
   getBusinesses,
@@ -29,6 +30,7 @@ const {
 } = require("./controllers/error-controllers");
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/api", getEndpoints);
 
