@@ -1,4 +1,6 @@
 import NavBar from "../navbar";
+function handleSubmit(e) {
+  e.preventDefault();}
 
 export default function CustomerLogin() {
   return (
@@ -18,6 +20,9 @@ export default function CustomerLogin() {
           Password
           <input type="text" name="password_input" id="password_input"></input>
         </label>
+        <button onClick={handleSubmit}>
+          Submit
+        </button>
       </form>
     </>
   );
