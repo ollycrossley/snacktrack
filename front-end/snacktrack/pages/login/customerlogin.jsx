@@ -38,6 +38,7 @@ export default function CustomerLogin() {
             id="username_input"
             value={currentUser}
             onChange={handleUserChange}
+            autoComplete="off"
           ></input>
         </label>
 
@@ -49,6 +50,7 @@ export default function CustomerLogin() {
             id="password_input"
             value={currentPassword}
             onChange={handlePasswordChange}
+            autoComplete="off"
           ></input>
         </label>
         <button onClick={handleSubmit}>Submit</button>
