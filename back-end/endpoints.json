@@ -116,6 +116,12 @@
       }
     }
   },
+  "DELETE /api/customers/:_id": {
+    "description": "deletes a given customer",
+    "queries": [],
+    "bodyFormat": {},
+    "exampleResponse": {}
+  },
   "GET /api/businesses/:_id/reviews": {
     "description": "serves up a business's reviews by their id",
     "queries": [],
