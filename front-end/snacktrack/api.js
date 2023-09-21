@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const baseURL = "http://localhost:9090"
-const baseURL = "https://snacktrack.onrender.com/api"
+const baseURL = "https://snacktrack.onrender.com"
 
 export const getBusinesses = () => {
     return axios.get(`${baseURL}/api/businesses`).then(r => r.data.businesses)
