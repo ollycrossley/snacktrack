@@ -5,7 +5,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <UserProvider>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </UserProvider>
     </>
   );
