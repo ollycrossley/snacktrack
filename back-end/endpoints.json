@@ -111,13 +111,25 @@
     }
   },
   "GET /api/businesses/:_id/reviews": {
-    "description": "serves up a business's details by their name",
+    "description": "serves up a business's reviews by their id",
     "queries": [],
     "bodyFormat": {},
     "exampleResponse": {
       "reviews": [
         {
           "_id": 18374639
+        }
+      ]
+    }
+  },
+  "GET /api/reviews": {
+    "description": "serves up all the reviews and their details",
+    "queries": [],
+    "bodyFormat": {},
+    "exampleResponse": {
+      "reviews": [
+        {
+          "_id": 123336536356456
         }
       ]
     }

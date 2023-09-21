@@ -1,6 +1,15 @@
 const Review = require("../schemas/Reviews");
 const Business = require("../schemas/Businesses");
 
+exports.selectReviews = () => {
+  return Review.find({})
+    .populate("business", { business_name: 1 })
+    .populate("customer", { username: 1 })
+    .then((response) => {
+      return response;
+    });
+};
+
 exports.selectReviewsByBusinessId = (_id) => {
   if (!/[0-9a-f]{24}/i.test(_id)) {
     return Promise.reject({ status: 400, msg: "Invalid id" });
