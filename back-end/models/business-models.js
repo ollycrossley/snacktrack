@@ -34,3 +34,11 @@ exports.selectBusinessesById = (_id) => {
     }
   });
 };
+
+exports.removeBusinessById = (_id) => {
+  return Business.deleteOne({ _id }).then((response) => {
+    if (!response.deletedCount) {
+      return Promise.reject({ status: 404, msg: "Business not found" });
+    }
+  });
+};

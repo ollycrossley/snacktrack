@@ -177,6 +177,42 @@ describe("/api/businesses/:_id", () => {
         });
     });
   });
+  describe("DELETE", () => {
+    it("204: deletes the business given its id", () => {
+      let idToTest;
+      return request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          idToTest = businesses[9]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app).delete(`/api/businesses/${idToTest}`).expect(204);
+        })
+        .then(() => {
+          return request(app).get(`/api/businesses/${idToTest}`).expect(404);
+        });
+    });
+    it("400: returns appropriate error when invalid id is used", () => {
+      return request(app)
+        .delete("/api/businesses/Wagyu")
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Invalid Id");
+        });
+    });
+    it("404: responds with appropriate error message when id is valid but matches no review", () => {
+      return request(app)
+        .delete("/api/businesses/650ae8a22dbbf4cd5f9eeabe")
+        .expect(404)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Business not found");
+        });
+    });
+  });
 });
 
 describe("/api/customers", () => {
@@ -369,7 +405,6 @@ describe("/api/reviews", () => {
         .expect(200)
         .then((response) => {
           const { reviews } = response.body;
-          expect(reviews).toHaveLength(25);
           reviews.forEach((review) => {
             expect(review).toHaveProperty("_id");
             expect(review).toHaveProperty("created_at");

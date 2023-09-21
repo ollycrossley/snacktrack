@@ -4,6 +4,7 @@ const {
   getBusinesses,
   postBusinesses,
   getBusinessById,
+  deleteReviewsByBusinessById,
 } = require("./controllers/business-controllers");
 const { getEndpoints } = require("./controllers/api-controllers");
 const {
@@ -32,6 +33,7 @@ app.get("/api/businesses", getBusinesses);
 app.post("/api/businesses", postBusinesses);
 
 app.get("/api/businesses/:_id", getBusinessById);
+app.delete("/api/businesses/:_id", deleteReviewsByBusinessById);
 
 app.get("/api/customers", getCustomers);
 app.post("/api/customers", postCustomers);

@@ -73,6 +73,12 @@
       }
     }
   },
+  "DELETE /api/businesses/:_id": {
+    "description": "deletes a given business",
+    "queries": [],
+    "bodyFormat": {},
+    "exampleResponse": {}
+  },
   "GET /api/customers": {
     "description": "serves up an array of objects of all available customers",
     "queries": [],
