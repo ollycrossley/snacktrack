@@ -384,6 +384,48 @@ describe("/api/reviews", () => {
   });
 });
 describe("/api/reviews/:_id", () => {
+  describe("GET", () => {
+    it("200: responds with the review matching the id", () => {
+      return request(app)
+        .get("/api/reviews")
+        .then((response) => {
+          const { reviews } = response.body;
+          const idToTest = reviews[0]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app)
+            .get(`/api/reviews/${idToTest}`)
+            .expect(200)
+            .then((response) => {
+              const { review } = response.body;
+              expect(review).toHaveProperty("rating", 5);
+              expect(review).toHaveProperty(
+                "body",
+                "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.\n\nNulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque."
+              );
+            });
+        });
+    });
+    it("400: returns appropriate error when invalid id is used", () => {
+      return request(app)
+        .get("/api/reviews/Wagyu")
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Invalid Id");
+        });
+    });
+    it("404: responds with appropriate error message when id is valid but matches no review", () => {
+      return request(app)
+        .get("/api/reviews/650ae8a22dbbf4cd5f9eeabe")
+        .expect(404)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Review not found");
+        });
+    });
+  });
   describe("PATCH", () => {
     it("200: updates the comment and rating for a review", () => {
       return request(app)
