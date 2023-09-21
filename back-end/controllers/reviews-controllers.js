@@ -1,6 +1,7 @@
 const {
   selectReviews,
   selectReviewsByBusinessId,
+  updateReviewById,
 } = require("../models/reviews-models");
 
 exports.getReviews = (request, response, next) => {
@@ -14,6 +15,18 @@ exports.getReviewsByBusinessById = (request, response, next) => {
   selectReviewsByBusinessId(_id)
     .then((reviews) => {
       response.status(200).send({ reviews });
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
+
+exports.patchReviewById = (request, response, next) => {
+  const { body } = request;
+  const { _id } = request.params;
+  updateReviewById(body, _id)
+    .then((review) => {
+      response.status(200).send({ review });
     })
     .catch((error) => {
       next(error);

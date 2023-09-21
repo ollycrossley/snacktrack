@@ -14,6 +14,7 @@ const {
 const {
   getReviews,
   getReviewsByBusinessById,
+  patchReviewById,
 } = require("./controllers/reviews-controllers");
 const {
   handle400s,
@@ -38,6 +39,8 @@ app.get("/api/businesses/:_id/reviews", getReviewsByBusinessById);
 app.get("/api/customers/:_id", getCustomerById);
 
 app.get("/api/reviews", getReviews);
+
+app.patch("/api/reviews/:_id", patchReviewById);
 
 app.use((req, res) => {
   res.status(404).send({ msg: "url not found" });
