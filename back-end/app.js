@@ -16,6 +16,7 @@ const {
   getReviewById,
   getReviewsByBusinessById,
   patchReviewById,
+  deleteReviewById,
 } = require("./controllers/reviews-controllers");
 const {
   handle400s,
@@ -43,6 +44,7 @@ app.get("/api/reviews", getReviews);
 
 app.get("/api/reviews/:_id", getReviewById);
 app.patch("/api/reviews/:_id", patchReviewById);
+app.delete("/api/reviews/:_id", deleteReviewById);
 
 app.use((req, res) => {
   res.status(404).send({ msg: "url not found" });

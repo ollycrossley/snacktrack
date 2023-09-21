@@ -56,3 +56,11 @@ exports.updateReviewById = (body, _id) => {
     return response;
   });
 };
+
+exports.removeReviewById = (_id) => {
+  return Review.deleteOne({ _id }).then((response) => {
+    if (!response.deletedCount) {
+      return Promise.reject({ status: 404, msg: "Review not found" });
+    }
+  });
+};
