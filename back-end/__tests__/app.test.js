@@ -434,7 +434,7 @@ describe("/api/customers/:_id", () => {
           expect(msg).toBe("Invalid Id");
         });
     });
-    it("404: returns the appropriate error when name does not match one in database", () => {
+    it("404: returns the appropriate error when id does not match one in database", () => {
       return request(app)
         .get("/api/customers/650ae8a22dbbf4cd5f9eeabe")
         .expect(404)
@@ -556,7 +556,7 @@ describe("/api/customers/:_id", () => {
           expect(msg).toBe("Invalid Id");
         });
     });
-    it("404: responds with appropriate error message when id is valid but matches no review", () => {
+    it("404: responds with appropriate error message when id is valid but matches no customer", () => {
       return request(app)
         .delete("/api/customers/650ae8a22dbbf4cd5f9eeabe")
         .expect(404)
@@ -606,7 +606,7 @@ describe("/api/businesses/:_id/reviews", () => {
           expect(msg).toBe("Invalid Id");
         });
     });
-    it("404: returns the appropriate error when name does not match one in database", () => {
+    it("404: returns the appropriate error when id does not match one in database", () => {
       return request(app)
         .get("/api/businesses/650ae8a22dbbf4cd5f9eeabe/reviews")
         .expect(404)

@@ -21,13 +21,19 @@
     "exampleResponse": {
       "businesses": [
         {
-          "_id": 18374639
+          "location": { "latitude": 28.229112, "longitude": 103.638067 },
+          "_id": "650c463da3501201739518b4",
+          "category": "Food",
+          "business_name": "Twiyo",
+          "is_active": false,
+          "total_rating": 0,
+          "no_of_ratings": 0
         }
       ]
     }
   },
   "POST /api/businesses": {
-    "description": "serves up an array of objects of all available businesses",
+    "description": "allows you to post a new business to the database",
     "queries": [],
     "bodyFormat": {
       "username": "clissandre5",
@@ -59,29 +65,65 @@
     },
     "exampleResponse": {
       "business": {
-        "_id": 18374639
+        "_id": "650c463da3501201739518b5"
       }
     }
   },
   "GET /api/businesses/:_id": {
-    "description": "serves up a business's details by their name",
+    "description": "serves up a business's details by their id",
     "queries": [],
     "bodyFormat": {},
     "exampleResponse": {
       "business": {
-        "_id": 18374639
+        "opening_hours": {
+          "monday": ["2:00", "1:00"],
+          "tuesday": ["2:00", "1:00"],
+          "wednesday": ["2:00", "1:00"],
+          "thursday": ["2:00", "1:00"],
+          "friday": ["2:00", "1:00"],
+          "saturday": ["1:00", "2:00"],
+          "sunday": ["2:00", "1:00"]
+        },
+        "location": { "latitude": 42.0952531, "longitude": -8.2507177 },
+        "_id": "650c46c60f4bc77c850aa546",
+        "created_at": "2023-09-21T13:36:04.712Z",
+        "category": "Umbrellas",
+        "business_name": "Wikivu",
+        "owner_name": "Edy",
+        "business_bio": "Sed ante. Vivamus tortor. Duis mattis egestas metus.",
+        "is_active": false,
+        "logo_url": "http://dummyimage.com/138x241.png/ff4444/ffffff",
+        "menu_url": "https://marketplace.canva.com/EAFKfB87pN0/1/0/1131w/canva-brown-and-black-illustration-fast-food-menu-y8NpubROdFc.jpg",
+        "total_rating": 0,
+        "no_of_ratings": 0
       }
     }
   },
   "PATCH /api/businesses/:_id": {
-    "description": "updates a review's rating and/or comment details",
+    "description": "updates a business's details",
     "queries": [],
-    "bodyFormat": {},
+    "bodyFormat": {
+      "location": { "latitude": 50, "longitude": -50 },
+      "is_active": true,
+      "opening_hours": {
+        "monday": ["6:00", "15:00"],
+        "tuesday": ["6:00", "15:00"],
+        "wednesday": ["6:00", "15:00"],
+        "thursday": ["6:00", "15:00"],
+        "friday": ["6:00", "15:00"],
+        "saturday": ["6:00", "15:00"],
+        "sunday": ["6:00", "15:00"]
+      },
+      "logo_url": "http://dummyimage.com/104x238.png/cc0000/ffffff",
+      "password": "Billy",
+      "username": "Billy",
+      "menu_url": "https://marketplace.canva.com/EAFKfB87pN0/1/0/1131w/canva-brown-and-black-illustration-fast-food-menu-y8NpubROdFc.jpg",
+      "business_bio": "my shop",
+      "avatar_url": "http://dummyimage.com/227x103.png/5fa2dd/ffffef"
+    },
     "exampleResponse": {
-      "review": {
-        "_id": 123336536356456,
-        "rating": 2,
-        "body": "Not my favourite"
+      "business": {
+        "_id": "650c463da3501201739518b5"
       }
     }
   },
@@ -98,13 +140,16 @@
     "exampleResponse": {
       "customers": [
         {
-          "_id": 18374639
+          "_id": "650c48271dd29a5d6e96b3b8",
+          "username": "bcolley0",
+          "email": "ewones0@bluehost.com",
+          "avatar_url": "http://dummyimage.com/158x103.png/5fa2dd/ffffff"
         }
       ]
     }
   },
   "POST /api/customers": {
-    "description": "serves up an array of objects of all available businesses",
+    "description": "allows you to add a new customer to the database",
     "queries": [],
     "bodyFormat": {
       "username": "Fred",
@@ -114,17 +159,22 @@
     },
     "exampleResponse": {
       "customer": {
-        "_id": 18374639
+        "_id": "650c48271dd29a5d6e96b3b8"
       }
     }
   },
   "GET /api/customers/:_id": {
-    "description": "serves up a business's details by their name",
+    "description": "serves up a customer's details by their name",
     "queries": [],
     "bodyFormat": {},
     "exampleResponse": {
       "customer": {
-        "_id": 18374639
+        "_id": "650c488e44a21601fb05a97e",
+        "username": "talfonsini8",
+        "email": "arevell8@upenn.edu",
+        "avatar_url": "http://dummyimage.com/152x135.png/cc0000/ffffff",
+        "created_at": "2023-09-21T13:43:41.100Z",
+        "__v": 0
       }
     }
   },
@@ -137,10 +187,15 @@
   "PATCH /api/customers/:_id": {
     "description": "updates a customer's details",
     "queries": [],
-    "bodyFormat": {},
+    "bodyFormat": {
+      "username": "Billy",
+      "email": "billy@billy.com",
+      "password": "billybilly",
+      "avatar_url": "http://dummyimage.com/242x212.png/dddddd/000000"
+    },
     "exampleResponse": {
-      "review": {
-        "_id": 123336536356456,
+      "customer": {
+        "_id": "650c488e44a21601fb05a97e",
         "username": "Billy",
         "email": "billy@billy.com",
         "password": "billybilly",
@@ -149,41 +204,69 @@
     }
   },
   "GET /api/businesses/:_id/reviews": {
-    "description": "serves up a business's reviews by their id",
+    "description": "serves up an array of objects representing business's reviews by their id(business_id)",
     "queries": [],
     "bodyFormat": {},
     "exampleResponse": {
       "reviews": [
         {
-          "_id": 18374639
+          "_id": "650c492e1262f346e9c43021",
+          "created_at": "2023-09-21T13:46:20.699Z",
+          "body": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
+          "rating": 4,
+          "customer": {
+            "_id": "650c492e1262f346e9c43007",
+            "username": "bcolley0"
+          },
+          "business": {
+            "_id": "650c492e1262f346e9c43018",
+            "business_name": "Youbridge"
+          },
+          "__v": 0
         }
       ]
     }
   },
   "GET /api/reviews": {
-    "description": "serves up all the reviews and their details",
+    "description": "serves up an array of objects of all the reviews and their details",
     "queries": [],
     "bodyFormat": {},
     "exampleResponse": {
       "reviews": [
         {
-          "_id": 123336536356456
+          "_id": "650c49da30ceed8eea4f01c7",
+          "created_at": "2023-09-21T13:49:12.489Z",
+          "body": "In hac habitasse platea dictumst. Etiam faucibus cursus urna.",
+          "rating": 5,
+          "customer": {
+            "_id": "650c49da30ceed8eea4f01b0",
+            "username": "jivain1"
+          },
+          "business": {
+            "_id": "650c49da30ceed8eea4f01bd",
+            "business_name": "Quimm"
+          },
+          "__v": 0
         }
       ]
     }
   },
   "POST /api/reviews": {
-    "description": "serves up an array of objects of all available businesses",
+    "description": "allows you to post a review to the database. Business and customer ids must match pre-existing ones",
     "queries": [],
     "bodyFormat": {
-      "username": "Fred",
-      "email": "hi@hi.com",
-      "avatar_url": "http://dummyimage.com/242x212.png/dddddd/000000",
-      "password": "hihihihi"
+      "body": "Love it",
+      "rating": 5,
+      "customer": "650c49da30ceed8eea4f01c7",
+      "business": "615e44da45cfgh8eea4g34f5"
     },
     "exampleResponse": {
       "review": {
-        "_id": 18374639
+        "_id": "650c49da30ceed8eea4f01bd",
+        "body": "Love it",
+        "rating": 5,
+        "customer": "650c49da30ceed8eea4f01c7",
+        "business": "615e44da45cfgh8eea4g34f5"
       }
     }
   },
@@ -193,21 +276,31 @@
     "bodyFormat": {},
     "exampleResponse": {
       "review": {
-        "_id": 123336536356456,
-        "rating": 2,
-        "body": "Not my favourite"
+        "_id": "650c4aa395a5a9619eb3d541",
+        "created_at": "2023-09-21T13:52:33.227Z",
+        "body": "In hac habitasse platea dictumst. Etiam faucibus cursus urna.",
+        "rating": 5,
+        "customer": {
+          "_id": "650c4aa295a5a9619eb3d52a",
+          "username": "jivain1"
+        },
+        "business": {
+          "_id": "650c4aa295a5a9619eb3d537",
+          "business_name": "Quimm"
+        },
+        "__v": 0
       }
     }
   },
   "PATCH /api/reviews/:_id": {
     "description": "updates a review's rating and/or comment details",
     "queries": [],
-    "bodyFormat": {},
+    "bodyFormat": { "rating": 2, "body": "Not the best" },
     "exampleResponse": {
       "review": {
-        "_id": 123336536356456,
+        "_id": "650c4aa395a5a9619eb3d541",
         "rating": 2,
-        "body": "Not my favourite"
+        "body": "Not the best"
       }
     }
   },
