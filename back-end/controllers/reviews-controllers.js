@@ -3,6 +3,7 @@ const {
   selectReviewsByBusinessId,
   selectReviewById,
   updateReviewById,
+  removeReviewById,
 } = require("../models/reviews-models");
 
 exports.getReviews = (request, response, next) => {
@@ -39,6 +40,17 @@ exports.patchReviewById = (request, response, next) => {
   updateReviewById(body, _id)
     .then((review) => {
       response.status(200).send({ review });
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
+
+exports.deleteReviewById = (request, response, next) => {
+  const { _id } = request.params;
+  removeReviewById(_id)
+    .then(() => {
+      response.status(204).send();
     })
     .catch((error) => {
       next(error);

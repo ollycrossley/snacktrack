@@ -508,4 +508,40 @@ describe("/api/reviews/:_id", () => {
         });
     });
   });
+  describe("DELETE", () => {
+    it("204: succesfully deletes a review by its given id", () => {
+      let idToTest;
+      return request(app)
+        .get("/api/reviews")
+        .then((response) => {
+          const { reviews } = response.body;
+          idToTest = reviews[3]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app).delete(`/api/reviews/${idToTest}`).expect(204);
+        })
+        .then(() => {
+          return request(app).get(`/api/reviews/${idToTest}`).expect(404);
+        });
+    });
+    it("400: returns appropriate error when invalid id is used", () => {
+      return request(app)
+        .delete("/api/reviews/Wagyu")
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Invalid Id");
+        });
+    });
+    it("404: responds with appropriate error message when id is valid but matches no review", () => {
+      return request(app)
+        .delete("/api/reviews/650ae8a22dbbf4cd5f9eeabe")
+        .expect(404)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Review not found");
+        });
+    });
+  });
 });

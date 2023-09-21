@@ -157,5 +157,11 @@
         "body": "Not my favourite"
       }
     }
+  },
+  "DELETE /api/reviews/:_id": {
+    "description": "deletes a given review",
+    "queries": [],
+    "bodyFormat": {},
+    "exampleResponse": {}
   }
 }
