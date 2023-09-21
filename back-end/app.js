@@ -16,6 +16,7 @@ const {
 } = require("./controllers/customers-controllers");
 const {
   getReviews,
+  postReviews,
   getReviewById,
   getReviewsByBusinessById,
   patchReviewById,
@@ -47,6 +48,7 @@ app.patch("/api/customers/:_id", patchCustomerById);
 app.delete("/api/customers/:_id", deleteCustomerById);
 
 app.get("/api/reviews", getReviews);
+app.post("/api/reviews", postReviews);
 
 app.get("/api/reviews/:_id", getReviewById);
 app.patch("/api/reviews/:_id", patchReviewById);

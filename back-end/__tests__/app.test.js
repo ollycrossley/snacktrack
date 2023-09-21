@@ -539,6 +539,172 @@ describe("/api/reviews", () => {
         });
     });
   });
+  describe("POST", () => {
+    it("201: posts a review and responds with the relevant review info", () => {
+      const businessId = request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const businessIdToTest = businesses[6]._id;
+          return businessIdToTest;
+        });
+      const customerId = request(app)
+        .get("/api/customers")
+        .then((response) => {
+          const { customers } = response.body;
+          const customerIdToTest = customers[6]._id;
+          return customerIdToTest;
+        });
+      return Promise.all([businessId, customerId]).then(
+        ([businessId, customerId]) => {
+          const reviewBody = {
+            body: "Love it",
+            rating: 5,
+            customer: customerId,
+            business: businessId,
+          };
+          return request(app)
+            .post("/api/reviews")
+            .send(reviewBody)
+            .expect(201)
+            .then((response) => {
+              const { review } = response.body;
+              expect(review.rating).toBe(5);
+              expect(review.body).toBe("Love it");
+              expect(review).toHaveProperty("customer");
+              expect(review).toHaveProperty("business");
+            });
+        }
+      );
+    });
+    it("201: posts a review and responds even if additional unnecessary info is added to the body", () => {
+      const businessId = request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const businessIdToTest = businesses[6]._id;
+          return businessIdToTest;
+        });
+      const customerId = request(app)
+        .get("/api/customers")
+        .then((response) => {
+          const { customers } = response.body;
+          const customerIdToTest = customers[6]._id;
+          return customerIdToTest;
+        });
+      return Promise.all([businessId, customerId]).then(
+        ([businessId, customerId]) => {
+          const reviewBody = {
+            body: "Love it",
+            rating: 5,
+            customer: customerId,
+            business: businessId,
+            feeling: "good",
+          };
+          return request(app)
+            .post("/api/reviews")
+            .send(reviewBody)
+            .expect(201)
+            .then((response) => {
+              const { review } = response.body;
+              expect(review).not.toHaveProperty("feeling");
+            });
+        }
+      );
+    });
+    it("400: responds with appropriate error when required info is missing", () => {
+      const businessId = request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const businessIdToTest = businesses[6]._id;
+          return businessIdToTest;
+        });
+      const customerId = request(app)
+        .get("/api/customers")
+        .then((response) => {
+          const { customers } = response.body;
+          const customerIdToTest = customers[6]._id;
+          return customerIdToTest;
+        });
+      return Promise.all([businessId, customerId]).then(
+        ([businessId, customerId]) => {
+          const reviewBody = {
+            body: "Love it",
+            customer: customerId,
+            business: businessId,
+          };
+          return request(app)
+            .post("/api/reviews")
+            .send(reviewBody)
+            .expect(400)
+            .then((response) => {
+              const { msg } = response.body;
+              expect(msg).toBe("Required information missing");
+            });
+        }
+      );
+    });
+    it("400: responds with error when input type for body element is invalid", () => {
+      const businessId = request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const businessIdToTest = businesses[6]._id;
+          return businessIdToTest;
+        });
+      const customerId = request(app)
+        .get("/api/customers")
+        .then((response) => {
+          const { customers } = response.body;
+          const customerIdToTest = customers[6]._id;
+          return customerIdToTest;
+        });
+      return Promise.all([businessId, customerId]).then(
+        ([businessId, customerId]) => {
+          const reviewBody = {
+            body: "Love it",
+            rating: "Five",
+            customer: customerId,
+            business: businessId,
+          };
+          return request(app)
+            .post("/api/reviews")
+            .send(reviewBody)
+            .expect(400)
+            .then((response) => {
+              const { msg } = response.body;
+              expect(msg).toBe("Required information missing");
+            });
+        }
+      );
+    });
+    it("404: responds with appropriate error when non-matching id is used in body", () => {
+      const businessId = request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const businessIdToTest = businesses[6]._id;
+          return businessIdToTest;
+        });
+      return Promise.all([businessId]).then(([businessId]) => {
+        const reviewBody = {
+          body: "Love it",
+          rating: 5,
+          customer: "650c2fa9575635aa2f65eb3f",
+          business: businessId,
+        };
+        return request(app)
+          .post("/api/reviews")
+          .send(reviewBody)
+          .expect(404)
+          .then((response) => {
+            const { msg } = response.body;
+            expect(msg).toBe("ObjectId not found");
+          });
+      });
+    });
+  });
 });
 describe("/api/reviews/:_id", () => {
   describe("GET", () => {

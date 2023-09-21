@@ -160,6 +160,21 @@
       ]
     }
   },
+  "POST /api/reviews": {
+    "description": "serves up an array of objects of all available businesses",
+    "queries": [],
+    "bodyFormat": {
+      "username": "Fred",
+      "email": "hi@hi.com",
+      "avatar_url": "http://dummyimage.com/242x212.png/dddddd/000000",
+      "password": "hihihihi"
+    },
+    "exampleResponse": {
+      "review": {
+        "_id": 18374639
+      }
+    }
+  },
   "GET /api/reviews/:_id": {
     "description": "returns with the contents of a single review rating and/or comment details",
     "queries": [],

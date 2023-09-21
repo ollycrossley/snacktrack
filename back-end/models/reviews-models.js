@@ -1,5 +1,6 @@
 const Review = require("../schemas/Reviews");
 const Business = require("../schemas/Businesses");
+const Customer = require("../schemas/Customers");
 
 exports.selectReviews = () => {
   return Review.find({})
@@ -8,6 +9,28 @@ exports.selectReviews = () => {
     .then((response) => {
       return response;
     });
+};
+
+exports.insertReview = (body) => {
+  const businessIds = Business.find().then((businesses) => {
+    return businesses.map((business) => business._id.toString());
+  });
+  const customerIds = Customer.find().then((customers) => {
+    return customers.map((customer) => customer._id.toString());
+  });
+  return Promise.all([businessIds, customerIds]).then(
+    ([businessIds, customerIds]) => {
+      if (
+        !businessIds.includes(body.business) ||
+        !customerIds.includes(body.customer)
+      ) {
+        return Promise.reject({ status: 404, msg: "ObjectId not found" });
+      }
+      return Review.insertMany(body).then((response) => {
+        return response[0];
+      });
+    }
+  );
 };
 
 exports.selectReviewById = (_id) => {
