@@ -14,6 +14,7 @@ module.exports = [
       latitude: 28.229112,
       longitude: 103.638067,
     },
+    is_active: true,
     opening_hours: {
       monday: ["1:00", "2:00"],
       tuesday: ["1:00", "2:00"],
@@ -57,6 +58,7 @@ module.exports = [
     avatar_url: "http://dummyimage.com/196x246.png/cc0000/ffffff",
     owner_name: "Bellanca",
     business_name: "Aimbo",
+    is_active: true,
     business_bio:
       "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
     logo_url: "http://dummyimage.com/163x104.png/5fa2dd/ffffff",
@@ -111,6 +113,7 @@ module.exports = [
     avatar_url: "http://dummyimage.com/207x140.png/dddddd/000000",
     owner_name: "Pandora",
     business_name: "Yotz",
+    is_active: true,
     business_bio:
       "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
     logo_url: "http://dummyimage.com/118x191.png/ff4444/ffffff",
@@ -162,7 +165,7 @@ module.exports = [
     avatar_url: "http://dummyimage.com/164x220.png/cc0000/ffffff",
     owner_name: "Karol",
     category: "Balloon",
-
+    is_active: true,
     business_name: "Youbridge",
     business_bio:
       "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
@@ -214,6 +217,7 @@ module.exports = [
     password: "tA1<Bz*A#Pc*/6F",
     avatar_url: "http://dummyimage.com/203x218.png/5fa2dd/ffffff",
     owner_name: "Edy",
+    is_active: true,
     business_name: "Wikivu",
     business_bio:
       "Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
@@ -238,6 +242,7 @@ module.exports = [
     username: "tweiss9",
     email: "tponcet9@shutterfly.com",
     category: "Umbrellas",
+    is_active: true,
     password: 'jA7+"Iw9',
     avatar_url: "http://dummyimage.com/205x129.png/cc0000/ffffff",
     owner_name: "Tilda",
