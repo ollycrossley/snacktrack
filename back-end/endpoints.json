@@ -109,5 +109,17 @@
         "_id": 18374639
       }
     }
+  },
+  "GET /api/businesses/:_id/reviews": {
+    "description": "serves up a business's details by their name",
+    "queries": [],
+    "bodyFormat": {},
+    "exampleResponse": {
+      "reviews": [
+        {
+          "_id": 18374639
+        }
+      ]
+    }
   }
 }
