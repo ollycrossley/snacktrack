@@ -30,3 +30,16 @@ exports.selectReviewsByBusinessId = (_id) => {
     }
   });
 };
+
+exports.updateReviewById = (body, _id) => {
+  return Review.findOneAndUpdate(
+    { _id },
+    { $set: body },
+    { returnDocument: "after" }
+  ).then((response) => {
+    if(!response) {
+      return Promise.reject({status:404,msg:'Review not found'})
+    }
+    return response;
+  });
+};

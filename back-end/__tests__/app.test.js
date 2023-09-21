@@ -360,26 +360,110 @@ describe("/api/businesses/:_id/reviews", () => {
         });
     });
   });
-  describe("/api/reviews", () => {
-    describe("GET", () => {
-      it("200: returns all reviews", () => {
-        return request(app)
-          .get("/api/reviews")
-          .expect(200)
-          .then((response) => {
-            const { reviews } = response.body;
-            expect(reviews).toHaveLength(25);
-            reviews.forEach((review) => {
-              expect(review).toHaveProperty("_id");
-              expect(review).toHaveProperty("created_at");
-              expect(review).toHaveProperty("rating");
-              expect(review).toHaveProperty("business");
-              expect(review).toHaveProperty("customer");
-              expect(review.business).toHaveProperty("business_name");
-              expect(review.customer).toHaveProperty("username");
-            });
+});
+describe("/api/reviews", () => {
+  describe("GET", () => {
+    it("200: returns all reviews", () => {
+      return request(app)
+        .get("/api/reviews")
+        .expect(200)
+        .then((response) => {
+          const { reviews } = response.body;
+          expect(reviews).toHaveLength(25);
+          reviews.forEach((review) => {
+            expect(review).toHaveProperty("_id");
+            expect(review).toHaveProperty("created_at");
+            expect(review).toHaveProperty("rating");
+            expect(review).toHaveProperty("business");
+            expect(review).toHaveProperty("customer");
+            expect(review.business).toHaveProperty("business_name");
+            expect(review.customer).toHaveProperty("username");
           });
-      });
+        });
+    });
+  });
+});
+describe("/api/reviews/:_id", () => {
+  describe("PATCH", () => {
+    it("200: updates the comment and rating for a review", () => {
+      return request(app)
+        .get("/api/reviews")
+        .then((response) => {
+          const { reviews } = response.body;
+          const idToTest = reviews[3]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app)
+            .patch(`/api/reviews/${idToTest}`)
+            .send({ rating: 2, body: "Not the best" })
+            .expect(200)
+            .then((response) => {
+              const { review } = response.body;
+              expect(review.rating).toBe(2);
+              expect(review.body).toBe("Not the best");
+            });
+        });
+    });
+    it("200: updates the comment and rating for a review even when unneccessary extra info is added", () => {
+      return request(app)
+        .get("/api/reviews")
+        .then((response) => {
+          const { reviews } = response.body;
+          const idToTest = reviews[3]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app)
+            .patch(`/api/reviews/${idToTest}`)
+            .send({ rating: 2, body: "Not the best", feeling: "good" })
+            .expect(200)
+            .then((response) => {
+              const { review } = response.body;
+              expect(review.rating).toBe(2);
+              expect(review.body).toBe("Not the best");
+              expect(review).not.toHaveProperty("feeling");
+            });
+        });
+    });
+    it("400: responds appropriate error message when invalid type is used in patch body", () => {
+      return request(app)
+        .get("/api/reviews")
+        .then((response) => {
+          const { reviews } = response.body;
+          const idToTest = reviews[3]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app)
+            .patch(`/api/reviews/${idToTest}`)
+            .send({ rating: "Hi", body: "Not the best" })
+            .expect(400)
+            .then((response) => {
+              const { msg } = response.body;
+              expect(msg).toBe("Invalid input");
+            });
+        });
+    });
+    it("400: returns appropriate error when invalid id is used", () => {
+      return request(app)
+        .patch("/api/reviews/Wagyu")
+        .send({ rating: 2, body: "Not the best" })
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Invalid Id");
+        });
+    });
+    it("404: responds with appropriate error message when id is valid but matches no review", () => {
+      return request(app)
+        .patch("/api/reviews/650ae8a22dbbf4cd5f9eeabe")
+        .send({ rating: 2, body: "Not the best" })
+        .expect(404)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Review not found");
+        });
     });
   });
 });
