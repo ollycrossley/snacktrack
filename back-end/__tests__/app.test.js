@@ -328,6 +328,42 @@ describe("/api/customers/:_id", () => {
         });
     });
   });
+  describe("DELETE", () => {
+    it("204: deletes the customer given their id", () => {
+      let idToTest;
+      return request(app)
+        .get("/api/customers")
+        .then((response) => {
+          const { customers } = response.body;
+          idToTest = customers[5]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app).delete(`/api/customers/${idToTest}`).expect(204);
+        })
+        .then(() => {
+          return request(app).get(`/api/customers/${idToTest}`).expect(404);
+        });
+    });
+    it("400: returns appropriate error when invalid id is used", () => {
+      return request(app)
+        .delete("/api/customers/Wagyu")
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Invalid Id");
+        });
+    });
+    it("404: responds with appropriate error message when id is valid but matches no review", () => {
+      return request(app)
+        .delete("/api/customers/650ae8a22dbbf4cd5f9eeabe")
+        .expect(404)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Customer not found");
+        });
+    });
+  });
 });
 
 describe("/api/businesses/:_id/reviews", () => {
