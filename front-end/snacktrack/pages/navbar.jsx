@@ -14,11 +14,13 @@ export default function NavBar() {
     >
       <div className={"navbar-brand"}>
         <figure className={"image mr-6 mb-auto is-128x128"}>
-          <img
-            id={"nav-logo"}
-            src={"https://i.ibb.co/pL24QMX/snacktrack-logo.png"}
-            alt={"SnackTrack logo"}
-          />
+          <Link href="/">
+            <img
+              id={"nav-logo"}
+              src={"https://i.ibb.co/pL24QMX/snacktrack-logo.png"}
+              alt={"SnackTrack logo"}
+            />
+          </Link>
         </figure>
         <a
           role="button"
@@ -43,10 +45,10 @@ export default function NavBar() {
           <Link href={"/"} className={"navbar-item"}>
             <p>Home</p>
           </Link>
-          <Link href={"/articles"} className={"navbar-item"}>
+          <Link href={"/map"} className={"navbar-item"}>
             <p>Map</p>
           </Link>
-          <Link href={"/users"} className={"navbar-item"}>
+          <Link href={"/businesses"} className={"navbar-item"}>
             <p>Businesses</p>
           </Link>
         </div>
