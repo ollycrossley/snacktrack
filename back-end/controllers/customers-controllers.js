@@ -2,6 +2,7 @@ const {
   selectCustomers,
   insertCustomers,
   selectCustomerById,
+  updateCustomerById,
   removeCustomerById,
 } = require("../models/customers-models");
 
@@ -38,6 +39,18 @@ exports.deleteCustomerById = (request, response, next) => {
   removeCustomerById(_id)
     .then(() => {
       response.status(204).send();
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
+
+exports.patchCustomerById = (request, response, next) => {
+  const { body } = request;
+  const { _id } = request.params;
+  updateCustomerById(body, _id)
+    .then((customer) => {
+      response.status(200).send({ customer });
     })
     .catch((error) => {
       next(error);

@@ -35,3 +35,16 @@ exports.removeCustomerById = (_id) => {
     }
   });
 };
+
+exports.updateCustomerById = (body, _id) => {
+  return Customer.findOneAndUpdate(
+    { _id },
+    { $set: body },
+    { returnDocument: "after" }
+  ).then((response) => {
+    if (!response) {
+      return Promise.reject({ status: 404, msg: "Customer not found" });
+    }
+    return response;
+  });
+};
