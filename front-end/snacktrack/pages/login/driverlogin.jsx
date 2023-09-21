@@ -1,8 +1,15 @@
 import NavBar from "../navbar";
-function handleSubmit(e) {
-  e.preventDefault();}
-  
+
+import { useContext, useState } from "react";
+import { UserContext } from "@/contexts/user_context";
+
 export default function DriverLogin() {
+  const [currentUser, setCurrentUser] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const { activeUser, setActiveUser } = useContext(UserContext);
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
   return (
     <>
       <NavBar />
@@ -20,9 +27,7 @@ export default function DriverLogin() {
           Password
           <input type="text" name="password_input" id="password_input"></input>
         </label>
-        <button onClick={handleSubmit}>
-          Submit
-        </button>
+        <button onClick={handleSubmit}>Submit</button>
       </form>
     </>
   );
