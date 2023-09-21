@@ -328,6 +328,92 @@ describe("/api/customers/:_id", () => {
         });
     });
   });
+  describe("PATCH", () => {
+    it("200: patches a customer given their id", () => {
+      return request(app)
+        .get("/api/customers")
+        .then((response) => {
+          const { customers } = response.body;
+          const idToTest = customers[5]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app)
+            .patch(`/api/customers/${idToTest}`)
+            .send({
+              username: "Billy",
+              email: "billy@billy.com",
+              password: "billybilly",
+              avatar_url: "http://dummyimage.com/242x212.png/dddddd/000000",
+            })
+            .expect(200)
+            .then((response) => {
+              const { customer } = response.body;
+              expect(customer.username).toBe("Billy");
+              expect(customer.avatar_url).toBe(
+                "http://dummyimage.com/242x212.png/dddddd/000000"
+              );
+              expect(customer.password).toBe("billybilly");
+              expect(customer.email).toBe("billy@billy.com");
+            });
+        });
+    });
+    it("200: updates the customer even when unneccessary extra info is added", () => {
+      return request(app)
+        .get("/api/customers")
+        .then((response) => {
+          const { customers } = response.body;
+          const idToTest = customers[3]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app)
+            .patch(`/api/customers/${idToTest}`)
+            .send({
+              username: "Billy",
+              email: "billy@billy.com",
+              password: "billybilly",
+              avatar_url: "http://dummyimage.com/242x212.png/dddddd/000000",
+              birthYear: 1999,
+            })
+            .expect(200)
+            .then((response) => {
+              const { customer } = response.body;
+              expect(customer).not.toHaveProperty("birthYear");
+            });
+        });
+    });
+    it("400: returns appropriate error when invalid id is used", () => {
+      return request(app)
+        .patch("/api/customers/Wagyu")
+        .send({
+          username: "Billy",
+          email: "billy@billy.com",
+          password: "billybilly",
+          avatar_url: "http://dummyimage.com/242x212.png/dddddd/000000",
+        })
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Invalid Id");
+        });
+    });
+    it("404: responds with appropriate error message when id is valid but matches no review", () => {
+      return request(app)
+        .patch("/api/customers/650ae8a22dbbf4cd5f9eeabe")
+        .send({
+          username: "Billy",
+          email: "billy@billy.com",
+          password: "billybilly",
+          avatar_url: "http://dummyimage.com/242x212.png/dddddd/000000",
+        })
+        .expect(404)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Customer not found");
+        });
+    });
+  });
   describe("DELETE", () => {
     it("204: deletes the customer given their id", () => {
       let idToTest;
