@@ -360,4 +360,26 @@ describe("/api/businesses/:_id/reviews", () => {
         });
     });
   });
+  describe("/api/reviews", () => {
+    describe("GET", () => {
+      it("200: returns all reviews", () => {
+        return request(app)
+          .get("/api/reviews")
+          .expect(200)
+          .then((response) => {
+            const { reviews } = response.body;
+            expect(reviews).toHaveLength(25);
+            reviews.forEach((review) => {
+              expect(review).toHaveProperty("_id");
+              expect(review).toHaveProperty("created_at");
+              expect(review).toHaveProperty("rating");
+              expect(review).toHaveProperty("business");
+              expect(review).toHaveProperty("customer");
+              expect(review.business).toHaveProperty("business_name");
+              expect(review.customer).toHaveProperty("username");
+            });
+          });
+      });
+    });
+  });
 });

@@ -12,6 +12,7 @@ const {
   getCustomerById,
 } = require("./controllers/customers-controllers");
 const {
+  getReviews,
   getReviewsByBusinessById,
 } = require("./controllers/reviews-controllers");
 const {
@@ -35,6 +36,8 @@ app.post("/api/customers", postCustomers);
 app.get("/api/businesses/:_id/reviews", getReviewsByBusinessById);
 
 app.get("/api/customers/:_id", getCustomerById);
+
+app.get("/api/reviews", getReviews);
 
 app.use((req, res) => {
   res.status(404).send({ msg: "url not found" });

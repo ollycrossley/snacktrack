@@ -1,4 +1,13 @@
-const { selectReviewsByBusinessId } = require("../models/reviews-models");
+const {
+  selectReviews,
+  selectReviewsByBusinessId,
+} = require("../models/reviews-models");
+
+exports.getReviews = (request, response, next) => {
+  selectReviews().then((reviews) => {
+    response.status(200).send({ reviews });
+  });
+};
 
 exports.getReviewsByBusinessById = (request, response, next) => {
   const { _id } = request.params;
