@@ -24,8 +24,6 @@ export default function SimpleMap() {
         }*/
         setActiveMarker(marker);
     };
-  const [businesses, setBusinesses] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
 
     const defaultProps = {
