@@ -51,7 +51,6 @@ exports.selectReviewsByBusinessId = (_id) => {
     return Promise.reject({ status: 400, msg: "Invalid id" });
   }
   const reviews = Review.find({})
-    .populate("business", { business_name: 1 })
     .populate("customer", { username: 1, avatar_url: 1 });
   const businesses = Business.find();
   return Promise.all([reviews, businesses]).then(([reviews, businesses]) => {
