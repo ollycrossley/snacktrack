@@ -61,92 +61,108 @@ export default function CreateDriver() {
   return (
     <>
       <NavBar />
-      <br></br>
-      <h1>Create Driver</h1>
-      <br></br>
+      <h1 className="title has-text-centered">Create Driver</h1>
+      <div className="columns is-centered">
+        <div className="column is-one-third">
+          <form className="box">
+            <div className="field">
+              <label className="label" htmlFor="name_input">
+                Full Name
+              </label>
+              <div className="control">
+                <input
+                  class="input"
+                  type="text"
+                  name="name_input"
+                  id="name_input"
+                  placeholder="full name"
+                  value={name}
+                  onChange={handleNameChange}
+                ></input>
+              </div>
+            </div>
 
-      <form className="is-centered">
-        <ul>
-          <li>
-            <label htmlFor="name_input">
-              Full Name
-              <input
-                type="text"
-                name="name_input"
-                id="name_input"
-                placeholder="full name"
-                value={name}
-                onChange={handleNameChange}
-              ></input>
-            </label>
-          </li>
+            <div className="field">
+              <label className="label" htmlFor="username_input">
+                Username
+              </label>
+              <div className="control">
+                <input
+                  class="input"
+                  type="text"
+                  name="username_input"
+                  id="username_input"
+                  placeholder="username"
+                  value={userName}
+                  onChange={handleUserNameChange}
+                ></input>
+              </div>
+            </div>
 
-          <br></br>
-          <li>
-            <label htmlFor="username_input">
-              Username
+            <div className="field">
+              <label className="label" htmlFor="email_input">
+                Email
+              </label>
+              <div className="control">
+                <input
+                  class="input"
+                  type="text"
+                  name="email_input"
+                  id="email_input"
+                  placeholder="email@business.com"
+                  value={email}
+                  onChange={handleEmailChange}
+                ></input>
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label" htmlFor="business_name_input">
+                Business Name
+              </label>
+              <div className="control">
+                <input
+                  class="input"
+                  type="text"
+                  name="business_name_input"
+                  id="business_name_input"
+                  placeholder="Jim's Big Breakfast Wraps"
+                  value={businessName}
+                  onChange={handleBusinessNameChange}
+                ></input>
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label" htmlFor="business_type_input">
+                Choose a logo to represent you on the map
+              </label>
+            </div>
+            <div className="field">
+              <div className="select">
+                <select
+                  id="business_type_input"
+                  name="lbusiness_type_input"
+                  onChange={handleBusiessTypeChange}
+                  value={businessType}
+                >
+                  <option value="option1">Choose a logo</option>
+                  <option value="option1">Option 1</option>
+                  <option value="option2">Option 2</option>
+                  <option value="option3">Option 3</option>
+                  <option value="option4">Option 4</option>
+                  <option value="option5">Option 5</option>
+                  <option value="option6">Option 6</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label" htmlFor="password_input">
+                Password
+              </label>
               <input
-                type="text"
-                name="username_input"
-                id="username_input"
-                placeholder="username"
-                value={userName}
-                onChange={handleUserNameChange}
-              ></input>
-            </label>
-          </li>
-          <br></br>
-          <li>
-            <label htmlFor="email_input">
-              Email
-              <input
-                type="text"
-                name="email_input"
-                id="email_input"
-                placeholder="email@business.com"
-                value={email}
-                onChange={handleEmailChange}
-              ></input>
-            </label>
-          </li>
-          <br></br>
-          <li>
-            <label htmlFor="business_name_input">
-              Business Name
-              <input
-                type="text"
-                name="business_name_input"
-                id="business_name_input"
-                placeholder="Jim's Big Breakfast Wraps"
-                value={businessName}
-                onChange={handleBusinessNameChange}
-              ></input>
-            </label>
-          </li>
-          <br></br>
-          <li>
-            <label htmlFor="business_type_input">
-              Choose a logo to represent you on the map
-            </label>
-            <select
-              id="business_type_input"
-              name="lbusiness_type_input"
-              onChange={handleBusiessTypeChange}
-              value={businessType}
-            >
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-              <option value="option4">Option 4</option>
-              <option value="option5">Option 5</option>
-              <option value="option6">Option 6</option>
-            </select>
-          </li>
-          <br></br>
-          <li>
-            <label htmlFor="password_input">
-              Password
-              <input
+                class="input"
                 type="text"
                 name="password_input"
                 id="password_input"
@@ -154,13 +170,14 @@ export default function CreateDriver() {
                 value={password}
                 onChange={handlePasswordChange}
               ></input>
-            </label>
-          </li>
-          <br></br>
-          <li>
-            <label htmlFor="password_confirm_input">
-              Confirm Password
+            </div>
+
+            <div className="field">
+              <label className="label" htmlFor="password_confirm_input">
+                Confirm Password
+              </label>
               <input
+                class="input"
                 type="text"
                 name="password_confirm_input"
                 id="password_confirm_input"
@@ -168,30 +185,30 @@ export default function CreateDriver() {
                 value={passwordConfirm}
                 onChange={handlePasswordConfirmChange}
               ></input>
-            </label>
-          </li>
-        </ul>
+            </div>
 
-        <button onClick={handleSubmit}>
-          <Link
-            href={{
-              //the variable path below is only correct if the password.length !==0 and the password === passwordConfirm
-              pathname: `${path}`,
-              query: {
-                owner_name: name,
-                email: email,
-                username: userName,
-                business_name: businessName,
-                category: businessType,
-                password: password,
-              },
-            }}
-          >
-            Submit
-          </Link>
-        </button>
-        <p>{passwordErrorMsg}</p>
-      </form>
+            <button className="button" onClick={handleSubmit}>
+              <Link
+                href={{
+                  //the variable path below is only correct if the password.length !==0 and the password === passwordConfirm
+                  pathname: `${path}`,
+                  query: {
+                    owner_name: name,
+                    email: email,
+                    username: userName,
+                    business_name: businessName,
+                    category: businessType,
+                    password: password,
+                  },
+                }}
+              >
+                Submit
+              </Link>
+            </button>
+            <p>{passwordErrorMsg}</p>
+          </form>
+        </div>
+      </div>
     </>
   );
 }
