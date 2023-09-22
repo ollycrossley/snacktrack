@@ -41,6 +41,7 @@ export default function CustomerLogin() {
                   type="text"
                   name="username_input"
                   id="username_input"
+                  placeholder="username"
                   value={currentUser}
                   onChange={handleUserChange}
                   autoComplete="off"
@@ -60,6 +61,7 @@ export default function CustomerLogin() {
                   type="text"
                   name="password_input"
                   id="password_input"
+                  placeholder="password"
                   value={currentPassword}
                   onChange={handlePasswordChange}
                   autoComplete="off"
