@@ -32,10 +32,11 @@ export default function CustomerLogin() {
         <div className="column is-one-third">
           <form className="box p-5">
             <div className="field">
-              <div className="control">
+              
                 <label className="label" htmlFor="username_input">
                   Username
                 </label>
+                <div className="control">
                 <input
                   className="input"
                   type="text"

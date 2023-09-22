@@ -126,7 +126,7 @@ export default function CreateCustomer() {
                                     required={true}
                                     type="text"
                                     name="password_input"
-                                    placeholder="*******"
+                                    placeholder="password"
                                     value={password}
                                     onChange={handlePasswordChange}
                                 ></input>
@@ -143,7 +143,7 @@ export default function CreateCustomer() {
                                     required={true}
                                     type="text"
                                     name="password_confirm_input"
-                                    placeholder="*******"
+                                    placeholder="password"
                                     value={passwordConfirm}
                                     onChange={handlePasswordConfirmChange}
                                 ></input>
