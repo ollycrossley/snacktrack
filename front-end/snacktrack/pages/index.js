@@ -28,11 +28,15 @@ export default function Home() {
           <p>The number one leading pop-up shop location service!!!</p>
           <br></br>
           <div>
+            <p className="label"> Login</p>
+            <br></br>
             <LoginButtonCustomer />
             <LoginButtonDriver />
           </div>
           <br></br>
           <div>
+            <p className="label">Create</p>
+            <br></br>
             <CreateCustomerProfile />
             <CreateDriverProfile />
           </div>
