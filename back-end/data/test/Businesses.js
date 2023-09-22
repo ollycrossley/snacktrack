@@ -11,8 +11,8 @@ module.exports = [
       "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
     logo_url: "http://dummyimage.com/212x114.png/ff4444/ffffff",
     location: {
-      latitude: 28.229112,
-      longitude: 103.638067,
+      latitude: 53.478948272998124,
+      longitude: -2.2413653711839294,
     },
     is_active: true,
     opening_hours: {
@@ -65,8 +65,8 @@ module.exports = [
     menu_url:
       "https://t3.ftcdn.net/jpg/01/75/06/34/360_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg",
     location: {
-      latitude: 34.570012,
-      longitude: 38.2921653,
+      latitude: 53.488742002551,
+      longitude: -2.2320770955162255,
     },
     opening_hours: {
       monday: ["09:00", "18:00"],
@@ -118,8 +118,8 @@ module.exports = [
       "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
     logo_url: "http://dummyimage.com/118x191.png/ff4444/ffffff",
     location: {
-      latitude: 53.88335,
-      longitude: -119.13585,
+      latitude: 53.483864805152116,
+      longitude: -2.2009522870568796,
     },
     opening_hours: {
       monday: ["09:00", "18:00"],
@@ -171,8 +171,8 @@ module.exports = [
       "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
     logo_url: "http://dummyimage.com/239x193.png/cc0000/ffffff",
     location: {
-      latitude: 3.6135482,
-      longitude: 98.5025286,
+      latitude: 53.464679060673674,
+      longitude: -2.2905663701724035,
     },
     opening_hours: {
       monday: ["09:00", "19:00"],
@@ -223,8 +223,8 @@ module.exports = [
       "Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
     logo_url: "http://dummyimage.com/138x241.png/ff4444/ffffff",
     location: {
-      latitude: 42.0952531,
-      longitude: -8.2507177,
+      latitude: 53.477716513428426,
+      longitude: -2.2540067761062765,
     },
     menu_url:
       "https://marketplace.canva.com/EAFKfB87pN0/1/0/1131w/canva-brown-and-black-illustration-fast-food-menu-y8NpubROdFc.jpg",
@@ -253,8 +253,8 @@ module.exports = [
     menu_url:
       "https://marketplace.canva.com/EAFKfB87pN0/1/0/1131w/canva-brown-and-black-illustration-fast-food-menu-y8NpubROdFc.jpg",
     location: {
-      latitude: 34.052996,
-      longitude: -118.2548551,
+      latitude: 53.48357839690619,
+      longitude: -2.241282445277058,
     },
     opening_hours: {
       monday: ["09:00", "18:00"],
