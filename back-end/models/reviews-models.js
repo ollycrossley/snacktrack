@@ -5,7 +5,7 @@ const Customer = require("../schemas/Customers");
 exports.selectReviews = () => {
   return Review.find({})
     .populate("business", { business_name: 1 })
-    .populate("customer", { username: 1 })
+    .populate("customer", { username: 1, avatar_url: 1 })
     .then((response) => {
       return response;
     });
@@ -36,7 +36,7 @@ exports.insertReview = (body) => {
 exports.selectReviewById = (_id) => {
   return Review.findOne({ _id })
     .populate("business", { business_name: 1 })
-    .populate("customer", { username: 1 })
+    .populate("customer", { username: 1, avatar_url: 1 })
     .then((response) => {
       if (!response) {
         return Promise.reject({ status: 404, msg: "Review not found" });
@@ -52,7 +52,7 @@ exports.selectReviewsByBusinessId = (_id) => {
   }
   const reviews = Review.find({})
     .populate("business", { business_name: 1 })
-    .populate("customer", { username: 1 });
+    .populate("customer", { username: 1, avatar_url: 1 });
   const businesses = Business.find();
   return Promise.all([reviews, businesses]).then(([reviews, businesses]) => {
     const acceptableIds = businesses.map((business) => business._id.toString());

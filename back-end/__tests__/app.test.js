@@ -593,6 +593,7 @@ describe("/api/businesses/:_id/reviews", () => {
                 expect(review).toHaveProperty("customer");
                 expect(review.business.business_name).toBe("Youbridge");
                 expect(review.customer).toHaveProperty("username");
+                expect(review.customer).toHaveProperty("avatar_url");
               });
             });
         });
@@ -651,6 +652,7 @@ describe("/api/reviews", () => {
             expect(review).toHaveProperty("customer");
             expect(review.business).toHaveProperty("business_name");
             expect(review.customer).toHaveProperty("username");
+            expect(review.customer).toHaveProperty("avatar_url");
           });
         });
     });
