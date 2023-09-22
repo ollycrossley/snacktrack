@@ -216,7 +216,8 @@
           "rating": 4,
           "customer": {
             "_id": "650c492e1262f346e9c43007",
-            "username": "bcolley0"
+            "username": "bcolley0",
+            "avatar_url": "http://dummyimage.com/242x212.png/dddddd/000000"
           },
           "business": {
             "_id": "650c492e1262f346e9c43018",
@@ -240,7 +241,8 @@
           "rating": 5,
           "customer": {
             "_id": "650c49da30ceed8eea4f01b0",
-            "username": "jivain1"
+            "username": "jivain1",
+            "avatar_url": "http://dummyimage.com/242x212.png/dddddd/000000"
           },
           "business": {
             "_id": "650c49da30ceed8eea4f01bd",
@@ -282,7 +284,8 @@
         "rating": 5,
         "customer": {
           "_id": "650c4aa295a5a9619eb3d52a",
-          "username": "jivain1"
+          "username": "jivain1",
+          "avatar_url": "http://dummyimage.com/242x212.png/dddddd/000000"
         },
         "business": {
           "_id": "650c4aa295a5a9619eb3d537",
