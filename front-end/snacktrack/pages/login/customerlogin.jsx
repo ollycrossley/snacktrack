@@ -26,36 +26,55 @@ export default function CustomerLogin() {
     <>
       <NavBar />
       <br></br>
-      <h1>Customer Login</h1>
+      <h1 className="has-text-centered title">Customer Login</h1>
       <br></br>
+      <div className="columns is-centered">
+        <div className="column is-one-third">
+          <form className="box p-5">
+            <div className="field">
+              <div className="control">
+                <label className="label" htmlFor="username_input">
+                  Username
+                </label>
+                <input
+                  className="input"
+                  type="text"
+                  name="username_input"
+                  id="username_input"
+                  value={currentUser}
+                  onChange={handleUserChange}
+                  autoComplete="off"
+                ></input>
+              </div>
+            </div>
 
-      <form>
-        <label htmlFor="username_input">
-          Username
-          <input
-            type="text"
-            name="username_input"
-            id="username_input"
-            value={currentUser}
-            onChange={handleUserChange}
-            autoComplete="off"
-          ></input>
-        </label>
-          <br></br>
-        <label htmlFor="password_input">
-          Password
-          <input
-            type="text"
-            name="password_input"
-            id="password_input"
-            value={currentPassword}
-            onChange={handlePasswordChange}
-            autoComplete="off"
-          ></input>
-        </label>
-        <br></br>
-        <button onClick={handleSubmit}>Submit</button>
-      </form>
+            <br></br>
+
+            <div className="field">
+              <div className="control">
+                <label className="label" htmlFor="password_input">
+                  Password
+                </label>
+                <input
+                  className="input"
+                  type="text"
+                  name="password_input"
+                  id="password_input"
+                  value={currentPassword}
+                  onChange={handlePasswordChange}
+                  autoComplete="off"
+                ></input>
+              </div>
+            </div>
+            <br></br>
+            <div className="has-text-centered">
+              <button className="button is-link" onClick={handleSubmit}>
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </>
   );
 }

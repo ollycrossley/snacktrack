@@ -65,7 +65,7 @@ export default function CreateDriver() {
       <h1>Create Driver</h1>
       <br></br>
 
-      <form>
+      <form className="is-centered">
         <ul>
           <li>
             <label htmlFor="name_input">

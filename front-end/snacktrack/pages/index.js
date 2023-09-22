@@ -19,13 +19,13 @@ export default function Home() {
       </Head>
       <main className="">
         <NavBar />
-        <br></br>
+        <div className="has-text-centered">
         <header>
           <h1>Snack Track</h1>
         </header>
         <br></br>
-        <>
-          <div>The number one leading pop-up shop location service!!!</div>
+        <div>
+          <p>The number one leading pop-up shop location service!!!</p>
           <br></br>
           <div>
             <LoginButtonCustomer />
@@ -33,13 +33,13 @@ export default function Home() {
           </div>
           <br></br>
           <div>
-  
             <CreateCustomerProfile />
             <CreateDriverProfile />
           </div>
-        </>
+        </div>
         <br></br>
         <footer>Created by SnackTrack TM</footer>
+        </div>
       </main>
     </>
   );
