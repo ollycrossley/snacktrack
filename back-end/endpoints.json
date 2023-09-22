@@ -26,8 +26,8 @@
           "category": "Food",
           "business_name": "Twiyo",
           "is_active": false,
-          "total_rating": 0,
-          "no_of_ratings": 0
+          "total_rating": 13,
+          "no_of_ratings": 4
         }
       ]
     }
@@ -94,8 +94,8 @@
         "is_active": false,
         "logo_url": "http://dummyimage.com/138x241.png/ff4444/ffffff",
         "menu_url": "https://marketplace.canva.com/EAFKfB87pN0/1/0/1131w/canva-brown-and-black-illustration-fast-food-menu-y8NpubROdFc.jpg",
-        "total_rating": 0,
-        "no_of_ratings": 0
+        "total_rating": 10,
+        "no_of_ratings": 2
       }
     }
   },
