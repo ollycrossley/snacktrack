@@ -1,8 +1,8 @@
 import {GoogleMap, useJsApiLoader, MarkerF, Marker, InfoWindow, InfoWindowF} from '@react-google-maps/api';
-
 import React, {useEffect, useState} from "react";
 import {getBusinesses} from "@/api";
 import Link from "next/link";
+
 
 export default function SimpleMap() {
     const [businesses, setBusinesses] = useState([]);
@@ -17,12 +17,16 @@ export default function SimpleMap() {
 
     const [activeMarker, setActiveMarker] = useState(null);
 
+
     const handleActiveMarker = (marker) => {
         /*if (marker === activeMarker) {
             return;
         }*/
         setActiveMarker(marker);
     };
+  const [businesses, setBusinesses] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
 
     const defaultProps = {
         center: {

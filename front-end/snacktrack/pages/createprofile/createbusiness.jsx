@@ -107,7 +107,7 @@ export default function CreateBusiness() {
     <>
       <NavBar />
       <br></br>
-      <h1>create business</h1>
+      <h1>Create Business</h1>
       <br></br>
       <form>
         <ul>
@@ -127,7 +127,7 @@ export default function CreateBusiness() {
           <br></br>
           <li>
             <label htmlFor="image_input">
-              Upload a picture of your stall or truck
+              Upload a picture of your truck or stall
               <input
                 type="file"
                 name="image_input"
