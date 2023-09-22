@@ -168,6 +168,65 @@ describe("/api/businesses/:_id", () => {
           expect(business).toHaveProperty("is_active");
         });
     });
+    it("200: returns an object with a business's relevant information", () => {
+      return request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const idToTest = businesses[8]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app).get(`/api/businesses/${idToTest}`).expect(200);
+        })
+        .then((response) => {
+          const { business } = response.body;
+          expect(business).toHaveProperty("business_name", "Wikivu");
+          expect(business).toHaveProperty("total_rating");
+          expect(business).toHaveProperty("no_of_ratings");
+          expect(business).toHaveProperty("menu_url");
+          expect(business).toHaveProperty("logo_url");
+          expect(business).toHaveProperty("location");
+          expect(business).toHaveProperty("created_at");
+          expect(business).toHaveProperty("category");
+          expect(business).toHaveProperty("owner_name");
+          expect(business).toHaveProperty("business_bio");
+          expect(business).toHaveProperty("_id");
+          expect(business).toHaveProperty("is_active");
+        });
+    });
+    it("400: returns appropriate error when invalid id is used", () => {
+      return request(app)
+        .get("/api/businesses/Wagyu")
+        .expect(400)
+        .then((response) => {
+          const { msg } = response.body;
+          expect(msg).toBe("Invalid Id");
+        });
+    });
+  });
+  describe("PATCH", () => {
+    it("200: updates a business (based on its id) with increased (or decreased) rating", () => {
+      const copyBusiness = { ...patchBusiness };
+      return request(app)
+        .get("/api/businesses")
+        .then((response) => {
+          const { businesses } = response.body;
+          const idToTest = businesses[0]._id;
+          return idToTest;
+        })
+        .then((idToTest) => {
+          return request(app)
+            .patch(`/api/businesses/${idToTest}`)
+            .send({ rating: 2 })
+            .expect(200)
+            .then((response) => {
+              const { business } = response.body;
+              expect(business.total_rating).toBe(20);
+              expect(business.no_of_ratings).toBe(7);
+            });
+        });
+    });
     it("400: returns appropriate error when invalid id is used", () => {
       return request(app)
         .get("/api/businesses/Wagyu")
