@@ -42,7 +42,7 @@ export default function DriverLogin() {
             autoComplete="off"
           ></input>
         </label>
-
+          <br></br>
         <label htmlFor="password_input">
           Password
           <input
@@ -54,6 +54,7 @@ export default function DriverLogin() {
             autoComplete="off"
           ></input>
         </label>
+        <br></br>
         <button onClick={handleSubmit}>Submit</button>
       </form>
     </>
