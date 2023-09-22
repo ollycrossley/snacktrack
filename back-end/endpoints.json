@@ -123,7 +123,7 @@
         "avatar_url": "http://dummyimage.com/227x103.png/5fa2dd/ffffef"
       },
       "option2": {
-        "rating": "2",
+        "rating": 2,
         "no_of_ratings": 1
       }
     },
