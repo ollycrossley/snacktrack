@@ -36,9 +36,9 @@ export default function DriverLogin() {
               <div className="control">
                 <label className="label" htmlFor="username_input">
                   Username
-                  </label>
+                </label>
                 <input
-                className="input"
+                  className="input"
                   type="text"
                   name="username_input"
                   id="username_input"
@@ -51,29 +51,29 @@ export default function DriverLogin() {
             </div>
             <br></br>
 
-<div className="field">
-  <div className="control">
-    <label className="label" htmlFor="password_input">
-      Password
-    </label>
-    <input
-      className="input"
-      type="text"
-      name="password_input"
-      id="password_input"
-      placeholder="password"
-      value={currentPassword}
-      onChange={handlePasswordChange}
-      autoComplete="off"
-    ></input>
-  </div>
-</div>
-<br></br>
-<div className="has-text-centered">
-  <button className="button is-link" onClick={handleSubmit}>
-    Submit
-  </button>
-</div>
+            <div className="field">
+              <div className="control">
+                <label className="label" htmlFor="password_input">
+                  Password
+                </label>
+                <input
+                  className="input"
+                  type="text"
+                  name="password_input"
+                  id="password_input"
+                  placeholder="password"
+                  value={currentPassword}
+                  onChange={handlePasswordChange}
+                  autoComplete="off"
+                ></input>
+              </div>
+            </div>
+            <br></br>
+            <div className="has-text-centered">
+              <button className="button is-link" onClick={handleSubmit}>
+                Submit
+              </button>
+            </div>
           </form>
         </div>
       </div>

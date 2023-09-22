@@ -4,8 +4,8 @@ import { UserContext } from "@/contexts/user_context";
 
 export default function LoginButtonCustomer() {
   return (
-
-      <Link className={"button"} href="/login/customerlogin">Customer Login Button</Link>
-  
+    <Link className={"button"} href="/login/customerlogin">
+      Customer Login
+    </Link>
   );
 }
