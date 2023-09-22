@@ -7,7 +7,7 @@
     "test": "jest",
     "dev": "node listen.js",
     "start": "node mongoConnect.js",
-    "seed-prod": "NODE_ENV=production node mongoConnect.js"
+    "seed-prod": "NODE_ENV=production node seed-production.js"
   },
   "keywords": [],
   "author": "",
