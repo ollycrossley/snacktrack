@@ -44,16 +44,14 @@ exports.removeBusinessById = (_id) => {
 };
 
 exports.updateBusinessById = (body, _id) => {
-  const { rating } = body;
+  const { rating, no_of_ratings } = body;
   const ratingObj = {};
   if (rating) {
-    if (rating >= 0) {
-      ratingObj.total_rating = rating;
-      ratingObj.no_of_ratings = 1;
-    } else {
-      ratingObj.total_rating = rating;
-      ratingObj.no_of_ratings = -1;
+    ratingObj.total_rating = rating;
+    if (no_of_ratings) {
+      ratingObj.no_of_ratings = no_of_ratings;
     }
+
     return Business.findOneAndUpdate(
       { _id },
       { $inc: ratingObj },
