@@ -6,9 +6,6 @@ $black: #000000;
 $navbar-dropdown-arrow: $st-brown;
 $navbar-item-hover-color: $st-brown;
 
-#links-button {
-  $link: $black;
-};
 
 @import "../node_modules/bulma/bulma.sass";
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=League+Spartan&display=swap');
