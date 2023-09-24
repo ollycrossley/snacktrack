@@ -41,7 +41,7 @@ export default function Home() {
               <div className={"columns is-spaced is-centered"}>
 
                 <div className={"column is-one-quarter mr-6"}>
-                  <div className={"box has-text-centered"}>
+                  <div className={"box has-text-centered p-5"}>
                     <p className={"title has-text-centered "}>Drivers</p>
                     <p className={"subtitle has-text-centered"}>Appear to the masses, feed the masses</p>
                     <Link className={"button mr-5 is-link"} href="/createprofile/createdriverprofile">Sign Up</Link>
@@ -50,7 +50,7 @@ export default function Home() {
                 </div>
 
                 <div className={"column is-one-quarter"}>
-                  <div className={"box has-text-centered"}>
+                  <div className={"box has-text-centered p-5"}>
                     <p className={"title"}>Customers</p>
                     <p className={"subtitle"}>Adventure out to great local businesses</p>
                       <Link className={"button mr-5 is-link"} href="/createprofile/createcustomerprofile">Sign Up</Link>
@@ -63,24 +63,25 @@ export default function Home() {
 
           </div>
 
-          <div className="hero-foot has-text-centered pb-4">
-            <div id={"links-button"}><a href={"#links"}><span className={"icon is-size-1"}><i
-                className="fa-solid fa-angle-down"></i></span></a></div>
-          </div>
+          {/*<div className="hero-foot has-text-centered pb-4">
+            <a className={"has-text-black"} href={"#links"}><span className={"icon is-size-1"}><i
+                className="fa-solid fa-angle-down"></i></span></a>
+          </div>*/}
 
         </section>
 
-        <section className={"hero is-large"}>
+        {/*<section className={"container hero is-large"}>
           <div className={"hero-head"}>
             <br/><br/><br/>
-            <p id={"links"} className={"title has-text-centered"}>About us!</p>
+            <p id={"links"} className={"title has-text-centered"}>Bringing food to the masses...</p>
           </div>
           <div className={"hero-body"}>
             <div className={"container"}>
               <p>Some text here.....</p>
             </div>
           </div>
-        </section>
+        </section>*/}
+
       </main>
     </>
   );
