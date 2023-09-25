@@ -1,11 +1,23 @@
 
 $st-brown: #6b3109;
 $st-beige: #f9cb98;
+$black: #000000;
 
 $navbar-dropdown-arrow: $st-brown;
 $navbar-item-hover-color: $st-brown;
 
+
 @import "../node_modules/bulma/bulma.sass";
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=League+Spartan&display=swap');
+
+#main-page-hero{
+  background: white url("../public/main-page-map.png") center / cover ;
+};
+
+* {
+  font-family: 'League Spartan', sans-serif;
+  scroll-behavior: smooth;
+};
 
 
 

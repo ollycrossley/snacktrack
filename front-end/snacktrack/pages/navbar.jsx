@@ -24,9 +24,7 @@ export default function NavBar() {
         </figure>
         <a
           role="button"
-          className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
-          aria-label="menu"
-          aria-expanded="false"
+          className={`navbar-burger ${isActive ? "is-active" : ""}`}
           data-target="main-nav-bar"
           onClick={() => {
             setIsActive(!isActive);
@@ -37,10 +35,7 @@ export default function NavBar() {
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div
-        id={"main-nav-bar"}
-        className={`navbar-menu is-size-5 ${isActive ? "is-active" : ""}`}
-      >
+      <div id={"main-nav-bar"} className={`navbar-menu is-size-5 ${isActive ? "is-active" : ""}`}>
         <div className={"navbar-start mb-6"}>
           <Link href={"/"} className={"navbar-item"}>
             <p>Home</p>
