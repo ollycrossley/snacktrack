@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import NavBar from "../navbar";
 import { useState } from "react";
 import { CldUploadWidget } from "next-cloudinary";
+import { postBusiness } from "../api/api_calls";
 
 export default function CreateBusiness() {
   const [menu, setMenu] = useState("");
@@ -28,12 +29,6 @@ export default function CreateBusiness() {
   const driverProfile = router.query;
   console.log(driverProfile);
 
-  function handleMenuChange(e) {
-    setMenu(e.target.value);
-  }
-  function handleImageChange(e) {
-    setImage(e.target.value);
-  }
   function handleLogoChange(e) {
     setLogo(e.target.value);
   }
@@ -99,6 +94,9 @@ export default function CreateBusiness() {
   function handleSubmit(e) {
     e.preventDefault();
     console.log(driverProfile);
+    postBusiness(driverProfile).then((response) => {
+      router.push("/");
+    });
   }
   const opening_hours = {
     monday: [mondayOpenTime, mondayCloseTime],
@@ -125,7 +123,7 @@ export default function CreateBusiness() {
       <h1>Create Business</h1>
       <div className="columns is-centered">
         <div className="column is-one-third">
-          <form className="box">
+          <form className="box" onSubmit={handleSubmit}>
             <div className="field">
               <label className="label" htmlFor="menu_input">
                 Upload Menu
@@ -390,7 +388,7 @@ export default function CreateBusiness() {
                 </ul>
               </label>
             </div>
-            <button onClick={handleSubmit}>Submit</button>
+            <button>Submit</button>
           </form>
         </div>
       </div>
