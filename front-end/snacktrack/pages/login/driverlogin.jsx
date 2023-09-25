@@ -15,7 +15,7 @@ export default function DriverLogin() {
       userName: currentUser,
       password: currentPassword,
       isDriver: true,
-    });
+    }); 
   }
   function handleUserChange(e) {
     setCurrentUser(e.target.value);
