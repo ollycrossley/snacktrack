@@ -140,7 +140,7 @@ export default function CreateDriver() {
               </label>
               <div className="control">
                 <input
-                  class="input"
+                  className="input"
                   type="text"
                   name="name_input"
                   id="name_input"
@@ -157,7 +157,7 @@ export default function CreateDriver() {
               </label>
               <div className="control">
                 <input
-                  class="input"
+                  className="input"
                   type="text"
                   name="username_input"
                   id="username_input"
@@ -174,7 +174,7 @@ export default function CreateDriver() {
               </label>
               <div className="control">
                 <input
-                  class="input"
+                  className="input"
                   type="text"
                   name="email_input"
                   id="email_input"
@@ -191,7 +191,7 @@ export default function CreateDriver() {
               </label>
               <div className="control">
                 <input
-                  class="input"
+                  className="input"
                   type="text"
                   name="business_name_input"
                   id="business_name_input"
@@ -231,7 +231,7 @@ export default function CreateDriver() {
                 Password
               </label>
               <input
-                class="input"
+                className="input"
                 type="text"
                 name="password_input"
                 id="password_input"
@@ -246,7 +246,7 @@ export default function CreateDriver() {
                 Confirm Password
               </label>
               <input
-                class="input"
+                className="input"
                 type="text"
                 name="password_confirm_input"
                 id="password_confirm_input"
