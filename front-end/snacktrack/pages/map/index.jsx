@@ -2,8 +2,48 @@ import NavBar from "../navbar";
 import SimpleMap from "./components/simplemap";
 import Head from "next/head";
 import Script from "next/script";
+import { useEffect, useState } from "react";
 
 export default function Map() {
+  const [myCrd, setMyCrd] = useState({});
+  function success(pos) {
+    const crd = pos.coords;
+    setMyCrd(crd);
+    console.log("Your current position is:");
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+  }
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
+
+  function errors(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.permissions
+        .query({ name: "geolocation" })
+        .then(function (result) {
+          console.log(result);
+          if (result.state === "granted") {
+            navigator.geolocation.getCurrentPosition(success, errors, options);
+          } else if (result.state === "prompt") {
+            navigator.geolocation.getCurrentPosition(success, errors, options);
+            console.log("We are in prompt mode!");
+          } else if (result.state === "denied") {
+            // do other things
+          }
+        });
+    } else {
+      console.log("Geolocation is not supported by this browser");
+    }
+    console.log(navigator);
+  }, []);
+
   return (
     <>
       <Head>
@@ -14,7 +54,10 @@ export default function Map() {
       </Head>
       <NavBar />
       <h1 className={"title has-text-centered"}>MAP</h1>
-        <div className={"container"} style={{marginBottom: 25}}><SimpleMap/></div>
+
+      <div className={"container"} style={{ marginBottom: 25 }}>
+        <SimpleMap userLat={myCrd.latitude} userLong={myCrd.longitude} />
+      </div>
     </>
   );
 }
