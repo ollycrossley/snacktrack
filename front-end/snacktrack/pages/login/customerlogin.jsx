@@ -2,6 +2,7 @@ import NavBar from "../navbar";
 
 import { useContext, useState } from "react";
 import { UserContext } from "@/contexts/user_context";
+import { getCustomers } from "@/api";
 
 export default function CustomerLogin() {
   const [currentUser, setCurrentUser] = useState("");
@@ -9,12 +10,23 @@ export default function CustomerLogin() {
   const { activeUser, setActiveUser } = useContext(UserContext);
   function handleSubmit(e) {
     e.preventDefault();
-    console.log({
-      activeUser: { userName: currentUser, password: currentPassword },
+
+    getCustomers().then((customers) => {
+      console.log("getcustomers");
+
+      for (const customer of customers) {
+        if (
+          customer.username === currentUser &&
+          customer.password === currentPassword
+        ) {
+          console.log(customer);
+          setActiveUser(customer);
+          console.log(activeUser, "active user, customerlogin.jsx");
+
+          window.localStorage.setItem("user", JSON.stringify(customer));
+        }
+      }
     });
-    /*should send the activeUser obj to database to check username and password are correct and IF they're correct, set the user context to be the active user
-     */
-    setActiveUser({ userName: currentUser, password: currentPassword });
   }
   function handleUserChange(e) {
     setCurrentUser(e.target.value);
@@ -32,11 +44,10 @@ export default function CustomerLogin() {
         <div className="column is-one-third">
           <form className="box p-5">
             <div className="field">
-              
-                <label className="label" htmlFor="username_input">
-                  Username
-                </label>
-                <div className="control">
+              <label className="label" htmlFor="username_input">
+                Username
+              </label>
+              <div className="control">
                 <input
                   className="input"
                   type="text"
