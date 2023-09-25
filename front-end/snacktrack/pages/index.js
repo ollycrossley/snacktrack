@@ -40,7 +40,7 @@ export default function Home() {
 
               <div className={"columns is-spaced is-centered"}>
 
-                <div className={"column is-one-quarter mr-6"}>
+                <div className={"column is-one-quarter"}>
                   <div className={"box has-text-centered p-5"}>
                     <p className={"title has-text-centered "}>Drivers</p>
                     <p className={"subtitle has-text-centered"}>Appear to the masses, feed the masses</p>
