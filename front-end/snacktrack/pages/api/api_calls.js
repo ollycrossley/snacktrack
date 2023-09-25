@@ -66,7 +66,6 @@ export const getCustomers = () => {
     });
 };
 
-
 export const getBusinesses = () => {
   axios
     .get("https://snacktrack.onrender.com/api/businesses")
@@ -81,4 +80,8 @@ export const postCustomer = (customer) => {
     .then(({ data }) => {});
 };
 
-
+export const postBusiness = (business) => {
+  return axios
+    .post("https://snacktrack.onrender.com/api/businesses", business)
+    .then(({ data }) => {});
+};

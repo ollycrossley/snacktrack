@@ -15,16 +15,15 @@ export default function CreateDriver() {
   const [driverProfile, setDriverProile] = useState({});
   const [passwordErrorMsg, setPasswordErrorMsg] = useState("");
   const [isUsernameValid, setIsUsernameValid] = useState("");
-  const [isEmailValid, setIsEmailValid] = useState("");  const [isPasswordValid, setIsPasswordValid] = useState("");
+  const [isEmailValid, setIsEmailValid] = useState("");
+  const [isPasswordValid, setIsPasswordValid] = useState("");
   const [doPasswordsMatch, setDoPasswordsMatch] = useState("");
-  const [buisnessNameValid, setBusinessNameValid] = useState("")
+  const [buisnessNameValid, setBusinessNameValid] = useState("");
   const [driverUsernames, setDriverUsernames] = useState([]);
 
   useEffect(() => {
     getBusinesses().then((drivers) => {
-      const usernames = drivers.map((driver) =>
-        driver.username.toLowerCase()
-      );
+      const usernames = drivers.map((driver) => driver.username.toLowerCase());
       setDriverUsernames(usernames);
     });
   }, []);
@@ -87,27 +86,29 @@ export default function CreateDriver() {
   }
   function handleBusinessNameChange(e) {
     setBusinessName(e.target.value);
-    if(e.target.value.length > 0) {
+    if (e.target.value.length > 0) {
       setBusinessNameValid(true);
     } else {
-      setBusinessNameValid("")
+      setBusinessNameValid("");
     }
   }
   function handleBusiessTypeChange(e) {
     setBusinessType(e.target.value);
   }
-  const router = useRouter()
+  const router = useRouter();
   function handleSubmit(e) {
-    
     e.preventDefault();
-    router.push({pathname:"/createprofile/createbusiness",  query: {
-      owner_name: name,
-      email: email,
-      username: userName,
-      business_name: businessName,
-      category: businessType,
-      password: password,
-    }})
+    router.push({
+      pathname: "/createprofile/createbusiness",
+      query: {
+        owner_name: name,
+        email: email,
+        username: userName,
+        business_name: businessName,
+        category: businessType,
+        password: password,
+      },
+    });
   }
   const isEverythingValid =
     isEmailValid === true &&
@@ -115,10 +116,6 @@ export default function CreateDriver() {
     isPasswordValid === true &&
     isUsernameValid === true &&
     doPasswordsMatch === true;
-
-  console.log(isEverythingValid);
-
-
 
   let path = "";
   if (password.length !== 0 && password === passwordConfirm) {
@@ -256,11 +253,11 @@ export default function CreateDriver() {
               ></input>
             </div>
 
-            <button 
-            className="button" 
-            type={"submit"}
+            <button
+              className="button"
+              type={"submit"}
               disabled={!isEverythingValid}
-              >
+            >
               {/* <Link
                 href={{
                   //the variable path below is only correct if the password.length !==0 and the password === passwordConfirm
@@ -275,7 +272,7 @@ export default function CreateDriver() {
                   },
                 }}
               > */}
-                Submit
+              Submit
               {/* </Link> */}
             </button>
             <p>{passwordErrorMsg}</p>
