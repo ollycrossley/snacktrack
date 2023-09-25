@@ -57,3 +57,17 @@ export const getReviews = (_id, setReviewsArray) => {
       console.log(err, "reviews error");
     });
 };
+
+export const getCustomers = () => {
+  axios
+    .get("https://snacktrack.onrender.com/api/customers")
+    .then(({ data }) => {
+      return data;
+    });
+};
+
+export const postCustomer = (customer) => {
+  axios
+    .post("https://snacktrack.onrender.com/api/customers", customer)
+    .then(({ data }) => {});
+};
