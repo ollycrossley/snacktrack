@@ -81,6 +81,8 @@ describe("/api/businesses", () => {
             expect(business).toHaveProperty("category");
             expect(business).toHaveProperty("total_rating");
             expect(business).toHaveProperty("no_of_ratings");
+            expect(business).toHaveProperty("password");
+            expect(business).toHaveProperty("username");
           });
         });
     });
@@ -404,6 +406,7 @@ describe("/api/customers", () => {
             expect(customer).toHaveProperty("username");
             expect(customer).toHaveProperty("email");
             expect(customer).toHaveProperty("avatar_url");
+            expect(customer).toHaveProperty("password");
           });
         });
     });
