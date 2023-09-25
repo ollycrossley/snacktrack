@@ -27,7 +27,9 @@
           "business_name": "Twiyo",
           "is_active": false,
           "total_rating": 13,
-          "no_of_ratings": 4
+          "no_of_ratings": 4,
+          "username": "tgarnett0",
+          "password": "******"
         }
       ]
     }
@@ -149,7 +151,8 @@
           "_id": "650c48271dd29a5d6e96b3b8",
           "username": "bcolley0",
           "email": "ewones0@bluehost.com",
-          "avatar_url": "http://dummyimage.com/158x103.png/5fa2dd/ffffff"
+          "avatar_url": "http://dummyimage.com/158x103.png/5fa2dd/ffffff",
+          "password": "******"
         }
       ]
     }

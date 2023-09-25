@@ -10,6 +10,8 @@ exports.selectBusinesses = () => {
       location: 1,
       total_rating: 1,
       no_of_ratings: 1,
+      username: 1,
+      password: 1,
     }
   ).then((response) => {
     return response;

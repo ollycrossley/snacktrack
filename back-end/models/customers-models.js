@@ -6,6 +6,7 @@ exports.selectCustomers = () => {
       username: 1,
       email: 1,
       avatar_url: 1,
+      password: 1,
     }
   ).then((response) => {
     return response;
