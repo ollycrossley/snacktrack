@@ -1,6 +1,7 @@
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import NavBar from "../navbar";
 import { useState } from "react";
+import { CldUploadWidget } from "next-cloudinary";
 
 export default function CreateBusiness() {
   const [menu, setMenu] = useState("");
@@ -22,9 +23,10 @@ export default function CreateBusiness() {
   const [fridayCloseTime, setFridayCloseTime] = useState("");
   const [saturdayCloseTime, setSaturdayCloseTime] = useState("");
   const [sundayCloseTime, setSundayCloseTime] = useState("");
+  const [validBio, setValidBio] = useState("");
   const router = useRouter();
   const driverProfile = router.query;
-  console.log(driverProfile)
+  console.log(driverProfile);
 
   function handleMenuChange(e) {
     setMenu(e.target.value);
@@ -40,6 +42,17 @@ export default function CreateBusiness() {
   // }
   function handleBusinessBioChange(e) {
     setBusinessBio(e.target.value);
+    if (e.target.value.length > 0) {
+      if (e.target.value.length >= 25 && e.target.value.length < 250) {
+        setValidBio(true);
+        console.log("valid");
+      } else {
+        setValidBio(false);
+        console.log("invalid");
+      }
+    } else {
+      setValidBio("");
+    }
   }
   function handleMondayOpenChange(e) {
     setMondayOpenTime(e.target.value);
@@ -85,7 +98,7 @@ export default function CreateBusiness() {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(driverProfile)
+    console.log(driverProfile);
   }
   const opening_hours = {
     monday: [mondayOpenTime, mondayCloseTime],
@@ -94,72 +107,121 @@ export default function CreateBusiness() {
     thursday: [thursdayOpenTime, thursdayCloseTime],
     friday: [fridayOpenTime, fridayCloseTime],
     saturday: [saturdayOpenTime, saturdayCloseTime],
-    sunday: [sundayOpenTime, sundayCloseTime]
-  }
+    sunday: [sundayOpenTime, sundayCloseTime],
+  };
 
-  driverProfile.menu_url = menu
-  driverProfile.avatar_url = image
-  driverProfile.buisness_bio = businessBio
-  driverProfile.logo_url = logo
-  driverProfile.opening_hours = opening_hours
+  driverProfile.menu_url = menu;
+  driverProfile.avatar_url = image;
+  driverProfile.buisness_bio = businessBio;
+  driverProfile.logo_url = logo;
+  driverProfile.opening_hours = opening_hours;
+
+  console.log(menu);
 
   return (
     <>
       <NavBar />
-      <br></br>
-      <h1>Create Business</h1>
-      <br></br>
-      <form>
-        <ul>
-          <li>
-            <label htmlFor="menu_input">
-              Upload Menu
-              <input
-                type="file"
-                name="menu_input"
-                id="menu_input"
-                //placeholder="https://menu.com"
-                value={menu}
-                onChange={handleMenuChange}
-              ></input>
-            </label>
-          </li>
-          <br></br>
-          <li>
-            <label htmlFor="image_input">
-              Upload a picture of your truck or stall
-              <input
-                type="file"
-                name="image_input"
-                id="image_input"
-                // placeholder="https://image.com"
-                value={image}
-                onChange={handleImageChange}
-              ></input>
-            </label>
-          </li>
-          <br></br>
 
-          <li>
-            <label htmlFor="logo_input">
-              Choose a logo to represent you on the map
-            </label>
-            <select
-              id="logo_input"
-              name="logo_input"
-              onChange={handleLogoChange}
-              value={logo}
+      <h1>Create Business</h1>
+      <div className="columns is-centered">
+        <div className="column is-one-third">
+          <form className="box">
+            <div className="field">
+              <label className="label" htmlFor="menu_input">
+                Upload Menu
+                <div className="control">
+                  <input
+                    className="input"
+                    type="text"
+                    name="menu_input"
+                    id="menu_input"
+                    //placeholder="https://menu.com"
+                    value={menu}
+                    // onChange={handleMenuChange}
+                  ></input>
+                </div>
+              </label>
+            </div>
+
+            <CldUploadWidget
+              uploadPreset="unsigned_test"
+              onSuccess={(result) => {
+                console.log(result.info.url);
+                setMenu(result.info.url);
+              }}
             >
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-              <option value="option4">Option 4</option>
-              <option value="option5">Option 5</option>
-              <option value="option6">Option 6</option>
-            </select>
-          </li>
-          <br></br>
-          {/* <li>
+              {({ open }) => {
+                function handleOnClick(e) {
+                  e.preventDefault();
+                  open();
+                }
+                return (
+                  <button className="button" onClick={handleOnClick}>
+                    Upload menu
+                  </button>
+                );
+              }}
+            </CldUploadWidget>
+
+            <div className="field">
+              <label className={"label"} htmlFor="image_input">
+                Upload a picture of your truck or stall
+                <div className="control">
+                  <input
+                    className="business"
+                    type="text"
+                    name="image_input"
+                    id="image_input"
+                    // placeholder="https://image.com"
+                    value={image}
+                    // onChange={handleImageChange}
+                  ></input>
+                </div>
+              </label>
+            </div>
+
+            <CldUploadWidget
+              uploadPreset="unsigned_test"
+              onSuccess={(result) => {
+                console.log(result.info.url);
+                setImage(result.info.url);
+              }}
+            >
+              {({ open }) => {
+                function handleOnClick(e) {
+                  e.preventDefault();
+                  open();
+                }
+                return (
+                  <button className="button" onClick={handleOnClick}>
+                    Upload truck or stall image
+                  </button>
+                );
+              }}
+            </CldUploadWidget>
+
+            <div className="field">
+              <label className={"label"} htmlFor="logo_input">
+                Choose a logo to represent you on the map
+                <div className="control">
+                  <select
+                    className="input"
+                    id="logo_input"
+                    name="logo_input"
+                    onChange={handleLogoChange}
+                    value={logo}
+                  >
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                    <option value="option5">Option 5</option>
+                    <option value="option6">Option 6</option>
+                  </select>
+                </div>
+              </label>
+            </div>
+            {/*
             <label htmlFor="phone_number_input">
               Phone Number
               <input
@@ -170,167 +232,168 @@ export default function CreateBusiness() {
                 value={phoneNumber}
                 onChange={handlePhoneNumberChange}
               ></input>
-            </label>
-          </li> */}
-          <br></br>
-          <div>
-            <label htmlFor="busiess_bio">
-              Buisness Bio
-              <textarea
-                type="text"
-                name="business_Bio"
-                placeholder="Business Bio"
-                id="Business_bio_box"
-                value={businessBio}
-                onChange={handleBusinessBioChange}
-              ></textarea>
-            </label>
-          </div>
-          <br></br>
-          <li>
-            <label htmlFor="opening_hours_input">
-              Opening Hours
-              <ul>
-                <li>
-                  Monday
-                  <input
+            </label>*/}
+            <div className="field">
+              <label className={"label"} htmlFor="business_bio">
+                Business Bio
+                <div className="control">
+                  <textarea
+                    className="input"
                     type="text"
-                    name="monday_open"
-                    id="monday_open"
-                    placeholder="Opening Hours"
-                    value={mondayOpenTime}
-                    onChange={handleMondayOpenChange}
-                  ></input>
-                  <input
-                    type="text"
-                    name="monday_close"
-                    id="monday_close"
-                    placeholder="Closing Hours"
-                    value={mondayCloseTime}
-                    onChange={handleMondayCloseChange}
-                  ></input>
-                </li>
-                <li>
-                  Tuesday
-                  <input
-                    type="text"
-                    name="tuesday_open"
-                    id="tuesday_open"
-                    placeholder="Opening Hours"
-                    value={tuesdayOpenTime}
-                    onChange={handleTuesdayOpenChange}
-                  ></input>
-                  <input
-                    type="text"
-                    name="tuesday_close"
-                    id="tuesday_close"
-                    placeholder="Closing Hours"
-                    value={tuesdayCloseTime}
-                    onChange={handleTuesdayCloseChange}
-                  ></input>{" "}
-                </li>
-                <li>
-                  Wednesday
-                  <input
-                    type="text"
-                    name="wednesday_open"
-                    id="wednesday_open"
-                    placeholder="Opening Hours"
-                    value={wednesdayOpenTime}
-                    onChange={handleWednedayOpenChange}
-                  ></input>
-                  <input
-                    type="text"
-                    name="wednesday_close"
-                    id="wednesday_close"
-                    placeholder="Closing Hours"
-                    value={wednesdayCloseTime}
-                    onChange={handleWednesdayCloseTime}
-                  ></input>
-                </li>
-                <li>
-                  Thursday
-                  <input
-                    type="text"
-                    name="thursday_open"
-                    id="thursday_open"
-                    placeholder="Opening Hours"
-                    value={thursdayOpenTime}
-                    onChange={handleThursdayOpenChange}
-                  ></input>
-                  <input
-                    type="text"
-                    name="thursday_close"
-                    id="thursday_close"
-                    placeholder="Closing Hours"
-                    value={thursdayCloseTime}
-                    onChange={handleThursdayCloseChange}
-                  ></input>
-                </li>
-                <li>
-                  Friday
-                  <input
-                    type="text"
-                    name="friday_open"
-                    id="friday_open"
-                    placeholder="Opening Hours"
-                    value={fridayOpenTime}
-                    onChange={handleFridayOpenChange}
-                  ></input>
-                  <input
-                    type="text"
-                    name="friday-close"
-                    id="friday_close"
-                    placeholder="Closing Hours"
-                    value={fridayCloseTime}
-                    onChange={handleFridayCloseChange}
-                  ></input>
-                </li>
-                <li>
-                  Saturday
-                  <input
-                    type="text"
-                    name="saturday-open"
-                    id="saturday_open"
-                    placeholder="Opening Hours"
-                    value={saturdayOpenTime}
-                    onChange={handleSaturdayOpenChange}
-                  ></input>
-                  <input
-                    type="text"
-                    name="saturday_close"
-                    id="saturdat_close"
-                    placeholder="Closing Hours"
-                    value={saturdayCloseTime}
-                    onChange={handleSaturdayCloseChange}
-                  ></input>
-                </li>
-                <li>
-                  Sunday
-                  <input
-                    type="text"
-                    name="sunday_open"
-                    id="sunday_open"
-                    placeholder="Opening Hours"
-                    value={sundayOpenTime}
-                    onChange={handleSundayOpenChange}
-                  ></input>
-                  <input
-                    type="text"
-                    name="sunday_closed"
-                    id="sunday_closed"
-                    placeholder="Closing Hours"
-                    value={sundayCloseTime}
-                    onChange={handleSundayCloseChange}
-                  ></input>
-                </li>
-              </ul>
-            </label>
-          </li>
-          <br></br>
-        </ul>
-        <button onClick={handleSubmit}>Submit</button>
-      </form>
+                    name="business_Bio"
+                    placeholder="Enter a bio for your business"
+                    id="Business_bio_box"
+                    value={businessBio}
+                    onChange={handleBusinessBioChange}
+                  ></textarea>
+                </div>
+              </label>
+            </div>
+
+            <div className="field">
+              <label className={"label"} htmlFor="opening_hours_input">
+                Opening Hours
+                <ul>
+                  <li>
+                    Monday
+                    <input
+                      type="text"
+                      name="monday_open"
+                      id="monday_open"
+                      placeholder="Open from"
+                      value={mondayOpenTime}
+                      onChange={handleMondayOpenChange}
+                    ></input>
+                    <input
+                      type="text"
+                      name="monday_close"
+                      id="monday_close"
+                      placeholder="Closing at"
+                      value={mondayCloseTime}
+                      onChange={handleMondayCloseChange}
+                    ></input>
+                  </li>
+                  <li>
+                    Tuesday
+                    <input
+                      type="text"
+                      name="tuesday_open"
+                      id="tuesday_open"
+                      placeholder="Open from"
+                      value={tuesdayOpenTime}
+                      onChange={handleTuesdayOpenChange}
+                    ></input>
+                    <input
+                      type="text"
+                      name="tuesday_close"
+                      id="tuesday_close"
+                      placeholder="Closing at"
+                      value={tuesdayCloseTime}
+                      onChange={handleTuesdayCloseChange}
+                    ></input>
+                  </li>
+                  <li>
+                    Wednesday
+                    <input
+                      type="text"
+                      name="wednesday_open"
+                      id="wednesday_open"
+                      placeholder="Open from"
+                      value={wednesdayOpenTime}
+                      onChange={handleWednedayOpenChange}
+                    ></input>
+                    <input
+                      type="text"
+                      name="wednesday_close"
+                      id="wednesday_close"
+                      placeholder="Closing at"
+                      value={wednesdayCloseTime}
+                      onChange={handleWednesdayCloseTime}
+                    ></input>
+                  </li>
+                  <li>
+                    Thursday
+                    <input
+                      type="text"
+                      name="thursday_open"
+                      id="thursday_open"
+                      placeholder="Open from"
+                      value={thursdayOpenTime}
+                      onChange={handleThursdayOpenChange}
+                    ></input>
+                    <input
+                      type="text"
+                      name="thursday_close"
+                      id="thursday_close"
+                      placeholder="Closing at"
+                      value={thursdayCloseTime}
+                      onChange={handleThursdayCloseChange}
+                    ></input>
+                  </li>
+                  <li>
+                    Friday
+                    <input
+                      type="text"
+                      name="friday_open"
+                      id="friday_open"
+                      placeholder="Open from"
+                      value={fridayOpenTime}
+                      onChange={handleFridayOpenChange}
+                    ></input>
+                    <input
+                      type="text"
+                      name="friday-close"
+                      id="friday_close"
+                      placeholder="Closing at"
+                      value={fridayCloseTime}
+                      onChange={handleFridayCloseChange}
+                    ></input>
+                  </li>
+                  <li>
+                    Saturday
+                    <input
+                      type="text"
+                      name="saturday-open"
+                      id="saturday_open"
+                      placeholder="Open from"
+                      value={saturdayOpenTime}
+                      onChange={handleSaturdayOpenChange}
+                    ></input>
+                    <input
+                      type="text"
+                      name="saturday_close"
+                      id="saturdat_close"
+                      placeholder="Closing at"
+                      value={saturdayCloseTime}
+                      onChange={handleSaturdayCloseChange}
+                    ></input>
+                  </li>
+                  <li>
+                    Sunday
+                    <input
+                      type="text"
+                      name="sunday_open"
+                      id="sunday_open"
+                      placeholder="Open from"
+                      value={sundayOpenTime}
+                      onChange={handleSundayOpenChange}
+                    ></input>
+                    <input
+                      type="text"
+                      name="sunday_closed"
+                      id="sunday_closed"
+                      placeholder="Closing at"
+                      value={sundayCloseTime}
+                      onChange={handleSundayCloseChange}
+                    ></input>
+                  </li>
+                </ul>
+              </label>
+            </div>
+            <button onClick={handleSubmit}>Submit</button>
+          </form>
+        </div>
+      </div>
     </>
   );
 }
