@@ -2,6 +2,7 @@ import NavBar from "../navbar";
 
 import { useContext, useState } from "react";
 import { UserContext } from "@/contexts/user_context";
+import { getBusinesses } from "@/api";
 
 export default function DriverLogin() {
   const [currentUser, setCurrentUser] = useState("");
@@ -9,6 +10,21 @@ export default function DriverLogin() {
   const { activeUser, setActiveUser } = useContext(UserContext);
   function handleSubmit(e) {
     e.preventDefault();
+
+    getBusinesses().then((businesses) => {
+      for (const business of businesses) {
+        console.log(business, "business");
+        if (
+          business.username === currentUser &&
+          business.password === currentPassword
+        ) {
+          console.log(business);
+          setActiveUser(business);
+          window.localStorage.setItem("user", JSON.stringify(business));
+        }
+      }
+    });
+
     /*should send the activeUser obj to database to check username and password are correct and IF they're correct, set the user context to be the active user
      */
     setActiveUser({
@@ -33,11 +49,10 @@ export default function DriverLogin() {
         <div className="column is-one-third">
           <form className="box p-5">
             <div className="field">
-      
-                <label className="label" htmlFor="username_input">
-                  Username
-                </label>
-                <div className="control">
+              <label className="label" htmlFor="username_input">
+                Username
+              </label>
+              <div className="control">
                 <input
                   className="input"
                   type="text"

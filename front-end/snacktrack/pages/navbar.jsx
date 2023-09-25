@@ -1,10 +1,38 @@
 import Link from "next/link";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "@/contexts/user_context";
+import { getBusiness, getCustomer } from "@/api";
 
 export default function NavBar() {
   const [isActive, setIsActive] = useState(false);
   const { activeUser, setActiveUser } = useContext(UserContext);
+
+  function handleLogout(e) {
+    window.localStorage.removeItem("user");
+    alert("logged out");
+    setActiveUser("");
+  }
+
+  useEffect(() => {
+    if (activeUser === "") {
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      if (storedUser) {
+        if ("business_name" in storedUser) {
+          getBusiness(storedUser._id).then((business) => {
+            window.localStorage.setItem("user", JSON.stringify(business));
+            setActiveUser(JSON.parse(localStorage.getItem("user")));
+          });
+        } else {
+          getCustomer(storedUser._id).then((customer) => {
+            window.localStorage.setItem("user", JSON.stringify(customer));
+            setActiveUser(JSON.parse(localStorage.getItem("user")));
+          });
+        }
+      }
+
+      console.log(activeUser, "activeuser");
+    }
+  }, [activeUser]);
 
   return (
     <nav
@@ -35,7 +63,10 @@ export default function NavBar() {
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div id={"main-nav-bar"} className={`navbar-menu is-size-5 ${isActive ? "is-active" : ""}`}>
+      <div
+        id={"main-nav-bar"}
+        className={`navbar-menu is-size-5 ${isActive ? "is-active" : ""}`}
+      >
         <div className={"navbar-start mb-6"}>
           <Link href={"/"} className={"navbar-item"}>
             <p>Home</p>
@@ -50,10 +81,12 @@ export default function NavBar() {
         <div className="navbar-end mb-6">
           <div className="navbar-item has-dropdown is-hoverable is-right">
             <a className={"navbar-link mr-3 mb-auto"}>
-              {activeUser.userName ? activeUser.userName : "not logged in"}
+              {activeUser ? activeUser.username : "not logged in"}
             </a>
             <div className="navbar-dropdown is-danger">
-              <a className="navbar-item">Switch User</a>
+              <a className="navbar-item" onClick={handleLogout}>
+                Logout
+              </a>
             </div>
           </div>
         </div>
