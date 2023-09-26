@@ -13,11 +13,10 @@ import Link from "next/link";
 export default function SimpleMap({ userLat, userLong }) {
   const [businesses, setBusinesses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isModalActive, setIsModalActive] = useState(false);
-  const [modal, setModal] = useState(<></>);
   const [defLat, setDefLat] = useState(54);
   const [defLong, setDefLong] = useState(-2);
   const [map, setMap] = useState(null);
+  const [isOpen, setIsOpen] = useState(false)
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -25,13 +24,10 @@ export default function SimpleMap({ userLat, userLong }) {
 
   const [activeMarker, setActiveMarker] = useState(null);
 
-  const handleActiveMarker = (marker, lat, long) => {
-    setDefLat(lat);
-    setDefLong(long);
-    /*if (marker === activeMarker) {
-            return;
-        }*/
+  const handleMarkerClick = (marker, lat, long) => {
+    //map?.panTo({lat: lat, lng: long})
     setActiveMarker(marker);
+    setIsOpen(true);
   };
 
   const defaultProps = {
@@ -42,7 +38,6 @@ export default function SimpleMap({ userLat, userLong }) {
     zoom: 13,
   };
 
-  // zoom: 16,
 
   useEffect(() => {
     setIsLoading(true);
@@ -51,6 +46,7 @@ export default function SimpleMap({ userLat, userLong }) {
       setIsLoading(false);
     });
   }, []);
+
   useEffect(() => {
     setDefLat(userLat);
     setDefLong(userLong);
@@ -61,18 +57,13 @@ export default function SimpleMap({ userLat, userLong }) {
   }
 
   return isLoaded ? (
-    // Important! Always set the container height explicitly
     <div>
       <GoogleMap
         mapContainerStyle={{ height: "100vh", width: "100%" }}
-        center={defaultProps.center}
-        zoom={defaultProps.zoom}
         onClick={() => setActiveMarker(null)}
         onLoad={(map) => {
-          const bounds = new window.google.maps.LatLngBounds(
-            defaultProps.center
-          );
-          //map.fitBounds(bounds);
+          map.setZoom(13)
+          map.setCenter(defaultProps.center)
           setMap(map);
         }}
       >
@@ -89,21 +80,22 @@ export default function SimpleMap({ userLat, userLong }) {
                   scaledSize: new google.maps.Size(38, 38),
                 }}
                 onClick={(e) => {
-                  handleActiveMarker(
+                  handleMarkerClick(
                     business.business_name,
                     business.location.latitude,
                     business.location.longitude
                   );
                 }}
               >
-                {activeMarker === business.business_name ? (
-                  <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
+                { isOpen && activeMarker === business.business_name ? (
+                  <InfoWindowF onCloseClick={() => setIsOpen(false)}>
                     <div>
                       <Link href={`/businesses/${business._id}`}>
                         <p>{business.business_name}</p>
                       </Link>
                       <a
                         href={`https://www.google.com/maps/dir/?api=1&origin=${userLat}%2C${userLong}&destination=${business.location.latitude}%2C${business.location.longitude}`}
+                        target={"_blank"}
                       >
                         Get Directions
                       </a>
