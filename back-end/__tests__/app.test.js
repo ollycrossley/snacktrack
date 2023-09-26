@@ -168,6 +168,8 @@ describe("/api/businesses/:_id", () => {
           expect(business).toHaveProperty("business_bio");
           expect(business).toHaveProperty("_id");
           expect(business).toHaveProperty("is_active");
+          expect(business).toHaveProperty("username");
+          expect(business).toHaveProperty("password");
         });
     });
     it("200: returns an object with a business's relevant information", () => {
