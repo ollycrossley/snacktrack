@@ -1,8 +1,10 @@
 import NavBar from "@/pages/navbar";
 import { useEffect } from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "@/contexts/user_context";
 import { getSingleBusiness, getReviews } from "../api/api_calls";
 import Reviews from "./components/businessreviews";
+import AddReview from "../addReview";
 
 export async function getServerSideProps(context) {
   const { _id } = context.query;
@@ -15,6 +17,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function singleBusiness({ _id }) {
+  const { activeUser } = useContext(UserContext);
   const [business, setBusiness] = useState("");
   const [isLoading, setisLoading] = useState(false);
   const [monOpeningHours, setMonOpeningHours] = useState("");
@@ -109,8 +112,20 @@ export default function singleBusiness({ _id }) {
         </li>
       </ul>
       <br></br>
+      {activeUser._id ? (
+        <AddReview
+          business_id={business._id}
+          customer_id={activeUser._id}
+          customer_avatar_url={activeUser.avatar_url}
+          customer_username={activeUser.username}
+          reviewsArray={reviewsArray}
+          setReviewsArray={setReviewsArray}
+          setTotalRating={setTotalRating}
+          setNumberOfRatings={setNumberOfRatings}
+        />
+      ) : null}
       <h1>
-        Average Review:{" "}
+        Average Review:
         {numberOfRatings === 0
           ? 0
           : Number(totalRating / numberOfRatings).toFixed(1)}
@@ -122,7 +137,7 @@ export default function singleBusiness({ _id }) {
           {reviewsArray.map((review) => {
             return (
               <li key={`${review._id}`}>
-                <h1>Username: {review.customerUsername}</h1>;
+                <h1>Username: {review.customerUsername}</h1>
                 <h1>{review.rating}/5</h1>
                 <img src={review.customerAvatarUrl}></img>
                 <p>{review.body}</p>
