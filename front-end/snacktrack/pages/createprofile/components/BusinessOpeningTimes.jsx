@@ -4,24 +4,24 @@ import { useState } from "react";
 export default function BusinessOpeningTimes({
   openChange,
   closeChange,
-  resetOpen,
-  resetClose,
+  day,
+  setActiveDays,
 }) {
-  const [ticked, setTicked] = useState(true);
-  const [openValue, setOpenValue] = useState("");
-  const [closeValue, setCloseValue] = useState("");
+  const [ticked, setTicked] = useState(false);
   const handleSwitchChange = (ticked) => {
     setTicked(ticked);
-    if (ticked) {
-      openChange();
-      closeChange();
-    }
-    if (!ticked) {
-      resetOpen("");
-      resetClose("");
-    }
+    setActiveDays((currObj) => {
+      const output = { ...currObj };
+      output[day] = !output[day];
+      return output;
+    });
+    // if (ticked) {
+    //   openChange();
+    //   closeChange();
+    // }
   };
 
+  console.log(day);
   return (
     <>
       <Switch
@@ -32,7 +32,9 @@ export default function BusinessOpeningTimes({
       />
       <div className="select">
         <select disabled={!ticked} onChange={openChange} defaultValue={""}>
-          <option value="">N/A</option>
+          <option value="" selected disabled hidden>
+            Choose opening time...
+          </option>
           <option value="00:00">00:00</option>
           <option value="00:30">00:30</option>
           <option value="01:00">01:00</option>
@@ -62,7 +64,9 @@ export default function BusinessOpeningTimes({
       </div>
       <div className="select">
         <select disabled={!ticked} onChange={closeChange} defaultValue={""}>
-          <option value="">N/A</option>
+          <option value="" selected disabled hidden>
+            Choose closing time...
+          </option>
           <option value="12:30">12:30</option>
           <option value="13:00">13:00</option>
           <option value="13:30">13:30</option>

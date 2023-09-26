@@ -26,6 +26,16 @@ export default function CreateBusiness() {
   const [saturdayCloseTime, setSaturdayCloseTime] = useState("");
   const [sundayCloseTime, setSundayCloseTime] = useState("");
   const [validBio, setValidBio] = useState("");
+  const [activeDays, setActiveDays] = useState({
+    monday: false,
+    tuesday: false,
+    wednesday: false,
+    thursday: false,
+    friday: false,
+    saturday: false,
+    sunday: false,
+  });
+
   const router = useRouter();
   const driverProfile = router.query;
   console.log(driverProfile);
@@ -54,7 +64,7 @@ export default function CreateBusiness() {
   function handleTuesdayOpenChange(e) {
     setTuesdayOpenTime(e.target.value);
   }
-  function handleWednedayOpenChange(e) {
+  function handleWednesdayOpenChange(e) {
     setWednesdayOpenTime(e.target.value);
   }
   function handleThursdayOpenChange(e) {
@@ -75,7 +85,7 @@ export default function CreateBusiness() {
   function handleTuesdayCloseChange(e) {
     setTuesdayCloseTime(e.target.value);
   }
-  function handleWednesdayCloseTime(e) {
+  function handleWednesdayCloseChange(e) {
     setWednesdayCloseTime(e.target.value);
   }
   function handleThursdayCloseChange(e) {
@@ -92,6 +102,11 @@ export default function CreateBusiness() {
   }
   function handleSubmit(e) {
     e.preventDefault();
+    for (let key in activeDays) {
+      if (!activeDays[key]) {
+        opening_hours[key] = ["Closed", "Closed"];
+      }
+    }
     console.log(driverProfile);
     postBusiness(driverProfile).then((response) => {
       router.push("/");
@@ -109,8 +124,9 @@ export default function CreateBusiness() {
 
   driverProfile.menu_url = menu;
   driverProfile.avatar_url = image;
-  driverProfile.buisness_bio = businessBio;
+  driverProfile.business_bio = businessBio;
   driverProfile.logo_url = logo;
+
   driverProfile.opening_hours = opening_hours;
 
   return (
@@ -235,12 +251,12 @@ export default function CreateBusiness() {
                         <BusinessOpeningTimes
                           openChange={handleMondayOpenChange}
                           closeChange={handleMondayCloseChange}
-                          resetOpen={setMondayOpenTime}
-                          resetClose={setMondayCloseTime}
+                          day={"monday"}
+                          setActiveDays={setActiveDays}
                         />
                       </div>
                     </span>
-                    <input
+                    {/* <input
                       type="text"
                       name="monday_open"
                       id="monday_open"
@@ -255,11 +271,22 @@ export default function CreateBusiness() {
                       placeholder="Closing at"
                       value={mondayCloseTime}
                       onChange={handleMondayCloseChange}
-                    ></input>
+                    ></input> */}
                   </li>
                   <li>
                     Tuesday
-                    <input
+                    <br />
+                    <span className="level-left">
+                      <div className="level-item has-text-centred">
+                        <BusinessOpeningTimes
+                          openChange={handleTuesdayOpenChange}
+                          closeChange={handleTuesdayCloseChange}
+                          day={"tuesday"}
+                          setActiveDays={setActiveDays}
+                        />
+                      </div>
+                    </span>
+                    {/* <input
                       type="text"
                       name="tuesday_open"
                       id="tuesday_open"
@@ -274,11 +301,22 @@ export default function CreateBusiness() {
                       placeholder="Closing at"
                       value={tuesdayCloseTime}
                       onChange={handleTuesdayCloseChange}
-                    ></input>
+                    ></input> */}
                   </li>
                   <li>
                     Wednesday
-                    <input
+                    <br />
+                    <span className="level-left">
+                      <div className="level-item has-text-centred">
+                        <BusinessOpeningTimes
+                          openChange={handleWednesdayOpenChange}
+                          closeChange={handleWednesdayCloseChange}
+                          day={"wednesday"}
+                          setActiveDays={setActiveDays}
+                        />
+                      </div>
+                    </span>
+                    {/* <input
                       type="text"
                       name="wednesday_open"
                       id="wednesday_open"
@@ -293,11 +331,22 @@ export default function CreateBusiness() {
                       placeholder="Closing at"
                       value={wednesdayCloseTime}
                       onChange={handleWednesdayCloseTime}
-                    ></input>
+                    ></input> */}
                   </li>
                   <li>
                     Thursday
-                    <input
+                    <br />
+                    <span className="level-left">
+                      <div className="level-item has-text-centred">
+                        <BusinessOpeningTimes
+                          openChange={handleThursdayOpenChange}
+                          closeChange={handleThursdayCloseChange}
+                          day={"thursday"}
+                          setActiveDays={setActiveDays}
+                        />
+                      </div>
+                    </span>
+                    {/* <input
                       type="text"
                       name="thursday_open"
                       id="thursday_open"
@@ -312,11 +361,22 @@ export default function CreateBusiness() {
                       placeholder="Closing at"
                       value={thursdayCloseTime}
                       onChange={handleThursdayCloseChange}
-                    ></input>
+                    ></input> */}
                   </li>
                   <li>
                     Friday
-                    <input
+                    <br />
+                    <span className="level-left">
+                      <div className="level-item has-text-centred">
+                        <BusinessOpeningTimes
+                          openChange={handleFridayOpenChange}
+                          closeChange={handleFridayCloseChange}
+                          day={"friday"}
+                          setActiveDays={setActiveDays}
+                        />
+                      </div>
+                    </span>
+                    {/* <input
                       type="text"
                       name="friday_open"
                       id="friday_open"
@@ -331,11 +391,22 @@ export default function CreateBusiness() {
                       placeholder="Closing at"
                       value={fridayCloseTime}
                       onChange={handleFridayCloseChange}
-                    ></input>
+                    ></input> */}
                   </li>
                   <li>
                     Saturday
-                    <input
+                    <br />
+                    <span className="level-left">
+                      <div className="level-item has-text-centred">
+                        <BusinessOpeningTimes
+                          openChange={handleSaturdayOpenChange}
+                          closeChange={handleSaturdayCloseChange}
+                          day={"saturday"}
+                          setActiveDays={setActiveDays}
+                        />
+                      </div>
+                    </span>
+                    {/* <input
                       type="text"
                       name="saturday-open"
                       id="saturday_open"
@@ -350,11 +421,22 @@ export default function CreateBusiness() {
                       placeholder="Closing at"
                       value={saturdayCloseTime}
                       onChange={handleSaturdayCloseChange}
-                    ></input>
+                    ></input> */}
                   </li>
                   <li>
                     Sunday
-                    <input
+                    <br />
+                    <span className="level-left">
+                      <div className="level-item has-text-centred">
+                        <BusinessOpeningTimes
+                          openChange={handleSundayOpenChange}
+                          closeChange={handleSundayCloseChange}
+                          day={"sunday"}
+                          setActiveDays={setActiveDays}
+                        />
+                      </div>
+                    </span>
+                    {/* <input
                       type="text"
                       name="sunday_open"
                       id="sunday_open"
@@ -369,7 +451,7 @@ export default function CreateBusiness() {
                       placeholder="Closing at"
                       value={sundayCloseTime}
                       onChange={handleSundayCloseChange}
-                    ></input>
+                    ></input> */}
                   </li>
                 </ul>
               </label>
