@@ -136,6 +136,12 @@ export default function singleBusiness({ _id }) {
                         </table>
                     </div>
                 </div>
+                <div className={"column is-half"}>
+                    <div className={"box"}>
+                        <p className={"title"}>About</p>
+                        <p className={"subtitle"}>Bio</p>
+                    </div>
+                </div>
             </div>
             <br></br>
             {activeUser._id && !activeUser.is_active ? (
