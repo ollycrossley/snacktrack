@@ -31,9 +31,12 @@ export default function allBusinesses() {
               <ul>
                 {businesses.map((business) => {
                   return (
-                    <li key={business.business_name}>
+                    <li
+                      key={business.business_name}
+                      className="$menu-item-hover-background-color"
+                    >
                       <Link href={`/businesses/${business._id}`}>
-                        <div className="card">
+                        <div className="card" id="business-card">
                           <div className="card-image"></div>
                           <div className="card-content">
                             <div className="media">
