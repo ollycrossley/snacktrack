@@ -14,6 +14,7 @@ export default function CreateDriver() {
   const [businessType, setBusinessType] = useState("");
   const [driverProfile, setDriverProile] = useState({});
   const [passwordErrorMsg, setPasswordErrorMsg] = useState("");
+  const [isNameValid, setIsNameValid] = useState("");
   const [isUsernameValid, setIsUsernameValid] = useState("");
   const [isEmailValid, setIsEmailValid] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState("");
@@ -29,6 +30,11 @@ export default function CreateDriver() {
   }, []);
   function handleNameChange(e) {
     setName(e.target.value);
+    if (e.target.value.length > 0) {
+      setIsNameValid(true);
+    } else {
+      setIsNameValid("");
+    }
   }
   function handleUserNameChange(e) {
     setUserName(e.target.value);
@@ -111,6 +117,7 @@ export default function CreateDriver() {
     });
   }
   const isEverythingValid =
+    isNameValid === true &&
     isEmailValid === true &&
     buisnessNameValid === true &&
     isPasswordValid === true &&
@@ -145,6 +152,7 @@ export default function CreateDriver() {
                   value={name}
                   onChange={handleNameChange}
                 ></input>
+                {isNameValid === "" ? <p>Please enter a name</p> : null}
               </div>
             </div>
 
@@ -162,6 +170,12 @@ export default function CreateDriver() {
                   value={userName}
                   onChange={handleUserNameChange}
                 ></input>
+                {isUsernameValid === false ? (
+                  <p>
+                    Username must not already exist in the database and be
+                    between 5 and 15 characters long
+                  </p>
+                ) : null}
               </div>
             </div>
 
@@ -179,6 +193,9 @@ export default function CreateDriver() {
                   value={email}
                   onChange={handleEmailChange}
                 ></input>
+                {isEmailValid === false ? (
+                  <p>Please enter a valid email</p>
+                ) : null}
               </div>
             </div>
 
@@ -196,6 +213,7 @@ export default function CreateDriver() {
                   value={businessName}
                   onChange={handleBusinessNameChange}
                 ></input>
+                {buisnessNameValid === "" ? <p>Please enter a name</p> : null}
               </div>
             </div>
 
@@ -236,6 +254,9 @@ export default function CreateDriver() {
                 value={password}
                 onChange={handlePasswordChange}
               ></input>
+              {isPasswordValid === false ? (
+                <p>Password must be between 8 and 20 characters long</p>
+              ) : null}
             </div>
 
             <div className="field">
@@ -251,6 +272,7 @@ export default function CreateDriver() {
                 value={passwordConfirm}
                 onChange={handlePasswordConfirmChange}
               ></input>
+              {doPasswordsMatch === false ? <p>Passwords must match</p> : null}
             </div>
 
             <button

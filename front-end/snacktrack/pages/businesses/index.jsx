@@ -22,7 +22,6 @@ export default function allBusinesses() {
   }
   return (
     <>
-      {console.log(businesses)}
       <NavBar />
       <section className="section">
         <div className="container">

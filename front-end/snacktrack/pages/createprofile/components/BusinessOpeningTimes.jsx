@@ -21,7 +21,6 @@ export default function BusinessOpeningTimes({
     // }
   };
 
-  console.log(day);
   return (
     <>
       <Switch

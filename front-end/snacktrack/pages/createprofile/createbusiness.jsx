@@ -38,18 +38,15 @@ export default function CreateBusiness() {
 
   const router = useRouter();
   const driverProfile = router.query;
-  console.log(driverProfile);
 
   function handleLogoChange(e) {
     setLogo(e.target.value);
   }
-  // function handlePhoneNumberChange(e) {
-  //   setPhoneNumber(e.target.value);
-  // }
+
   function handleBusinessBioChange(e) {
     setBusinessBio(e.target.value);
     if (e.target.value.length > 0) {
-      if (e.target.value.length >= 25 && e.target.value.length < 250) {
+      if (e.target.value.length >= 25 && e.target.value.length <= 250) {
         setValidBio(true);
       } else {
         setValidBio(false);
@@ -102,16 +99,35 @@ export default function CreateBusiness() {
   }
   function handleSubmit(e) {
     e.preventDefault();
+    if (menu === "") {
+      delete driverProfile.menu_url;
+    }
+    if (image === "") {
+      delete driverProfile.avatar_url;
+    }
+
+    if (businessBio === "") {
+      delete driverProfile.business_bio;
+    }
+
+    if (!driverProfile.logo_url) {
+      delete driverProfile.logo_url;
+    }
     for (let key in activeDays) {
       if (!activeDays[key]) {
         opening_hours[key] = ["Closed", "Closed"];
       }
     }
-    console.log(driverProfile);
+    for (let key in opening_hours) {
+      if (opening_hours[key].some((time) => time === "")) {
+        opening_hours[key] = ["Closed", "Closed"];
+      }
+    }
     postBusiness(driverProfile).then((response) => {
       router.push("/");
     });
   }
+
   const opening_hours = {
     monday: [mondayOpenTime, mondayCloseTime],
     tuesday: [tuesdayOpenTime, tuesdayCloseTime],
@@ -126,7 +142,6 @@ export default function CreateBusiness() {
   driverProfile.avatar_url = image;
   driverProfile.business_bio = businessBio;
   driverProfile.logo_url = logo;
-
   driverProfile.opening_hours = opening_hours;
 
   return (
@@ -139,7 +154,7 @@ export default function CreateBusiness() {
           <form className="box" onSubmit={handleSubmit}>
             <div className="field">
               <label className="label" htmlFor="menu_input">
-                Upload Business Menu
+                Upload Business Menu (Optional)
                 <div className="control">
                   <CldUploadWidget
                     uploadPreset="unsigned_test"
@@ -159,13 +174,14 @@ export default function CreateBusiness() {
                       );
                     }}
                   </CldUploadWidget>
+                  {menu !== "" ? <p>{menu}</p> : null}
                 </div>
               </label>
             </div>
 
             <div className="field">
               <label className={"label"} htmlFor="image_input">
-                Upload a picture of your truck or stall
+                Upload a picture of your truck or stall (Optional)
                 <div className="control">
                   <CldUploadWidget
                     uploadPreset="unsigned_test"
@@ -185,6 +201,7 @@ export default function CreateBusiness() {
                       );
                     }}
                   </CldUploadWidget>
+                  {image !== "" ? <p>{image}</p> : null}
                 </div>
               </label>
             </div>
@@ -224,7 +241,7 @@ export default function CreateBusiness() {
             </label>*/}
             <div className="field">
               <label className={"label"} htmlFor="business_bio">
-                Business Bio
+                Business Bio (Optional)
                 <div className="control">
                   <textarea
                     className="input"
@@ -236,6 +253,9 @@ export default function CreateBusiness() {
                     onChange={handleBusinessBioChange}
                   ></textarea>
                 </div>
+                {validBio === false ? (
+                  <p>Bio must be between 25 and 250 characters</p>
+                ) : null}
               </label>
             </div>
 
