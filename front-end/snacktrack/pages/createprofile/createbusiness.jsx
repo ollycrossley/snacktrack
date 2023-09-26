@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import NavBar from "../navbar";
 import { useState } from "react";
 import { CldUploadWidget } from "next-cloudinary";
-import { postBusiness } from "../api/api_calls";
-import BusinessOpeningTimes from "./components/BusinessOpeningTimes";
+import { postBusiness } from "@/api";
+import BusinessOpeningTimes from "@/components/BusinessOpeningTimes";
 
 export default function CreateBusiness() {
   const [menu, setMenu] = useState("");

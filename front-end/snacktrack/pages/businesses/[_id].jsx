@@ -2,10 +2,9 @@ import NavBar from "@/pages/navbar";
 import { useEffect } from "react";
 import { useContext, useState } from "react";
 import { UserContext } from "@/contexts/user_context";
-import { getSingleBusiness, getReviews } from "../api/api_calls";
-import Reviews from "./components/businessreviews";
-import AddReview from "../addReview";
-import DeleteReview from "../deleteReview";
+import { getSingleBusiness, getReviews } from "@/api";
+import AddReview from "@/components/addReview";
+import DeleteReview from "@/components/deleteReview";
 
 export async function getServerSideProps(context) {
   const { _id } = context.query;
