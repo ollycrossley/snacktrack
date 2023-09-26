@@ -31,7 +31,7 @@ export default function Map() {
 
     function handleActive () {
         activeUser.is_active = !activeUser.is_active
-        patchBusiness({is_active: activeUser.is_active}, activeUser._id).then(business => setActiveUser(business))
+        patchBusiness({is_active: activeUser.is_active, location: {latitude: myCrd.latitude, longitude: myCrd.longitude}}, activeUser._id).then(business => setActiveUser(business))
     }
 
     useEffect(() => {
