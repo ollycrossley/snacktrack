@@ -119,7 +119,7 @@ export default function CreateCustomer() {
 
   const isEverythingValid =
     isEmailValid === true &&
-    isAvatarUrlValid === true &&
+    isAvatarUrlValid !== false &&
     isPasswordValid === true &&
     isUsernameValid === true &&
     doPasswordsMatch === true;
@@ -179,7 +179,7 @@ export default function CreateCustomer() {
 
             <div className={"field"}>
               <label className={"label"} htmlFor="avatar_input">
-                Avatar URL
+                Avatar URL (Optional)
               </label>
               <div className={"control"}>
                 <input
