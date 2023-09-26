@@ -106,12 +106,15 @@ export default function CreateCustomer() {
   const router = useRouter();
   function handleSubmit(e) {
     e.preventDefault();
+
     const customerProfile = {
       username: userName,
       email,
-      avatar_url: avatarUrl,
       password,
     };
+    if (avatarUrl !== "") {
+      customerProfile.avatar_url = avatarUrl;
+    }
     postCustomer(customerProfile).then((response) => {
       router.push("/");
     });
@@ -123,8 +126,6 @@ export default function CreateCustomer() {
     isPasswordValid === true &&
     isUsernameValid === true &&
     doPasswordsMatch === true;
-
-  console.log(isEverythingValid);
 
   return (
     <>
