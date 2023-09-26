@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "@/contexts/user_context";
 import { getBusiness, getCustomer } from "@/api";
+import {useRouter} from "next/router";
 
 export default function NavBar() {
   const [isActive, setIsActive] = useState(false);
@@ -84,6 +85,12 @@ export default function NavBar() {
               {activeUser ? activeUser.username : "not logged in"}
             </a>
             <div className="navbar-dropdown is-danger">
+              <Link href={"/login/customerlogin"} className="navbar-item">
+                Customer Login
+              </Link>
+              <Link href={"/login/driverlogin"} className="navbar-item">
+                Driver Login
+              </Link>
               <a className="navbar-item" onClick={handleLogout}>
                 Logout
               </a>
