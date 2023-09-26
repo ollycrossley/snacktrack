@@ -3,6 +3,7 @@ import NavBar from "../navbar";
 import { useState } from "react";
 import { CldUploadWidget } from "next-cloudinary";
 import { postBusiness } from "../api/api_calls";
+import BusinessOpeningTimes from "./components/BusinessOpeningTimes";
 
 export default function CreateBusiness() {
   const [menu, setMenu] = useState("");
@@ -40,10 +41,8 @@ export default function CreateBusiness() {
     if (e.target.value.length > 0) {
       if (e.target.value.length >= 25 && e.target.value.length < 250) {
         setValidBio(true);
-        console.log("valid");
       } else {
         setValidBio(false);
-        console.log("invalid");
       }
     } else {
       setValidBio("");
@@ -114,89 +113,65 @@ export default function CreateBusiness() {
   driverProfile.logo_url = logo;
   driverProfile.opening_hours = opening_hours;
 
-  console.log(menu);
-
   return (
     <>
       <NavBar />
-
-      <h1>Create Business</h1>
+      <h1 className="title has-text-centered">Create Business</h1>
+      <br />
       <div className="columns is-centered">
         <div className="column is-one-third">
           <form className="box" onSubmit={handleSubmit}>
             <div className="field">
               <label className="label" htmlFor="menu_input">
-                Upload Menu
+                Upload Business Menu
                 <div className="control">
-                  <input
-                    className="input"
-                    type="text"
-                    name="menu_input"
-                    id="menu_input"
-                    //placeholder="https://menu.com"
-                    value={menu}
-                    // onChange={handleMenuChange}
-                  ></input>
+                  <CldUploadWidget
+                    uploadPreset="unsigned_test"
+                    onSuccess={(result) => {
+                      setMenu(result.info.url);
+                    }}
+                  >
+                    {({ open }) => {
+                      function handleOnClick(e) {
+                        e.preventDefault();
+                        open();
+                      }
+                      return (
+                        <button className="button" onClick={handleOnClick}>
+                          Choose a file...
+                        </button>
+                      );
+                    }}
+                  </CldUploadWidget>
                 </div>
               </label>
             </div>
-
-            <CldUploadWidget
-              uploadPreset="unsigned_test"
-              onSuccess={(result) => {
-                console.log(result.info.url);
-                setMenu(result.info.url);
-              }}
-            >
-              {({ open }) => {
-                function handleOnClick(e) {
-                  e.preventDefault();
-                  open();
-                }
-                return (
-                  <button className="button" onClick={handleOnClick}>
-                    Upload menu
-                  </button>
-                );
-              }}
-            </CldUploadWidget>
 
             <div className="field">
               <label className={"label"} htmlFor="image_input">
                 Upload a picture of your truck or stall
                 <div className="control">
-                  <input
-                    className="business"
-                    type="text"
-                    name="image_input"
-                    id="image_input"
-                    // placeholder="https://image.com"
-                    value={image}
-                    // onChange={handleImageChange}
-                  ></input>
+                  <CldUploadWidget
+                    uploadPreset="unsigned_test"
+                    onSuccess={(result) => {
+                      setImage(result.info.url);
+                    }}
+                  >
+                    {({ open }) => {
+                      function handleOnClick(e) {
+                        e.preventDefault();
+                        open();
+                      }
+                      return (
+                        <button className="button" onClick={handleOnClick}>
+                          Choose a file...
+                        </button>
+                      );
+                    }}
+                  </CldUploadWidget>
                 </div>
               </label>
             </div>
-
-            <CldUploadWidget
-              uploadPreset="unsigned_test"
-              onSuccess={(result) => {
-                console.log(result.info.url);
-                setImage(result.info.url);
-              }}
-            >
-              {({ open }) => {
-                function handleOnClick(e) {
-                  e.preventDefault();
-                  open();
-                }
-                return (
-                  <button className="button" onClick={handleOnClick}>
-                    Upload truck or stall image
-                  </button>
-                );
-              }}
-            </CldUploadWidget>
 
             <div className="field">
               <label className={"label"} htmlFor="logo_input">
@@ -254,6 +229,17 @@ export default function CreateBusiness() {
                 <ul>
                   <li>
                     Monday
+                    <br />
+                    <span className="level-left">
+                      <div className="level-item has-text-centred">
+                        <BusinessOpeningTimes
+                          openChange={handleMondayOpenChange}
+                          closeChange={handleMondayCloseChange}
+                          resetOpen={setMondayOpenTime}
+                          resetClose={setMondayCloseTime}
+                        />
+                      </div>
+                    </span>
                     <input
                       type="text"
                       name="monday_open"
