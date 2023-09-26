@@ -2,7 +2,7 @@ import NavBar from "@/pages/navbar";
 import { useEffect } from "react";
 import { useContext, useState } from "react";
 import { UserContext } from "@/contexts/user_context";
-import { getSingleBusiness, getReviews } from "../api/api_calls";
+import { getSingleBusiness, getReviews } from "@/api";
 import AddReview from "@/components/addReview";
 import DeleteReview from "@/components/deleteReview";
 
