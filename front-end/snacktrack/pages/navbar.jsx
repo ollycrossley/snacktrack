@@ -85,15 +85,15 @@ export default function NavBar() {
               {activeUser ? activeUser.username : "not logged in"}
             </a>
             <div className="navbar-dropdown is-danger">
-              <Link href={"/login/customerlogin"} className="navbar-item">
+              {!activeUser ? <div><Link href={"/login/customerlogin"} className="navbar-item">
                 Customer Login
               </Link>
-              <Link href={"/login/driverlogin"} className="navbar-item">
-                Driver Login
-              </Link>
-              <a className="navbar-item" onClick={handleLogout}>
-                Logout
-              </a>
+                <Link href={"/login/driverlogin"} className="navbar-item">
+                  Driver Login
+                </Link></div> : <a className="navbar-item" onClick={handleLogout}>
+              Logout
+            </a>
+            }
             </div>
           </div>
         </div>
