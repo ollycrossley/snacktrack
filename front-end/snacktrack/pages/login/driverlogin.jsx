@@ -3,11 +3,13 @@ import NavBar from "../navbar";
 import { useContext, useState } from "react";
 import { UserContext } from "@/contexts/user_context";
 import { getBusinesses } from "@/api";
+import { useRouter } from "next/router";
 
 export default function DriverLogin() {
   const [currentUser, setCurrentUser] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const { activeUser, setActiveUser } = useContext(UserContext);
+  const router = useRouter()
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -23,6 +25,7 @@ export default function DriverLogin() {
           window.localStorage.setItem("user", JSON.stringify(business));
         }
       }
+      router.push("/map")
     });
 
     /*should send the activeUser obj to database to check username and password are correct and IF they're correct, set the user context to be the active user
