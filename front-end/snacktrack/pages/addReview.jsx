@@ -12,7 +12,7 @@ export default function AddReview({
   setTotalRating,
   setNumberOfRatings,
 }) {
-  const [ratings, setRatings] = useState([0, 1, 2, 3, 4, 5]);
+  const [ratings, setRatings] = useState([1, 2, 3, 4, 5]);
   const [score, setScore] = useState(null);
   const [reviewBody, setReviewBody] = useState("");
   const handleRatingClick = (e, rating) => {
