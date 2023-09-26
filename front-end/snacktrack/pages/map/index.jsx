@@ -65,25 +65,18 @@ export default function Map() {
             </Head>
             <NavBar/>
 
-            <h1 className={"title has-text-centered"}>MAP</h1>
-
             {activeUser ?
                 <div className={"container has-text-centered"} style={{marginBottom: 25}}>
-                   <div className={"columns is-centered"}>
-
+                   <div className={"columns is-centered mb-2"}>
                        {"is_active" in activeUser ? <div className={"column is-one-fifth"}>
                             <button
                                 className={`button ${activeUser.is_active ? "is-success is-light" : "is-danger is-light"}`} onClick={handleActive}>
                                 {activeUser.is_active ? "Currently Open" : "Press to open"}
                             </button>
                         </div>: null}
-
                         <div className={"column is-one-fifth"}>
                             <button className={"button is-link is-light"} onClick={() => window.location.reload()}>Refresh Location</button>
                         </div>
-                        
-                        
-                        <br/><br/><br/>
                     </div>
                     <SimpleMap userLat={myCrd.latitude} userLong={myCrd.longitude}/>
                 </div>

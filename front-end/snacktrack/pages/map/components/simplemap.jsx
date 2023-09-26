@@ -59,7 +59,7 @@ export default function SimpleMap({ userLat, userLong }) {
   return isLoaded ? (
     <div>
       <GoogleMap
-        mapContainerStyle={{ height: "100vh", width: "100%" }}
+        mapContainerStyle={{ height: "70vh", width: "100%" }}
         onClick={() => setActiveMarker(null)}
         onLoad={(map) => {
           map.setZoom(13)
