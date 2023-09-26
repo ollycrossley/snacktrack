@@ -2,17 +2,20 @@ import NavBar from "../navbar";
 import SimpleMap from "./components/simplemap";
 import Head from "next/head";
 import Script from "next/script";
-import { useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
+import {UserContext} from "@/contexts/user_context";
 
 export default function Map() {
   const [myCrd, setMyCrd] = useState({});
+    const { activeUser, setActiveUser } = useContext(UserContext);
+
   function success(pos) {
     const crd = pos.coords;
     setMyCrd(crd);
-    console.log("Your current position is:");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
+    // console.log("Your current position is:");
+    // console.log(`Latitude : ${crd.latitude}`);
+    // console.log(`Longitude: ${crd.longitude}`);
+    // console.log(`More or less ${crd.accuracy} meters.`);
   }
   const options = {
     enableHighAccuracy: true,
@@ -55,9 +58,9 @@ export default function Map() {
       <NavBar />
       <h1 className={"title has-text-centered"}>MAP</h1>
 
-      <div className={"container"} style={{ marginBottom: 25 }}>
-        <SimpleMap userLat={myCrd.latitude} userLong={myCrd.longitude} />
-      </div>
+        {activeUser ? <div className={"container"} style={{marginBottom: 25}}>
+            <SimpleMap userLat={myCrd.latitude} userLong={myCrd.longitude}/>
+        </div> : <div><br/><br/><br/><h1 className={"title has-text-centered"}>You need to be logged in to use the map!</h1></div>}
     </>
   );
 }
