@@ -3,7 +3,7 @@ import NavBar from "../navbar";
 import { useEffect, useState } from "react";
 import { getBusinesses } from "@/api";
 import React from "react";
-import BusinessListItem from "./components/businessListItem";
+import BusinessListItem from "../../components/businessListItem";
 import Link from "next/link";
 // import "../../../snacktrack/styles/globals.scss";
 

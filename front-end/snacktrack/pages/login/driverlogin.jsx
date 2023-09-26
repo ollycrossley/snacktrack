@@ -76,7 +76,7 @@ export default function DriverLogin() {
                 </label>
                 <input
                   className="input"
-                  type="text"
+                  type="password"
                   name="password_input"
                   id="password_input"
                   placeholder="password"

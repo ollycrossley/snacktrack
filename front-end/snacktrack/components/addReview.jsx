@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { postReview } from "./api/api_calls";
+import { postReview } from "../pages/api/api_calls";
 import { patchBusinessRating } from "@/api";
 
 export default function AddReview({
