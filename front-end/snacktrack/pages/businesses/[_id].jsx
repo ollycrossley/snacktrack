@@ -113,7 +113,7 @@ export default function singleBusiness({ _id }) {
         </li>
       </ul>
       <br></br>
-      {activeUser._id ? (
+      {activeUser._id && !activeUser.is_active ? (
         <AddReview
           business_id={business._id}
           customer_id={activeUser._id}
