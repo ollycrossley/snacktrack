@@ -247,7 +247,7 @@ export default function CreateDriver() {
               </label>
               <input
                 className="input"
-                type="text"
+                type="password"
                 name="password_input"
                 id="password_input"
                 placeholder="password"
@@ -265,7 +265,7 @@ export default function CreateDriver() {
               </label>
               <input
                 className="input"
-                type="text"
+                type="password"
                 name="password_confirm_input"
                 id="password_confirm_input"
                 placeholder="password"

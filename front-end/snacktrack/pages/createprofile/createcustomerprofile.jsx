@@ -206,7 +206,7 @@ export default function CreateCustomer() {
                 <input
                   className={"input"}
                   required={true}
-                  type="text"
+                  type="password"
                   name="password_input"
                   placeholder="password"
                   value={password}
@@ -226,7 +226,7 @@ export default function CreateCustomer() {
                 <input
                   className={"input"}
                   required={true}
-                  type="text"
+                  type="password"
                   name="password_confirm_input"
                   placeholder="password"
                   value={passwordConfirm}
