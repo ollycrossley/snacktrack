@@ -119,7 +119,6 @@ export default function CreateCustomer() {
 
   const isEverythingValid =
     isEmailValid === true &&
-    isAvatarUrlValid === true &&
     isPasswordValid === true &&
     isUsernameValid === true &&
     doPasswordsMatch === true;
@@ -175,7 +174,7 @@ export default function CreateCustomer() {
               <div className={"control"}>
                 <input
                   className={"input"}
-                  required={true}
+                  required={false}
                   type="text"
                   name="avatar_input"
                   placeholder="https://www.photos.google.com/myimage.png"

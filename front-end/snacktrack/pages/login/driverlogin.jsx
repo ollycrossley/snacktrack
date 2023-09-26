@@ -9,11 +9,13 @@ export default function DriverLogin() {
   const [currentUser, setCurrentUser] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const { activeUser, setActiveUser } = useContext(UserContext);
-  const router = useRouter()
+  const [loginError, setLoginError] = useState("");
+  const router = useRouter();
   function handleSubmit(e) {
     e.preventDefault();
 
     getBusinesses().then((businesses) => {
+      let userFound = false;
       for (const business of businesses) {
         console.log(business, "business");
         if (
@@ -23,11 +25,15 @@ export default function DriverLogin() {
           console.log(business);
           setActiveUser(business);
           window.localStorage.setItem("user", JSON.stringify(business));
+          router.push("/map");
         }
       }
-      router.push("/map")
+      if (!userFound) {
+        setLoginError(
+          "Invalid username or password, please check your details and try again"
+        );
+      }
     });
-
   }
   function handleUserChange(e) {
     setCurrentUser(e.target.value);
@@ -85,6 +91,7 @@ export default function DriverLogin() {
               <button className="button is-link" onClick={handleSubmit}>
                 Submit
               </button>
+              <p className="has-text-centered"> {loginError} </p>
             </div>
           </form>
         </div>
