@@ -38,6 +38,7 @@ export default function AddReview({
       rating: score,
       customerUsername: customer_username,
       customerAvatarUrl: customer_avatar_url,
+      customer_id,
     };
 
     if (reviewBody.length > 0) {

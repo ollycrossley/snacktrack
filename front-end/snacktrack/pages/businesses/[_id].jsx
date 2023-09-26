@@ -5,6 +5,7 @@ import { UserContext } from "@/contexts/user_context";
 import { getSingleBusiness, getReviews } from "../api/api_calls";
 import Reviews from "./components/businessreviews";
 import AddReview from "../addReview";
+import DeleteReview from "../deleteReview";
 
 export async function getServerSideProps(context) {
   const { _id } = context.query;
@@ -141,6 +142,17 @@ export default function singleBusiness({ _id }) {
                 <h1>{review.rating}/5</h1>
                 <img src={review.customerAvatarUrl}></img>
                 <p>{review.body}</p>
+                {activeUser._id === review.customer_id ? (
+                  <DeleteReview
+                    review_id={review._id}
+                    business_id={business._id}
+                    reviewRating={review.rating}
+                    setTotalRating={setTotalRating}
+                    setNumberOfRatings={setNumberOfRatings}
+                    setReviewsArray={setReviewsArray}
+                    reviewsArray={reviewsArray}
+                  />
+                ) : null}
               </li>
             );
           })}
