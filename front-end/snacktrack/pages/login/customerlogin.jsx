@@ -3,27 +3,36 @@ import NavBar from "../navbar";
 import { useContext, useState } from "react";
 import { UserContext } from "@/contexts/user_context";
 import { getCustomers } from "@/api";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 export default function CustomerLogin() {
   const [currentUser, setCurrentUser] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const { activeUser, setActiveUser } = useContext(UserContext);
-  const router = useRouter()
+  const [loginError, setLoginError] = useState("");
+  const router = useRouter();
+
   function handleSubmit(e) {
     e.preventDefault();
 
     getCustomers().then((customers) => {
+      let userFound = false;
       for (const customer of customers) {
         if (
           customer.username === currentUser &&
           customer.password === currentPassword
         ) {
+          userFound = true;
           setActiveUser(customer);
           window.localStorage.setItem("user", JSON.stringify(customer));
+          router.push("/map");
         }
       }
-      router.push("/map");
+      if (!userFound) {
+        setLoginError(
+          "Invalid username or password, please check your details and try again"
+        );
+      }
     });
   }
   function handleUserChange(e) {
@@ -83,6 +92,7 @@ export default function CustomerLogin() {
               <button className="button is-link" onClick={handleSubmit}>
                 Submit
               </button>
+              <p className="has-text-centered"> {loginError} </p>
             </div>
           </form>
         </div>

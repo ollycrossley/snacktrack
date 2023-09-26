@@ -2,16 +2,18 @@ import Link from "next/link";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "@/contexts/user_context";
 import { getBusiness, getCustomer } from "@/api";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 export default function NavBar() {
   const [isActive, setIsActive] = useState(false);
   const { activeUser, setActiveUser } = useContext(UserContext);
+  const router = useRouter();
 
   function handleLogout(e) {
     window.localStorage.removeItem("user");
     alert("logged out");
     setActiveUser("");
+    router.push("/");
   }
 
   useEffect(() => {
@@ -85,15 +87,20 @@ export default function NavBar() {
               {activeUser ? activeUser.username : "not logged in"}
             </a>
             <div className="navbar-dropdown is-danger">
-              {!activeUser ? <div><Link href={"/login/customerlogin"} className="navbar-item">
-                Customer Login
-              </Link>
-                <Link href={"/login/driverlogin"} className="navbar-item">
-                  Driver Login
-                </Link></div> : <a className="navbar-item" onClick={handleLogout}>
-              Logout
-            </a>
-            }
+              {!activeUser ? (
+                <div>
+                  <Link href={"/login/customerlogin"} className="navbar-item">
+                    Customer Login
+                  </Link>
+                  <Link href={"/login/driverlogin"} className="navbar-item">
+                    Driver Login
+                  </Link>
+                </div>
+              ) : (
+                <a className="navbar-item" onClick={handleLogout}>
+                  Logout
+                </a>
+              )}
             </div>
           </div>
         </div>
