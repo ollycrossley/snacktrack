@@ -47,12 +47,14 @@ export default function Home() {
                     <Link
                       className={"button mr-5 is-link"}
                       href="/createprofile/createdriverprofile"
+                      id="homepage-button"
                     >
                       Sign Up
                     </Link>
                     <Link
                       className={"button is-success"}
                       href="/login/driverlogin"
+                      id="homepage-button"
                     >
                       Login
                     </Link>
@@ -68,12 +70,14 @@ export default function Home() {
                     <Link
                       className={"button mr-5 is-link"}
                       href="/createprofile/createcustomerprofile"
+                      id="homepage-button"
                     >
                       Sign Up
                     </Link>
                     <Link
                       className={"button is-success"}
                       href="/login/customerlogin"
+                      id="homepage-button"
                     >
                       Login
                     </Link>
