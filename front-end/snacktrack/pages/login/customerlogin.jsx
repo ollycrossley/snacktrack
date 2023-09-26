@@ -3,29 +3,27 @@ import NavBar from "../navbar";
 import { useContext, useState } from "react";
 import { UserContext } from "@/contexts/user_context";
 import { getCustomers } from "@/api";
+import {useRouter} from "next/router";
 
 export default function CustomerLogin() {
   const [currentUser, setCurrentUser] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const { activeUser, setActiveUser } = useContext(UserContext);
+  const router = useRouter()
   function handleSubmit(e) {
     e.preventDefault();
 
     getCustomers().then((customers) => {
-      console.log("getcustomers");
-
       for (const customer of customers) {
         if (
           customer.username === currentUser &&
           customer.password === currentPassword
         ) {
-          console.log(customer);
           setActiveUser(customer);
-          console.log(activeUser, "active user, customerlogin.jsx");
-
           window.localStorage.setItem("user", JSON.stringify(customer));
         }
       }
+      router.push("/map");
     });
   }
   function handleUserChange(e) {
