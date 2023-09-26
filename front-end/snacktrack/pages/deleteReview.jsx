@@ -10,7 +10,7 @@ export default function DeleteReview({
   reviewsArray,
 }) {
   const handleClick = (e) => {
-    confirm("Are you sure you wan to delete this?");
+    confirm("Are you sure you want to delete this?");
     e.preventDefault();
     const ratingToTake = reviewRating * -1;
     const reviewToTake = reviewsArray[0];

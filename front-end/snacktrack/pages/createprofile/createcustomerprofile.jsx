@@ -148,6 +148,12 @@ export default function CreateCustomer() {
                   value={userName}
                   onChange={handleUserNameChange}
                 ></input>
+                {isUsernameValid === false ? (
+                  <p>
+                    Username must not already exist in the database and be
+                    between 5 and 15 characters long
+                  </p>
+                ) : null}
               </div>
             </div>
 
@@ -165,6 +171,9 @@ export default function CreateCustomer() {
                   value={email}
                   onChange={handleEmailChange}
                 ></input>
+                {isEmailValid === false ? (
+                  <p>Please enter a valid email</p>
+                ) : null}
               </div>
             </div>
 
@@ -182,6 +191,9 @@ export default function CreateCustomer() {
                   value={avatarUrl}
                   onChange={handleAvatarUrlChange}
                 ></input>
+                {isAvatarUrlValid === false ? (
+                  <p>Please enter a valid image url</p>
+                ) : null}
               </div>
             </div>
 
@@ -199,6 +211,9 @@ export default function CreateCustomer() {
                   value={password}
                   onChange={handlePasswordChange}
                 ></input>
+                {isPasswordValid === false ? (
+                  <p>Password must be between 8 and 20 characters long</p>
+                ) : null}
               </div>
             </div>
 
@@ -217,6 +232,7 @@ export default function CreateCustomer() {
                   onChange={handlePasswordConfirmChange}
                 ></input>
               </div>
+              {doPasswordsMatch === false ? <p>Passwords must match</p> : null}
             </div>
 
             <button
