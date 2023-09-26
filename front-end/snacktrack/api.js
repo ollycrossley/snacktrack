@@ -23,6 +23,10 @@ export const postBusiness = (businessObject) => {
     .then((r) => r.data.business);
 };
 
+export const patchBusiness = (patchObject, business_id) => {
+    return axios.patch(`${baseURL}/api/businesses/${business_id}`, patchObject).then(r => r.data.business)
+}
+
 export const getCustomers = () => {
   return axios.get(`${baseURL}/api/customers`).then((r) => r.data.customers);
 };
