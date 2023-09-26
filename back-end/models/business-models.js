@@ -25,16 +25,15 @@ exports.insertBusinesses = (body) => {
 };
 
 exports.selectBusinessesById = (_id) => {
-  return Business.findOne(
-    { _id },
-    { password: 0, username: 0, email: 0, avatar_url: 0 }
-  ).then((response) => {
-    if (response) {
-      return response;
-    } else {
-      return Promise.reject({ status: 404, msg: "Business not found" });
+  return Business.findOne({ _id }, { email: 0, avatar_url: 0 }).then(
+    (response) => {
+      if (response) {
+        return response;
+      } else {
+        return Promise.reject({ status: 404, msg: "Business not found" });
+      }
     }
-  });
+  );
 };
 
 exports.removeBusinessById = (_id) => {
