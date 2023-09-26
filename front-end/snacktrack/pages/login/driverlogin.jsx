@@ -28,13 +28,6 @@ export default function DriverLogin() {
       router.push("/map")
     });
 
-    /*should send the activeUser obj to database to check username and password are correct and IF they're correct, set the user context to be the active user
-     */
-    setActiveUser({
-      userName: currentUser,
-      password: currentPassword,
-      isDriver: true,
-    }); 
   }
   function handleUserChange(e) {
     setCurrentUser(e.target.value);
