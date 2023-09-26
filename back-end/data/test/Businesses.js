@@ -16,6 +16,8 @@ module.exports = [
       longitude: -2.2413653711839294,
     },
     is_active: true,
+    menu_url:
+      "https://t3.ftcdn.net/jpg/01/75/06/34/360_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg",
     opening_hours: {
       monday: ["09:00", "18:00"],
       tuesday: ["10:00", "19:00"],
@@ -55,6 +57,8 @@ module.exports = [
     },
     total_rating: 6,
     no_of_ratings: 2,
+    menu_url:
+      "https://t3.ftcdn.net/jpg/01/75/06/34/360_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg",
   },
   {
     username: "bowens2",
@@ -128,7 +132,7 @@ module.exports = [
       "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
     logo_url: "https://m.media-amazon.com/images/I/41GpYNxJGxL._AC_SY350_.jpg",
     menu_url:
-    "https://t3.ftcdn.net/jpg/01/75/06/34/360_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg",
+      "https://t3.ftcdn.net/jpg/01/75/06/34/360_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg",
     location: {
       latitude: 53.483864805152116,
       longitude: -2.2009522870568796,
@@ -180,6 +184,8 @@ module.exports = [
     category: "Clothes",
     is_active: true,
     business_name: "Youbridge",
+    menu_url:
+      "https://t3.ftcdn.net/jpg/01/75/06/34/360_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg",
     business_bio:
       "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
     logo_url:
