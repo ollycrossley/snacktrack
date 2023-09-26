@@ -2,7 +2,6 @@ import {GoogleMap, InfoWindowF, MarkerF, useJsApiLoader,} from "@react-google-ma
 import React, {useEffect, useState} from "react";
 import {getBusiness, getBusinesses} from "@/api";
 import Link from "next/link";
-import dayjs from "dayjs";
 
 export default function SimpleMap({userLat, userLong}) {
     const [businesses, setBusinesses] = useState([]);
