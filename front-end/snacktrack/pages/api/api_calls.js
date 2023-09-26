@@ -42,14 +42,16 @@ export const getReviews = (_id, setReviewsArray) => {
     .get(`https://snacktrack.onrender.com/api/businesses/${_id}/reviews`)
     .then(({ data }) => {
       const reviewArr = data.reviews;
-      const newReviewArr = reviewArr.map((review) => {
-        const copyReview = { ...review };
-        copyReview.customer_id = copyReview.customer._id;
-        copyReview.customerUsername = copyReview.customer.username;
-        copyReview.customerAvatarUrl = copyReview.customer.avatar_url;
-        delete copyReview.customer;
-        return copyReview;
-      });
+      const newReviewArr = reviewArr
+        .map((review) => {
+          const copyReview = { ...review };
+          copyReview.customer_id = copyReview.customer._id;
+          copyReview.customerUsername = copyReview.customer.username;
+          copyReview.customerAvatarUrl = copyReview.customer.avatar_url;
+          delete copyReview.customer;
+          return copyReview;
+        })
+        .reverse();
 
       setReviewsArray(newReviewArr);
     })
@@ -83,5 +85,11 @@ export const postCustomer = (customer) => {
 export const postBusiness = (business) => {
   return axios
     .post("https://snacktrack.onrender.com/api/businesses", business)
+    .then(({ data }) => {});
+};
+
+export const postReview = (review) => {
+  return axios
+    .post("https://snacktrack.onrender.com/api/reviews", review)
     .then(({ data }) => {});
 };

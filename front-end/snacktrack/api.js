@@ -1,31 +1,37 @@
 import axios from "axios";
 
 // const baseURL = "http://localhost:9090"
-const baseURL = "https://snacktrack.onrender.com"
+const baseURL = "https://snacktrack.onrender.com";
 
 export const getBusinesses = () => {
-    return axios.get(`${baseURL}/api/businesses`).then(r => r.data.businesses)
-}
+  return axios.get(`${baseURL}/api/businesses`).then((r) => r.data.businesses);
+};
 
 export const getBusiness = (business_id) => {
-    return axios.get(`${baseURL}/api/businesses/${business_id}`).then(r => r.data.business)
-}
+  return axios
+    .get(`${baseURL}/api/businesses/${business_id}`)
+    .then((r) => r.data.business);
+};
 
 /**
  * @param {Object} businessObject - Business Object
  * @return {Object}
  */
 export const postBusiness = (businessObject) => {
-    return axios.post(`${baseURL}/api/businesses`, businessObject).then(r => r.data.business)
-}
+  return axios
+    .post(`${baseURL}/api/businesses`, businessObject)
+    .then((r) => r.data.business);
+};
 
 export const getCustomers = () => {
-    return axios.get(`${baseURL}/api/customers`).then(r => r.data.customers)
-}
+  return axios.get(`${baseURL}/api/customers`).then((r) => r.data.customers);
+};
 
 export const getCustomer = (customer_id) => {
-    return axios.get(`${baseURL}/api/customers/${customer_id}`).then(r => r.data.customer)
-}
+  return axios
+    .get(`${baseURL}/api/customers/${customer_id}`)
+    .then((r) => r.data.customer);
+};
 
 /**
  * @param {Object} customerObject - Customer Object
@@ -36,20 +42,26 @@ export const getCustomer = (customer_id) => {
  * @return {Object}
  */
 export const postCustomer = (customerObject) => {
-    return axios.post(`${baseURL}/api/customers`, customerObject).then(r => r.data.customer)
-}
+  return axios
+    .post(`${baseURL}/api/customers`, customerObject)
+    .then((r) => r.data.customer);
+};
 
 export const getReviewByBusiness = (business_id) => {
-    return axios.get(`${baseURL}/api/businesses/${business_id}/reviews`).then(r => r.data.reviews)
-}
+  return axios
+    .get(`${baseURL}/api/businesses/${business_id}/reviews`)
+    .then((r) => r.data.reviews);
+};
 
 export const getReviews = () => {
-    return axios.get(`${baseURL}/api/reviews`).then(r => r.data.reviews)
-}
+  return axios.get(`${baseURL}/api/reviews`).then((r) => r.data.reviews);
+};
 
 export const getReview = (review_id) => {
-    return axios.get(`${baseURL}/api/reviews/${review_id}`).then(r => r.data.review)
-}
+  return axios
+    .get(`${baseURL}/api/reviews/${review_id}`)
+    .then((r) => r.data.review);
+};
 
 /**
  * @param {Number} review_id - Review ID
@@ -59,9 +71,17 @@ export const getReview = (review_id) => {
  * @return {Object}
  */
 export const patchReview = (review_id, reviewPatch) => {
-    return axios.patch(`${baseURL}/api/reviews/${review_id}`, reviewPatch).then(r => r.data.review)
-}
+  return axios
+    .patch(`${baseURL}/api/reviews/${review_id}`, reviewPatch)
+    .then((r) => r.data.review);
+};
 
 export const deleteReview = (review_id) => {
-    return axios.delete(`${baseURL}/api/reviews/${review_id}`)
-}
+  return axios.delete(`${baseURL}/api/reviews/${review_id}`);
+};
+
+export const patchBusinessRating = (business_id, businessPatch) => {
+  return axios
+    .patch(`${baseURL}/api/businesses/${business_id}`, businessPatch)
+    .then((r) => r.data.business);
+};
