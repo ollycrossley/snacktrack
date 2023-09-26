@@ -46,7 +46,7 @@ module.exports = [
     email: "gwilks6@buzzfeed.com",
     password: "lO5|DqTM",
     avatar_url:
-      "https://static.wikia.nocookie.net/powerpuff/images/2/23/Blossom-pic.png/revision/latest/thumbnail/width/360/height/360?cb=20190329151816",
+      "https://www.byrdie.com/thmb/RJcVfukdYM7aPMtVhje050P4MYw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-911199570-c7347dab092841efac74925488146989.jpg",
   },
   {
     username: "bcalderwood7",
