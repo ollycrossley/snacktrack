@@ -127,6 +127,8 @@ module.exports = [
     business_bio:
       "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
     logo_url: "https://m.media-amazon.com/images/I/41GpYNxJGxL._AC_SY350_.jpg",
+    menu_url:
+    "https://t3.ftcdn.net/jpg/01/75/06/34/360_F_175063465_nPAUPd3x4uoqbmKyGqDLRDsIvMejnraQ.jpg",
     location: {
       latitude: 53.483864805152116,
       longitude: -2.2009522870568796,
