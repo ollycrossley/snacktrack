@@ -1,10 +1,6 @@
 import Head from "next/head";
 // import { Inter } from "next/font/google";
 import NavBar from "./navbar";
-import LoginButtonCustomer from "./customer_login";
-import LoginButtonDriver from "./driver_login";
-import CreateCustomerProfile from "./customercreate";
-import CreateDriverProfile from "./drivercreate";
 import Link from "next/link";
 
 // const inter = Inter({ subsets: ["latin"] });
