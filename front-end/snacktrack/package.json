@@ -13,6 +13,7 @@
     "axios": "^1.5.0",
     "bulma": "^0.9.4",
     "google-map-react": "^2.2.1",
+    "moment": "^2.29.4",
     "next": "13.4.19",
     "next-cloudinary": "^4.22.0",
     "react": "18.2.0",

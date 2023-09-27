@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { patchBusinessRating, postReview } from "@/api";
+import moment from "moment";
 
 export default function AddReview({
   business_id,
@@ -37,6 +38,7 @@ export default function AddReview({
       rating: score,
       customerUsername: customer_username,
       customerAvatarUrl: customer_avatar_url,
+      created_at: moment().toDate().toISOString(),
       customer_id,
     };
 
@@ -65,7 +67,7 @@ export default function AddReview({
       .catch((e) => {
         setReviewsArray((currReviews) => {
           const output = [...currReviews];
-          output.shift;
+          output.shift();
           return output;
         });
         setTotalRating((currRating) => {

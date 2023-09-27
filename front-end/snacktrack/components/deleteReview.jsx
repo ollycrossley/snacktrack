@@ -52,6 +52,7 @@ export default function DeleteReview({
       onClick={(e) => {
         handleClick(e);
       }}
+      className={"button is-danger is-small"}
     >
       Delete Review
     </button>

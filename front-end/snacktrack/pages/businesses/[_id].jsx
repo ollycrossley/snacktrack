@@ -7,6 +7,7 @@ import Reviews from "../../components/businessreviews";
 import AddReview from "../../components/addReview";
 import DeleteReview from "../../components/deleteReview";
 import Head from "next/head";
+import moment from "moment";
 
 export async function getServerSideProps(context) {
   const { _id } = context.query;
@@ -82,8 +83,8 @@ export default function singleBusiness({ _id }) {
         <div className={"container"}>
             <div className={"box"}>
 
-                <div className={"columns"}>
-                    <div className={"column is-narrow is-mobile"}>
+                <div className={"columns is-mobile"}>
+                    <div className={"column is-narrow"}>
                         <p className={"title is-size-1"}>{business.business_name}</p>
                         <p className={"subtitle"}>{business.category}</p>
                         <span className={"icon-text mb-2 mr-4"}>
@@ -186,30 +187,37 @@ export default function singleBusiness({ _id }) {
                 ) : null}
 
 
-
-
-
                 <div>
                     <ul>
                         {reviewsArray.map((review) => {
                             return (
-                                <li key={`${review._id}`}>
-                                    <h1>Username: {review.customerUsername}</h1>
-                                    <h1>{review.rating}/5</h1>
-                                    <img src={review.customerAvatarUrl}></img>
-                                    <p>{review.body}</p>
+                                <li key={review._id} className={"block mb-5"}>
+                                    <article className={"media"}>
+                                        <figure className={"media-left"}>
+                                            <img className={"image is-64x64 profile-pic is-rounded"} src={review.customerAvatarUrl} alt={"user comment avatar"}/>
+                                        </figure>
+                                        <div className={"media-content"}>
+                                            <div className={"content"}>
+                                                <div className={"mb-1"}> <strong>{review.customerUsername}</strong> <span className={"icon-text mr-2"}><span className={"icon has-text-warning pb-1"} aria-label={"rating"}><i className={"fas fa-star"}/></span>
+                                                <span><p>{review.rating}</p></span>
+                                            </span> <small>{moment(review.created_at).fromNow()}</small></div>
+                                                <p className={"mt-2"} style={{width: "70%"}}>{review.body}</p>
+                                            </div>
 
-                                    {activeUser._id === review.customer_id ? (
-                                        <DeleteReview
-                                            review_id={review._id}
-                                            business_id={business._id}
-                                            reviewRating={review.rating}
-                                            setTotalRating={setTotalRating}
-                                            setNumberOfRatings={setNumberOfRatings}
-                                            setReviewsArray={setReviewsArray}
-                                            reviewsArray={reviewsArray}
-                                        />
-                                    ) : null}
+
+                                            {activeUser._id === review.customer_id ? (
+                                                <DeleteReview
+                                                    review_id={review._id}
+                                                    business_id={business._id}
+                                                    reviewRating={review.rating}
+                                                    setTotalRating={setTotalRating}
+                                                    setNumberOfRatings={setNumberOfRatings}
+                                                    setReviewsArray={setReviewsArray}
+                                                    reviewsArray={reviewsArray}
+                                                />
+                                            ) : null}
+                                        </div>
+                                    </article>
                                 </li>
                             );
                         })}
