@@ -1,8 +1,9 @@
 import NavBar from "../navbar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getCustomers, postCustomer } from "@/api";
+import { UserContext } from "@/contexts/user_context";
 
 export default function CreateCustomer() {
   const [userName, setUserName] = useState("");
@@ -17,6 +18,7 @@ export default function CreateCustomer() {
   const [customerUsernames, setCustomerUsernames] = useState([]);
   const [isUsernameValid, setIsUsernameValid] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState("");
+  const { activeUser, setActiveUser } = useContext(UserContext);
 
   useEffect(() => {
     getCustomers().then((customers) => {
@@ -116,6 +118,9 @@ export default function CreateCustomer() {
       customerProfile.avatar_url = avatarUrl;
     }
     postCustomer(customerProfile).then((response) => {
+      setActiveUser(customerProfile);
+      window.localStorage.setItem("user", JSON.stringify(customerProfile));
+
       router.push("/");
     });
   }

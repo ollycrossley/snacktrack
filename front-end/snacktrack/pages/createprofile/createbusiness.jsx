@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import NavBar from "../navbar";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { CldUploadWidget } from "next-cloudinary";
 import { postBusiness } from "@/api";
 import BusinessOpeningTimes from "@/components/BusinessOpeningTimes";
+import { UserContext } from "@/contexts/user_context";
 
 export default function CreateBusiness() {
   const [menu, setMenu] = useState("");
@@ -35,6 +36,7 @@ export default function CreateBusiness() {
     saturday: false,
     sunday: false,
   });
+  const { activeUser, setActiveUser } = useContext(UserContext);
 
   const router = useRouter();
   const driverProfile = router.query;
@@ -124,6 +126,8 @@ export default function CreateBusiness() {
       }
     }
     postBusiness(driverProfile).then((response) => {
+      setActiveUser(driverProfile);
+      window.localStorage.setItem("user", JSON.stringify(driverProfile));
       router.push("/");
     });
   }
