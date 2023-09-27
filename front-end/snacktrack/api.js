@@ -20,9 +20,10 @@ export const getBusiness = (business_id) => {
 export const postBusiness = (business) => {
   return axios
     .post("https://snacktrack.onrender.com/api/businesses", business)
-    .then(({ data }) => {});
+    .then(({ data }) => {
+      return data;
+    });
 };
-
 
 export const patchBusiness = (patchObject, business_id) => {
   return axios

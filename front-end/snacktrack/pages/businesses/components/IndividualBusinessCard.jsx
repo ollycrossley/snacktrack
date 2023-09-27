@@ -62,7 +62,7 @@ export default function BusinessListItem({
           {allBusinessesIncreasing.map((business) => {
             return (
               <li
-                key={business.business_name}
+                key={business._id}
                 className="$menu-item-hover-background-color"
               >
                 <Link href={`/businesses/${business._id}`}>

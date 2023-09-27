@@ -118,8 +118,10 @@ export default function CreateCustomer() {
       customerProfile.avatar_url = avatarUrl;
     }
     postCustomer(customerProfile).then((response) => {
-      setActiveUser(customerProfile);
-      window.localStorage.setItem("user", JSON.stringify(customerProfile));
+      console.log(response);
+      const newCustomer = { ...customerProfile, _id: response._id };
+      setActiveUser(newCustomer);
+      window.localStorage.setItem("user", JSON.stringify(newCustomer));
 
       router.push("/");
     });

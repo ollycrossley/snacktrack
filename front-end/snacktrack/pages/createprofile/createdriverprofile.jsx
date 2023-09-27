@@ -11,7 +11,7 @@ export default function CreateDriver() {
   const [businessName, setBusinessName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [businessType, setBusinessType] = useState("");
+  const [businessType, setBusinessType] = useState("Alcohol");
   const [driverProfile, setDriverProile] = useState({});
   const [passwordErrorMsg, setPasswordErrorMsg] = useState("");
   const [isNameValid, setIsNameValid] = useState("");
@@ -21,6 +21,7 @@ export default function CreateDriver() {
   const [doPasswordsMatch, setDoPasswordsMatch] = useState("");
   const [buisnessNameValid, setBusinessNameValid] = useState("");
   const [driverUsernames, setDriverUsernames] = useState([]);
+  const [otherBusinessCategory, setOtherBusinessCategory] = useState("");
 
   useEffect(() => {
     getBusinesses().then((drivers) => {
@@ -101,9 +102,19 @@ export default function CreateDriver() {
   function handleBusiessTypeChange(e) {
     setBusinessType(e.target.value);
   }
+
+  function handleOtherBusinessCategory(e) {
+    setOtherBusinessCategory(e.target.value);
+  }
   const router = useRouter();
   function handleSubmit(e) {
     e.preventDefault();
+    let category;
+    if (businessType === "Other") {
+      category = otherBusinessCategory;
+    } else {
+      category = businessType;
+    }
     router.push({
       pathname: "/createprofile/createbusiness",
       query: {
@@ -111,7 +122,7 @@ export default function CreateDriver() {
         email: email,
         username: userName,
         business_name: businessName,
-        category: businessType,
+        category,
         password: password,
       },
     });
@@ -219,7 +230,7 @@ export default function CreateDriver() {
 
             <div className="field">
               <label className="label" htmlFor="business_type_input">
-                Choose a logo to represent you on the map
+                Select your business category
               </label>
             </div>
             <div className="field">
@@ -230,14 +241,38 @@ export default function CreateDriver() {
                   onChange={handleBusiessTypeChange}
                   value={businessType}
                 >
-                  <option value="option1">Choose a logo</option>
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
-                  <option value="option4">Option 4</option>
-                  <option value="option5">Option 5</option>
-                  <option value="option6">Option 6</option>
+                  <optgroup label="Drinks">
+                    <option value="Alcohol">Alcohol</option>
+                    <option value="Tea/Coffee">Coffee</option>
+                    <option value="Other Soft Drinks">Coffee</option>
+                  </optgroup>
+                  <optgroup label="Food">
+                    <option value="Burgers">Burgers</option>
+                    <option value="Cakes">Cakes</option>
+                    <option value="Chinese Food">Chinese Food</option>
+                    <option value="Doughnuts">Doughnuts</option>
+                    <option value="Hot Dogs">Hot Dogs</option>
+                    <option value="Ice Cream">Ice Cream</option>
+                    <option value="Indian Food">Indian Food</option>
+                    <option value="Pizza">Pizza</option>
+                    <option value="Spanish Food">Spanish Food</option>
+                    <option value="Street Food">Street Food</option>
+                    <option value="Spanish Food">Spanish Food</option>
+                  </optgroup>
+                  <optgroup label="Other">
+                    <option value="Gifts">Gifts</option>
+                    <option value="Other">Other</option>
+                  </optgroup>
                 </select>
+                {businessType === "Other" ? (
+                  <input
+                    className="input"
+                    type="text"
+                    placeholder="Business Category"
+                    onChange={handleOtherBusinessCategory}
+                    value={otherBusinessCategory}
+                  ></input>
+                ) : null}
               </div>
             </div>
 
