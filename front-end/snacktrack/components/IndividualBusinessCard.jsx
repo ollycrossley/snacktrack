@@ -106,7 +106,7 @@ export default function BusinessListItem({
           {allBusinessesDecreasing.map((business) => {
             return (
               <li
-                key={business.business_name}
+                key={business._id}
                 className="$menu-item-hover-background-color"
               >
                 <Link href={`/businesses/${business._id}`}>
@@ -152,7 +152,7 @@ export default function BusinessListItem({
           {activeBusinessesIncreasing.map((business) => {
             return (
               <li
-                key={business.business_name}
+                key={business._id}
                 className="$menu-item-hover-background-color"
               >
                 <Link href={`/businesses/${business._id}`}>
@@ -164,13 +164,13 @@ export default function BusinessListItem({
                         <div className="media-content">
                           <p className="title is-4">{business.business_name}</p>
                           <p className="subtitle is-6">
-                            {business.is_active === true
-                              ? "Active now"
-                              : "Inactive"}
-                          </p>
-                          <p className="subtitle is-6">
-                            Rating: {business.total_rating}(
-                            {business.no_of_ratings})
+                            Average Rating:{" "}
+                            {business.no_of_ratings === 0
+                              ? 0
+                              : (
+                                  business.total_rating / business.no_of_ratings
+                                ).toFixed(1)}{" "}
+                            ({business.no_of_ratings})
                           </p>
                         </div>
                       </div>
@@ -191,7 +191,7 @@ export default function BusinessListItem({
           {activeBusinessesDecreasing.map((business) => {
             return (
               <li
-                key={business.business_name}
+                key={business._id}
                 className="$menu-item-hover-background-color"
               >
                 <Link href={`/businesses/${business._id}`}>
@@ -208,8 +208,13 @@ export default function BusinessListItem({
                               : "Inactive"}
                           </p>
                           <p className="subtitle is-6">
-                            Rating: {business.total_rating}(
-                            {business.no_of_ratings})
+                            Average Rating:{" "}
+                            {business.no_of_ratings === 0
+                              ? 0
+                              : (
+                                  business.total_rating / business.no_of_ratings
+                                ).toFixed(1)}{" "}
+                            ({business.no_of_ratings})
                           </p>
                         </div>
                       </div>
