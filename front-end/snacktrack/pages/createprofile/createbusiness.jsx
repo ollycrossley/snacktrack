@@ -254,111 +254,80 @@ export default function CreateBusiness() {
             <div className="field">
               <label className={"label"} htmlFor="opening_hours_input">
                 Opening Hours
+                <br/>
+                <br/>
 
-                <ul>
+                <ul className={"ml-1"}>
                   <li>
                     Monday
                     <br />
-                    <span className="level-left">
-                      <div className="level-item has-text-centred">
                         <BusinessOpeningTimes
                           openChange={handleMondayOpenChange}
                           closeChange={handleMondayCloseChange}
                           day={"monday"}
                           setActiveDays={setActiveDays}
                         />
-                      </div>
-                    </span>
                   </li>
                   <li>
                     Tuesday
                     <br />
-                    <span className="level-left">
-                      <div className="level-item has-text-centred">
-                        <BusinessOpeningTimes
-                          openChange={handleTuesdayOpenChange}
-                          closeChange={handleTuesdayCloseChange}
-                          day={"tuesday"}
-                          setActiveDays={setActiveDays}
-                        />
-                      </div>
-                    </span>
-
+                    <BusinessOpeningTimes
+                        openChange={handleTuesdayOpenChange}
+                        closeChange={handleTuesdayCloseChange}
+                        day={"tuesday"}
+                        setActiveDays={setActiveDays}
+                    />
                   </li>
                   <li>
                     Wednesday
                     <br />
-                    <span className="level-left">
-                      <div className="level-item has-text-centred">
                         <BusinessOpeningTimes
                           openChange={handleWednesdayOpenChange}
                           closeChange={handleWednesdayCloseChange}
                           day={"wednesday"}
                           setActiveDays={setActiveDays}
                         />
-                      </div>
-                    </span>
-
                   </li>
                   <li>
                     Thursday
                     <br />
-                    <span className="level-left">
-                      <div className="level-item has-text-centred">
                         <BusinessOpeningTimes
                           openChange={handleThursdayOpenChange}
                           closeChange={handleThursdayCloseChange}
                           day={"thursday"}
                           setActiveDays={setActiveDays}
                         />
-                      </div>
-                    </span>
 
                   </li>
                   <li>
                     Friday
                     <br />
-                    <span className="level-left">
-                      <div className="level-item has-text-centred">
                         <BusinessOpeningTimes
                           openChange={handleFridayOpenChange}
                           closeChange={handleFridayCloseChange}
                           day={"friday"}
                           setActiveDays={setActiveDays}
                         />
-                      </div>
-                    </span>
-
                   </li>
                   <li>
                     Saturday
                     <br />
-                    <span className="level-left">
-                      <div className="level-item has-text-centred">
                         <BusinessOpeningTimes
                           openChange={handleSaturdayOpenChange}
                           closeChange={handleSaturdayCloseChange}
                           day={"saturday"}
                           setActiveDays={setActiveDays}
                         />
-                      </div>
-                    </span>
-
                   </li>
                   <li>
                     Sunday
                     <br />
-                    <span className="level-left">
-                      <div className="level-item has-text-centred">
                         <BusinessOpeningTimes
                           openChange={handleSundayOpenChange}
                           closeChange={handleSundayCloseChange}
                           day={"sunday"}
                           setActiveDays={setActiveDays}
                         />
-                      </div>
-                    </span>
-
                   </li>
                 </ul>
               </label>

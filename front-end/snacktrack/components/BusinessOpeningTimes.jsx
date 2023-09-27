@@ -23,14 +23,14 @@ export default function BusinessOpeningTimes({
 
   return (
     <div className={"columns is-multiline mb-4 mt-3"}>
-      <div className={"column is-full"}><Switch
+      <div className={"column is-narrow"}><Switch
           onChange={handleSwitchChange}
           checked={ticked}
           checkedIcon={false}
           uncheckedIcon={false}
       /></div>
 
-      <div className={"column is-full"}>
+      <div className={"column is-narrow"}>
         <div className="select">
           <select disabled={!ticked} onChange={openChange} defaultValue={""}>
             <option value="" selected disabled hidden>
@@ -64,7 +64,7 @@ export default function BusinessOpeningTimes({
           </select>
         </div>
       </div>
-      <div className={"column is-full"}>
+      <div className={"column is-narrow"}>
         <div className="select">
           <select disabled={!ticked} onChange={closeChange} defaultValue={""}>
             <option value="" selected disabled hidden>
