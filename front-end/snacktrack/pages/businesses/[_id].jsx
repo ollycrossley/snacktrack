@@ -168,46 +168,55 @@ export default function singleBusiness({ _id }) {
                 </div>
             </div>
             <br></br>
-            {activeUser._id && !activeUser.is_active ? (
-                <AddReview
-                    business_id={business._id}
-                    customer_id={activeUser._id}
-                    customer_avatar_url={activeUser.avatar_url}
-                    customer_username={activeUser.username}
-                    reviewsArray={reviewsArray}
-                    setReviewsArray={setReviewsArray}
-                    setTotalRating={setTotalRating}
-                    setNumberOfRatings={setNumberOfRatings}
-                />
-            ) : null}
 
-            <div>
-                <h1>Reviews:</h1>
-                <ul>
-                    {reviewsArray.map((review) => {
-                        return (
-                            <li key={`${review._id}`}>
-                                <h1>Username: {review.customerUsername}</h1>
-                                <h1>{review.rating}/5</h1>
-                                <img src={review.customerAvatarUrl}></img>
-                                <p>{review.body}</p>
-                                {activeUser._id === review.customer_id ? (
-                                    <DeleteReview
-                                        review_id={review._id}
-                                        business_id={business._id}
-                                        reviewRating={review.rating}
-                                        setTotalRating={setTotalRating}
-                                        setNumberOfRatings={setNumberOfRatings}
-                                        setReviewsArray={setReviewsArray}
-                                        reviewsArray={reviewsArray}
-                                    />
-                                ) : null}
-                            </li>
-                        );
-                    })}
-                </ul>
-            </div>
+            <div className={"box"}>
+                <h2 className={"title"}>Reviews</h2>
+
+                {activeUser._id && !activeUser.is_active ? (
+                    <AddReview
+                        business_id={business._id}
+                        customer_id={activeUser._id}
+                        customer_avatar_url={activeUser.avatar_url}
+                        customer_username={activeUser.username}
+                        reviewsArray={reviewsArray}
+                        setReviewsArray={setReviewsArray}
+                        setTotalRating={setTotalRating}
+                        setNumberOfRatings={setNumberOfRatings}
+                    />
+                ) : null}
+
+
+
+
+
+                <div>
+                    <ul>
+                        {reviewsArray.map((review) => {
+                            return (
+                                <li key={`${review._id}`}>
+                                    <h1>Username: {review.customerUsername}</h1>
+                                    <h1>{review.rating}/5</h1>
+                                    <img src={review.customerAvatarUrl}></img>
+                                    <p>{review.body}</p>
+
+                                    {activeUser._id === review.customer_id ? (
+                                        <DeleteReview
+                                            review_id={review._id}
+                                            business_id={business._id}
+                                            reviewRating={review.rating}
+                                            setTotalRating={setTotalRating}
+                                            setNumberOfRatings={setNumberOfRatings}
+                                            setReviewsArray={setReviewsArray}
+                                            reviewsArray={reviewsArray}
+                                        />
+                                    ) : null}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
         </div>
+    </div>
     </>
   );
 }
