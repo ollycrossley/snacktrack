@@ -173,25 +173,30 @@ export default function singleBusiness({ _id }) {
             <div className={"box"}>
                 <h2 className={"title"}>Reviews</h2>
 
-                {activeUser._id && !activeUser.is_active ? (
-                    <AddReview
-                        business_id={business._id}
-                        customer_id={activeUser._id}
-                        customer_avatar_url={activeUser.avatar_url}
-                        customer_username={activeUser.username}
-                        reviewsArray={reviewsArray}
-                        setReviewsArray={setReviewsArray}
-                        setTotalRating={setTotalRating}
-                        setNumberOfRatings={setNumberOfRatings}
-                    />
-                ) : null}
+                <hr/>
 
+                <h2 className={"subtitle"}>Add a review</h2>
+
+                    {activeUser._id && !activeUser.is_active ? (
+                        <AddReview
+                            business_id={business._id}
+                            customer_id={activeUser._id}
+                            customer_avatar_url={activeUser.avatar_url}
+                            customer_username={activeUser.username}
+                            reviewsArray={reviewsArray}
+                            setReviewsArray={setReviewsArray}
+                            setTotalRating={setTotalRating}
+                            setNumberOfRatings={setNumberOfRatings}
+                        />
+                    ) : null}
+
+                <hr/>
 
                 <div>
                     <ul>
                         {reviewsArray.map((review) => {
                             return (
-                                <li key={review._id} className={"block mb-5"}>
+                                <li key={review._id} className={"block pb-3"}>
                                     <article className={"media"}>
                                         <figure className={"media-left"}>
                                             <img className={"image is-64x64 profile-pic is-rounded"} src={review.customerAvatarUrl} alt={"user comment avatar"}/>
