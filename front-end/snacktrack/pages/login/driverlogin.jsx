@@ -11,6 +11,19 @@ export default function DriverLogin() {
   const { activeUser, setActiveUser } = useContext(UserContext);
   const [loginError, setLoginError] = useState("");
   const router = useRouter();
+
+  if (activeUser) {
+    router.push("/map")
+  }
+
+  if (activeUser) {
+    return (<>
+      <NavBar/>
+      <br/><br/>
+      <h1 className={"title has-text-centered"}>Already logged in! Redirecting...</h1>
+    </>)
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 

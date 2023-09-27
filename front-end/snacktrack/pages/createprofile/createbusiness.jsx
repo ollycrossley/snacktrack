@@ -41,6 +41,10 @@ export default function CreateBusiness() {
   const router = useRouter();
   const driverProfile = router.query;
 
+  if (activeUser) {
+    router.push("/map")
+  }
+
   function handleLogoChange(e) {
     setLogo(e.target.value);
   }

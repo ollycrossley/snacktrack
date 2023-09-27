@@ -1,8 +1,9 @@
 import Link from "next/link";
 import NavBar from "../navbar";
-import { useState, useEffect } from "react";
+import {useState, useEffect, useContext} from "react";
 import { useRouter } from "next/router";
 import { getBusinesses } from "@/api";
+import { UserContext} from "@/contexts/user_context";
 
 export default function CreateDriver() {
   const [name, setName] = useState("");
@@ -22,6 +23,20 @@ export default function CreateDriver() {
   const [buisnessNameValid, setBusinessNameValid] = useState("");
   const [driverUsernames, setDriverUsernames] = useState([]);
   const [otherBusinessCategory, setOtherBusinessCategory] = useState("");
+  const {activeUser, setActiveUser} = useContext(UserContext)
+  const router = useRouter();
+
+  if (activeUser) {
+    router.push("/map")
+  }
+
+  if (activeUser) {
+    return (<>
+      <NavBar/>
+      <br/><br/>
+      <h1 className={"title has-text-centered"}>Already logged in! Redirecting...</h1>
+    </>)
+  }
 
   useEffect(() => {
     getBusinesses().then((drivers) => {
@@ -106,7 +121,7 @@ export default function CreateDriver() {
   function handleOtherBusinessCategory(e) {
     setOtherBusinessCategory(e.target.value);
   }
-  const router = useRouter();
+
   function handleSubmit(e) {
     e.preventDefault();
     let category;

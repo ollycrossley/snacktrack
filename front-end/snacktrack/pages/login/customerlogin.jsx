@@ -1,6 +1,6 @@
 import NavBar from "../navbar";
 
-import { useContext, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import { UserContext } from "@/contexts/user_context";
 import { getCustomers } from "@/api";
 import { useRouter } from "next/router";
@@ -12,6 +12,17 @@ export default function CustomerLogin() {
   const [loginError, setLoginError] = useState("");
   const router = useRouter();
 
+  if (activeUser) {
+    router.push("/map")
+  }
+
+  if (activeUser) {
+    return (<>
+      <NavBar/>
+      <br/><br/>
+      <h1 className={"title has-text-centered"}>Already logged in! Redirecting...</h1>
+    </>)
+  }
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -41,13 +52,13 @@ export default function CustomerLogin() {
   function handlePasswordChange(e) {
     setCurrentPassword(e.target.value);
   }
+
   return (
     <>
       <NavBar />
       <br></br>
       <h1 className="has-text-centered title">Customer Login</h1>
-      <br></br>
-      <div className="columns is-centered">
+      <br></br><div className="columns is-centered">
         <div className="column is-one-third">
           <form className="box p-5">
             <div className="field">
@@ -56,14 +67,14 @@ export default function CustomerLogin() {
               </label>
               <div className="control">
                 <input
-                  className="input"
-                  type="text"
-                  name="username_input"
-                  id="username_input"
-                  placeholder="username"
-                  value={currentUser}
-                  onChange={handleUserChange}
-                  autoComplete="off"
+                    className="input"
+                    type="text"
+                    name="username_input"
+                    id="username_input"
+                    placeholder="username"
+                    value={currentUser}
+                    onChange={handleUserChange}
+                    autoComplete="off"
                 ></input>
               </div>
             </div>
@@ -76,14 +87,14 @@ export default function CustomerLogin() {
                   Password
                 </label>
                 <input
-                  className="input"
-                  type="password"
-                  name="password_input"
-                  id="password_input"
-                  placeholder="password"
-                  value={currentPassword}
-                  onChange={handlePasswordChange}
-                  autoComplete="off"
+                    className="input"
+                    type="password"
+                    name="password_input"
+                    id="password_input"
+                    placeholder="password"
+                    value={currentPassword}
+                    onChange={handlePasswordChange}
+                    autoComplete="off"
                 ></input>
               </div>
             </div>
@@ -98,5 +109,5 @@ export default function CustomerLogin() {
         </div>
       </div>
     </>
-  );
+  )
 }
