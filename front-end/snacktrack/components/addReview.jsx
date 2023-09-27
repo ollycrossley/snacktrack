@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { patchBusinessRating, postReview } from "@/api";
+import moment from "moment";
 
 export default function AddReview({
   business_id,
@@ -37,6 +38,7 @@ export default function AddReview({
       rating: score,
       customerUsername: customer_username,
       customerAvatarUrl: customer_avatar_url,
+      created_at: moment().toDate().toISOString(),
       customer_id,
     };
 
@@ -65,7 +67,7 @@ export default function AddReview({
       .catch((e) => {
         setReviewsArray((currReviews) => {
           const output = [...currReviews];
-          output.shift;
+          output.shift();
           return output;
         });
         setTotalRating((currRating) => {
@@ -80,33 +82,44 @@ export default function AddReview({
       });
   };
   return (
-    <div>
-      <h2>Add a review</h2>
-      <form onSubmit={handleSubmit}>
-        <ul>
+    <div className={"mb-5"}>
+      <form onSubmit={handleSubmit} className={"block"}>
+        <article className={"media"}>
+          <figure className={"media-left"}>
+            <img className={"image is-64x64 profile-pic is-rounded"} src={customer_avatar_url} alt={"user comment avatar"}/>
+          </figure>
+          <div className={"media-content"}>
+            <div className={"field"}>
+              <span className={"icon-text"}>
           {ratings.map((rating) => {
             return (
-              <li key={rating}>
-                <button
-                  onClick={(e) => {
-                    handleRatingClick(e, rating);
-                  }}
-                >
-                  {rating}
-                </button>
-              </li>
+                <span key={rating} className={`icon is-clickable ${rating <= score ? "has-text-warning" : null}`}>
+                <i onClick={(e) => {handleRatingClick(e, rating);}} className={"fas fa-star"}/>
+              </span>
             );
           })}
-        </ul>
-        <textarea
-          name="review-body"
-          id="review-body"
-          cols="30"
-          rows="10"
-          value={reviewBody}
-          onChange={handleBodyChange}
-        ></textarea>
-        <button disabled={!score}>Submit</button>
+        </span>
+            </div>
+            <div className={"field"}>
+              <p className={"control"}>
+                        <textarea
+                            className={"textarea"}
+                          name="review-body"
+                          id="review-body"
+                          cols="30"
+                          rows="2"
+                          value={reviewBody}
+                          onChange={handleBodyChange}
+                        ></textarea>
+              </p>
+            </div>
+            <div className={"field"}>
+              <div className={"control"}>
+                <button disabled={!score} type={"submit"} className={"button is-success"}>Submit</button>
+              </div>
+            </div>
+          </div>
+        </article>
       </form>
     </div>
   );
