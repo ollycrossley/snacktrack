@@ -2,7 +2,7 @@ import NavBar from "../navbar";
 import { useEffect, useState } from "react";
 import { getBusinesses } from "@/api";
 import React from "react";
-import IndividualBusinessCard from "./components/IndividualBusinessCard";
+import IndividualBusinessCard from "../../components/IndividualBusinessCard";
 // import "../../../snacktrack/styles/globals.scss";
 
 export default function allBusinesses() {

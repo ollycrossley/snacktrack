@@ -1,5 +1,5 @@
 import NavBar from "../navbar";
-import SimpleMap from "./components/simplemap";
+import SimpleMap from "../../components/simplemap";
 import Head from "next/head";
 import Script from "next/script";
 import {useContext, useEffect, useState} from "react";
