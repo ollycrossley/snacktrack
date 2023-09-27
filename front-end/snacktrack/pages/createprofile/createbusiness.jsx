@@ -480,7 +480,7 @@ export default function CreateBusiness() {
                 </ul>
               </label>
             </div>
-            <button>Submit</button>
+            <button className={"button"}>Submit</button>
           </form>
         </div>
       </div>
