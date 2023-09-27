@@ -6,11 +6,15 @@ export default function BusinessListItem({
   ratingsIncreasing,
 }) {
   const allBusinessesIncreasing = [...businesses].sort((a, b) => {
-    return a.total_rating - b.total_rating;
+    const AvgA = a.total_rating === 0 ? 0 : a.total_rating / a.no_of_ratings;
+    const AvgB = b.total_rating === 0 ? 0 : b.total_rating / b.no_of_ratings;
+    return AvgA - AvgB;
   });
 
   const allBusinessesDecreasing = [...businesses].sort((a, b) => {
-    return b.total_rating - a.total_rating;
+    const AvgA = a.total_rating === 0 ? 0 : a.total_rating / a.no_of_ratings;
+    const AvgB = b.total_rating === 0 ? 0 : b.total_rating / b.no_of_ratings;
+    return AvgB - AvgA;
   });
 
   const activeBusinessesIncreasing = [...allBusinessesIncreasing].filter(
@@ -75,8 +79,13 @@ export default function BusinessListItem({
                               : "Inactive"}
                           </p>
                           <p className="subtitle is-6">
-                            Rating: {business.total_rating}(
-                            {business.no_of_ratings})
+                            Average Rating:{" "}
+                            {business.no_of_ratings === 0
+                              ? 0
+                              : (
+                                  business.total_rating / business.no_of_ratings
+                                ).toFixed(1)}{" "}
+                            ({business.no_of_ratings})
                           </p>
                         </div>
                       </div>
@@ -92,7 +101,6 @@ export default function BusinessListItem({
       );
     }
     if (!ratingsIncreasing) {
-      console.log("!ratingsIncreasing");
       return (
         <>
           {allBusinessesDecreasing.map((business) => {
@@ -115,8 +123,13 @@ export default function BusinessListItem({
                               : "Inactive"}
                           </p>
                           <p className="subtitle is-6">
-                            Rating: {business.total_rating}(
-                            {business.no_of_ratings})
+                            Average Rating:{" "}
+                            {business.no_of_ratings === 0
+                              ? 0
+                              : (
+                                  business.total_rating / business.no_of_ratings
+                                ).toFixed(1)}{" "}
+                            ({business.no_of_ratings})
                           </p>
                         </div>
                       </div>
