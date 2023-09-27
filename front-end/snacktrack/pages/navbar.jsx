@@ -24,12 +24,18 @@ export default function NavBar() {
           getBusiness(storedUser._id).then((business) => {
             window.localStorage.setItem("user", JSON.stringify(business));
             setActiveUser(JSON.parse(localStorage.getItem("user")));
-          });
+          }).catch(err => {
+            console.log(err)
+            window.localStorage.removeItem("user")
+          })
         } else {
           getCustomer(storedUser._id).then((customer) => {
             window.localStorage.setItem("user", JSON.stringify(customer));
             setActiveUser(JSON.parse(localStorage.getItem("user")));
-          });
+          }).catch(err => {
+            console.log(err)
+            window.localStorage.removeItem("user")
+          })
         }
       }
 
