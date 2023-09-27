@@ -9,7 +9,7 @@ export default function allBusinesses() {
   const [businesses, setBusinesses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showOnlyActive, setShowOnlyActive] = useState(false);
-  const [ratingsIncreasing, setRatingsIncreasing] = useState(true);
+  const [ratingsIncreasing, setRatingsIncreasing] = useState(false);
   useEffect(() => {
     setIsLoading(true);
     getBusinesses().then((r) => {
