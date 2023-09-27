@@ -43,27 +43,36 @@ export default function allBusinesses() {
         <div className="container">
           <div className="columns">
             <div className="column">
-              {!showOnlyActive && (
-                <button className="button" onClick={handleClick}>
-                  Hide inactive businesses
-                </button>
-              )}
-              {showOnlyActive && (
-                <button className="button" onClick={handleClick}>
-                  Show inactive businesses
-                </button>
-              )}
-              <div className="select">
-                <select>
-                  <option value={true} onClick={handleSelect}>
-                    Sort by rating (lowest first)
-                  </option>
-                  <option value={false} onClick={handleSelect}>
-                    Sort by rating (highest first)
-                  </option>
-                </select>
+              <div className="level">
+                <div className="level-left">
+                  <div className="level-item">
+                    {!showOnlyActive && (
+                      <button className="button" onClick={handleClick}>
+                        Hide inactive businesses
+                      </button>
+                    )}
+                    {showOnlyActive && (
+                      <button className="button" onClick={handleClick}>
+                        Show inactive businesses
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <div className="level-right">
+                  <div className="level-item">
+                    <div className="select">
+                      <select>
+                        <option value={true} onClick={handleSelect}>
+                          Sort by rating (lowest first)
+                        </option>
+                        <option value={false} onClick={handleSelect}>
+                          Sort by rating (highest first)
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
               </div>
-
               <ul>
                 <br />
                 <IndividualBusinessCard
