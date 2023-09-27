@@ -60,16 +60,16 @@ export default function allBusinesses() {
                 </div>
                 <div className="level-right">
                   <div className="level-item">
-                    <div className="select">
-                      <select>
-                        <option value={true} onClick={handleSelect}>
-                          Sort by rating (lowest first)
-                        </option>
-                        <option value={false} onClick={handleSelect}>
-                          Sort by rating (highest first)
-                        </option>
-                      </select>
-                    </div>
+                    {ratingsIncreasing && (
+                      <button className="button" onClick={handleSelect}>
+                        Sort by rating (highest first)
+                      </button>
+                    )}
+                    {!ratingsIncreasing && (
+                      <button className="button" onClick={handleSelect}>
+                        Sort by rating (lowest first)
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
