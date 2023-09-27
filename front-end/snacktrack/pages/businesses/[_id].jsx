@@ -84,6 +84,7 @@ export default function singleBusiness({ _id }) {
             <div className={"box"}>
 
                 <div className={"columns is-mobile"}>
+
                     <div className={"column is-narrow"}>
                         <p className={"title is-size-1"}>{business.business_name}</p>
                         <p className={"subtitle"}>{business.category}</p>
@@ -164,11 +165,17 @@ export default function singleBusiness({ _id }) {
                 <div className={"column is-half"}>
                     <div className={"box"}>
                         <p className={"title"}>About</p>
+
+                        {business.logo_url ?
+                            <figure className={"image is-128x128"}>
+                                <img src={business.logo_url} className={"profile-pic"} alt={"business logo"}/>
+                            </figure>: null }
+
                         <p className={"subtitle"}>Bio</p>
+                        <p>{!business.business_bio ? "No description found" : business.business_bio}</p>
                     </div>
                 </div>
             </div>
-            <br></br>
 
             <div className={"box"}>
                 <h2 className={"title"}>Reviews</h2>
