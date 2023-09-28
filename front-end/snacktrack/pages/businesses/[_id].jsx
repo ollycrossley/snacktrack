@@ -167,10 +167,9 @@ export default function singleBusiness({ _id }) {
                         <p className={"title"}>About</p>
 
                         {business.logo_url ?
-                            <figure className={"image is-128x128"}>
-                                <img src={business.logo_url} className={"profile-pic"} alt={"business logo"}/>
+                            <figure className={"image is-inline-block mb-4"}>
+                                <img src={business.logo_url} style={{width: 128, height: 128, objectFit: "cover"}} alt={"business logo"}/>
                             </figure>: null }
-
                         <p className={"subtitle"}>Bio</p>
                         <p>{!business.business_bio ? "No description found" : business.business_bio}</p>
                     </div>
