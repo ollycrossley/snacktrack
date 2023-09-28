@@ -72,7 +72,7 @@ describe("/api/businesses", () => {
         .expect(200)
         .then((response) => {
           const { businesses } = response.body;
-          expect(businesses).toHaveLength(10);
+          expect(businesses).toHaveLength(15);
           businesses.forEach((business) => {
             expect(business).toHaveProperty("_id");
             expect(business).toHaveProperty("location");
