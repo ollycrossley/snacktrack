@@ -51,8 +51,14 @@ const BusinessSchema = new mongoose.Schema({
     saturday: [String],
     sunday: [String],
   },
-  logo_url: String,
-  menu_url: String,
+  logo_url: {
+    type: String,
+    default: "https://cdn-icons-png.flaticon.com/512/5615/5615955.png",
+  },
+  menu_url: {
+    type: String,
+    default: "https://cdn-icons-png.flaticon.com/512/2046/2046704.png",
+  },
   total_rating: {
     type: Number,
     default: 0,
