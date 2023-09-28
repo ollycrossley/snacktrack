@@ -19,6 +19,19 @@ export default function CreateCustomer() {
   const [isUsernameValid, setIsUsernameValid] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState("");
   const { activeUser, setActiveUser } = useContext(UserContext);
+  const router = useRouter();
+
+  if (activeUser) {
+    router.push("/map")
+  }
+
+  if (activeUser) {
+    return (<>
+      <NavBar/>
+      <br/><br/>
+      <h1 className={"title has-text-centered"}>Already logged in! Redirecting...</h1>
+    </>)
+  }
 
   useEffect(() => {
     getCustomers().then((customers) => {
@@ -105,7 +118,7 @@ export default function CreateCustomer() {
   } else {
     path = "";
   }
-  const router = useRouter();
+
   function handleSubmit(e) {
     e.preventDefault();
 
