@@ -11,6 +11,23 @@ export default function SimpleMap({userLat, userLong}) {
     const [map, setMap] = useState(null);
     const [isOpen, setIsOpen] = useState(false)
 
+    const iconsList = {
+        "Alcohol": "https://i.ibb.co/1q4ztwf/alcohol-snacktrack-icon.png",
+        "Tea/Coffee": "https://i.ibb.co/2yKCvRJ/teacoffee-snacktrack-icon.png",
+        "Other Soft Drinks": "https://i.ibb.co/ftfPB3n/other-drink-snacktrack-icon.png",
+        "Burgers": "https://i.ibb.co/28mKjV6/burger-snacktrack-icon.png",
+        "Cakes": "https://i.ibb.co/6tRXFDD/cakes-snacktrack-icon.png",
+        "Chinese Food": "https://i.ibb.co/VgC8g9f/chinese-snacktrack-icon.png",
+        "Doughnuts": "https://i.ibb.co/Qn6sysM/donut-snacktrack-icon.png",
+        "Hot Dogs": "https://i.ibb.co/w6xg7xW/hotdog-snacktrack-icon.png",
+        "Ice Cream": "https://i.ibb.co/fNx2ctN/icecream-snacktrack-icon.png",
+        "Indian Food": "https://i.ibb.co/Hr5Pp5H/indian-snacktrack-icon.png",
+        "Pizza": "https://i.ibb.co/qd19fXz/pizza-snacktrack-icon.png",
+        "Street Food": "https://i.ibb.co/ChDsCKH/street-snacktrack-icon.png",
+        "Spanish Food": "https://i.ibb.co/px0SMT3/spanish-snacktrack-icon.png",
+        "Gifts": "https://i.ibb.co/4dJvXhc/gifts-snacktrack-icon.png",
+    }
+
     const {isLoaded} = useJsApiLoader({
         id: "google-map-script",
     });
@@ -68,7 +85,7 @@ export default function SimpleMap({userLat, userLong}) {
                                     lng: business.location.longitude,
                                 }}
                                 icon={{
-                                    url: "https://i.ibb.co/cQPqCjF/custom-snacktrack-icon.png",
+                                    url: (iconsList[business.category] || "https://i.ibb.co/cQPqCjF/custom-snacktrack-icon.png"),
                                     scaledSize: new google.maps.Size(38, 38),
                                 }}
                                 onClick={(e) => {
