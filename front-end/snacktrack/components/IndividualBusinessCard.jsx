@@ -164,6 +164,11 @@ export default function BusinessListItem({
                         <div className="media-content">
                           <p className="title is-4">{business.business_name}</p>
                           <p className="subtitle is-6">
+                            {business.is_active === true
+                              ? "Active now"
+                              : "Inactive"}
+                          </p>
+                          <p className="subtitle is-6">
                             Average Rating:{" "}
                             {business.no_of_ratings === 0
                               ? 0
