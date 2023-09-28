@@ -270,7 +270,6 @@ export default function CreateDriver() {
                     <option value="Ice Cream">Ice Cream</option>
                     <option value="Indian Food">Indian Food</option>
                     <option value="Pizza">Pizza</option>
-                    <option value="Spanish Food">Spanish Food</option>
                     <option value="Street Food">Street Food</option>
                     <option value="Spanish Food">Spanish Food</option>
                   </optgroup>
