@@ -36,7 +36,7 @@ const BusinessSchema = new mongoose.Schema({
   business_bio: String,
   is_active: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   opening_hours: {
     monday: [String],
