@@ -103,9 +103,9 @@ export default function SimpleMap({userLat, userLong}) {
                                             <p><strong>{business.business_name}</strong></p>
                                             <p>{business.category}</p>
 
-                                            <p>★ {business.no_of_ratings === 0
-                                                ? 0
-                                                : Number(business.total_rating / business.no_of_ratings).toFixed(1)}</p>
+                                            {business.no_of_ratings === 0
+                                                ? null
+                                                : <p>★  Number(business.total_rating / business.no_of_ratings).toFixed(1)</p>}
 
                                             <hr className={"dropdown-divider"}/>
 
