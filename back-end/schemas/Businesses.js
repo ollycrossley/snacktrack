@@ -24,7 +24,11 @@ const BusinessSchema = new mongoose.Schema({
     required: true,
     // validate: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?\/~_+-=|\]).{8,32}$/
   },
-  avatar_url: String,
+  avatar_url: {
+    type: String,
+    default:
+      "https://static.vecteezy.com/system/resources/previews/013/042/571/original/default-avatar-profile-icon-social-media-user-photo-in-flat-style-vector.jpg",
+  },
   business_name: {
     type: String,
     required: true,
