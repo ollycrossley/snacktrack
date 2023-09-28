@@ -42,7 +42,7 @@ export default function CreateBusiness() {
   const driverProfile = router.query;
 
   if (activeUser) {
-    router.push("/map")
+    router.push("/map");
   }
 
   function handleLogoChange(e) {
@@ -221,23 +221,28 @@ export default function CreateBusiness() {
             </div>
 
             <div className="field">
-              <label className={"label"} htmlFor="logo_input">
-                Choose a logo to represent you on the map
+              <label className={"label"} htmlFor="image_input">
+                Upload your logo for your company's bio (Optional)
                 <div className="control">
-                  <select
-                    className="input"
-                    id="logo_input"
-                    name="logo_input"
-                    onChange={handleLogoChange}
-                    value={logo}
+                  <CldUploadWidget
+                    uploadPreset="unsigned_test"
+                    onSuccess={(result) => {
+                      setLogo(result.info.url);
+                    }}
                   >
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                    <option value="option4">Option 4</option>
-                    <option value="option5">Option 5</option>
-                    <option value="option6">Option 6</option>
-                  </select>
+                    {({ open }) => {
+                      function handleOnClick(e) {
+                        e.preventDefault();
+                        open();
+                      }
+                      return (
+                        <button className="button" onClick={handleOnClick}>
+                          Choose a file...
+                        </button>
+                      );
+                    }}
+                  </CldUploadWidget>
+                  {image !== "" ? <p>{image}</p> : null}
                 </div>
               </label>
             </div>
