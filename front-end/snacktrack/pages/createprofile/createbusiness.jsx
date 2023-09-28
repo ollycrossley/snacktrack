@@ -242,7 +242,7 @@ export default function CreateBusiness() {
                       );
                     }}
                   </CldUploadWidget>
-                  {image !== "" ? <p>{image}</p> : null}
+                  {logo !== "" ? <p>{logo}</p> : null}
                 </div>
               </label>
             </div>
