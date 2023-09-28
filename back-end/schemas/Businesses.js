@@ -62,8 +62,14 @@ const BusinessSchema = new mongoose.Schema({
     default: 0,
   },
   location: {
-    latitude: Number,
-    longitude: Number,
+    latitude: {
+      type: Number,
+      default: 53.47848675379202,
+    },
+    longitude: {
+      type: Number,
+      default: -2.24325990807042,
+    },
   },
 });
 
