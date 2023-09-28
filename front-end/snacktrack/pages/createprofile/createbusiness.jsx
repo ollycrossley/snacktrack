@@ -1,3 +1,5 @@
+"use client" 
+
 import { useRouter } from "next/router";
 import NavBar from "../navbar";
 import { useState, useContext } from "react";

@@ -259,7 +259,7 @@ export default function CreateDriver() {
                   <optgroup label="Drinks">
                     <option value="Alcohol">Alcohol</option>
                     <option value="Tea/Coffee">Coffee</option>
-                    <option value="Other Soft Drinks">Other</option>
+                    <option value="Other Soft Drinks">Other Soft Drinks</option>
                   </optgroup>
                   <optgroup label="Food">
                     <option value="Burgers">Burgers</option>
