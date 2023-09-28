@@ -10,7 +10,7 @@ module.exports = [
     business_bio:
       "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
     logo_url:
-      "https://www.foodandwine.com/thmb/pwFie7NRkq4SXMDJU6QKnUKlaoI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ultimate-Veggie-Burgers-FT-Recipe-0821-5d7532c53a924a7298d2175cf1d4219f.jpg",
+      "https://m.media-amazon.com/images/I/710sc8kEkBL._AC_UF894,1000_QL80_.jpg",
     location: {
       latitude: 53.48243689464458,
       longitude: -2.056490358444484,
@@ -41,7 +41,7 @@ module.exports = [
     business_bio:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
     logo_url:
-      "https://img.taste.com.au/w_-0kcUJ/taste/2016/11/aussie-style-beef-and-salad-tacos-86525-1.jpeg",
+      "https://i.dailymail.co.uk/1s/2023/05/17/16/41398140-0-image-a-99_1684337370265.jpg",
     location: {
       latitude: 53.482492758222925,
       longitude: -2.0560156073872053,
@@ -72,7 +72,7 @@ module.exports = [
     business_bio:
       "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
     logo_url:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Strawberry_ice_cream_cone_%285076899310%29.jpg/640px-Strawberry_ice_cream_cone_%285076899310%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Glass_of_Cola.jpg/800px-Glass_of_Cola.jpg",
     menu_url:
       "https://www.manvsfoodgrillhouse.co.uk/images/2022/06/04/man-vs-food-drinks-may-2022-2.jpg",
     location: {
@@ -100,7 +100,7 @@ module.exports = [
     business_bio:
       "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.\n\nSed ante. Vivamus tortor. Duis mattis egestas metus.",
     logo_url:
-      "https://media-cdn.tripadvisor.com/media/photo-s/0e/20/59/91/photo0jpg.jpg",
+      "https://hips.hearstapps.com/hmg-prod/images/best-ever-burger-index-646e5ae887b2b.jpg",
     menu_url:
       "https://marketplace.canva.com/EAFW39lqaAY/1/0/1131w/canva-black-yellow-modern-burger-menu-saLqjz21qII.jpg",
     location: {
@@ -130,7 +130,8 @@ module.exports = [
     is_active: true,
     business_bio:
       "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
-    logo_url: "https://m.media-amazon.com/images/I/41GpYNxJGxL._AC_SY350_.jpg",
+    logo_url:
+      "https://recipesblob.oetker.co.uk/assets/46b664a502ce4ebdb241e6667ce789b7/750x910/pinata-rainbow-cake.jpg",
     menu_url:
       "https://marketplace.canva.com/EADapNfVwYw/2/0/1236w/canva-white-classy-photo-collage-bakery-menu-HbxtOcP3SFA.jpg",
     location: {
@@ -158,7 +159,7 @@ module.exports = [
     business_bio:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
     logo_url:
-      "https://q8y9x5z7.rocketcdn.me/wp-content/uploads/2020/05/web-classic-select-brisa-weave-classic-fedora-pachacuti-mens-sun-panama-hat-5-category-v2-1000x750.jpg",
+      "https://easydrawingguides.com/wp-content/uploads/2022/03/how-to-draw-an-easy-chinese-dragon-featured-image-1200-1024x863.png",
     menu_url:
       "https://marketplace.canva.com/EAFI6Jmbr3I/1/0/1131w/canva-red-and-yellow-illustrated-chinese-restaurant-food-menu-0mCNu0KJXZg.jpg",
     location: {
@@ -189,7 +190,7 @@ module.exports = [
     business_bio:
       "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
     logo_url:
-      "https://www.sweatershop.com/media/catalog/product/cache/d2d224c54d520941388cc48be6fe21e1/6/_/6_1_2.jpg",
+      "https://img.freepik.com/free-vector/vector-colorful-icon-pink-doughnut-isolated-white-background_134830-1096.jpg",
     location: {
       latitude: 53.48234751307861,
       longitude: -2.056806859040247,
@@ -216,7 +217,8 @@ module.exports = [
     business_name: "Jabbertype",
     business_bio:
       "In congue. Etiam justo. Etiam pretium iaculis justo.\n\nIn hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
-    logo_url: "https://static.independent.co.uk/2022/03/16/13/newFile-5.jpg",
+    logo_url:
+      "https://www.allrecipes.com/thmb/g8TbBtq9Ka3tt6iX4B8luFkqtIw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/268494-basic-air-fryer-hot-dogs-BuckwheatQueen-4x3-84d84c97b9084e75ad49d8d6154494ca.jpg",
     menu_url:
       "https://www.tonyshotdogs.com/wp-content/uploads/2022/12/2022-1213_FA_MENU-Sign-Layout-outlines.png",
     location: {
@@ -245,7 +247,7 @@ module.exports = [
     business_bio:
       "Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
     logo_url:
-      "https://vickyflipfloptravels.com/wp-content/uploads/2023/03/unique-souvenir-ideas.jpg.webp",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Strawberry_ice_cream_cone_%285076899310%29.jpg/640px-Strawberry_ice_cream_cone_%285076899310%29.jpg",
     location: {
       latitude: 53.482005945614624,
       longitude: -2.056734439397448,
@@ -276,7 +278,7 @@ module.exports = [
     business_bio:
       "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
     logo_url:
-      "https://cdn-prod.medicalnewstoday.com/content/images/articles/325/325253/assortment-of-fruits.jpg",
+      "https://www.inspiredtaste.net/wp-content/uploads/2021/03/Chicken-Curry-Recipe-2-1200-1200x800.jpg",
     menu_url:
       "https://static.vecteezy.com/system/resources/previews/010/883/598/original/indian-food-restaurant-meals-menu-page-template-vector.jpg",
     location: {
@@ -305,7 +307,7 @@ module.exports = [
     business_bio:
       "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
     logo_url:
-      "https://cdn-prod.medicalnewstoday.com/content/images/articles/325/325253/assortment-of-fruits.jpg",
+      "https://imageio.forbes.com/specials-images/imageserve/5f974a4f5210e336503abf92/Baked-tasty-margherita-pizza-in-Traditional-wood-oven-in-Naples-restaurant--Italy-/960x0.jpg",
     menu_url:
       "https://images.squarespace-cdn.com/content/v1/565f2e79e4b062a4a30c2745/9d5ce60d-b50c-4200-bba2-0e2135b79b6f/Dec22Pizzas8x11.jpg",
     location: {
@@ -334,7 +336,7 @@ module.exports = [
     business_bio:
       "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
     logo_url:
-      "https://cdn-prod.medicalnewstoday.com/content/images/articles/325/325253/assortment-of-fruits.jpg",
+      "https://image.cookly.me/tr:h-400,w-704,pr-true,rt-auto/images/bangkok-street-food.jpg",
     menu_url:
       "https://static.vecteezy.com/system/resources/previews/003/311/686/original/street-food-menu-design-template-vector.jpg",
     location: {
@@ -362,8 +364,7 @@ module.exports = [
     business_name: "Tapas, Stephen. Tapas!",
     business_bio:
       "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-    logo_url:
-      "https://cdn-prod.medicalnewstoday.com/content/images/articles/325/325253/assortment-of-fruits.jpg",
+    logo_url: "https://www.goya.com/media/6702/spanish-tapas-platter.jpg",
     menu_url:
       "https://img.freepik.com/premium-vector/spanish-food-menu-spain-cuisine-dishes-tapas_8071-8138.jpg",
     location: {
@@ -392,7 +393,7 @@ module.exports = [
     business_bio:
       "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
     logo_url:
-      "https://cdn-prod.medicalnewstoday.com/content/images/articles/325/325253/assortment-of-fruits.jpg",
+      "https://www.grestysflorist.co.uk/upload/mt/gres41/products/lg_null-100-red-roses.jpg",
     menu_url:
       "https://asset.bloomnation.com/c_pad,d_vendor:global:catalog:product:image.png,f_auto,fl_preserve_transparency,q_auto/v1616039451/vendor/3752/catalog/product/2/0/20210201034910_file_601822f6c5739_6018231e8e33e..jpg",
     location: {
@@ -421,7 +422,7 @@ module.exports = [
     business_bio:
       "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
     logo_url:
-      "https://cdn-prod.medicalnewstoday.com/content/images/articles/325/325253/assortment-of-fruits.jpg",
+      "https://georgedowdell.files.wordpress.com/2013/12/receiving.jpg?",
     menu_url:
       "https://2.bp.blogspot.com/-TM5C2o4-Vb8/XLeQ-r-l54I/AAAAAAAAbQM/g5RQiDdRvVIN3Evlx2AwHwq2SweK-5BaQCLcBGAs/s1600/UShaped-gift-box1-JamieLaneDesigns.jpg",
     location: {
